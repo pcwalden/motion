@@ -67,9 +67,11 @@ struct config {
     int ffmpeg_output_debug;
     int ffmpeg_bps;
     int ffmpeg_vbr;
+    int ffmpeg_passthrough;
     const char *ffmpeg_video_codec;
     int ipv6_enabled;
     int stream_port;
+    int substream_port;
     int stream_quality;
     int stream_motion;
     int stream_maxrate;
@@ -82,11 +84,14 @@ struct config {
     int webcontrol_port;
     int webcontrol_localhost;
     int webcontrol_html_output;
+    int webcontrol_parms;
     const char *webcontrol_authentication;
     unsigned long frequency;
     int tuner_number;
-    int timelapse;
+    int         timelapse_interval;
+    int         timelapse_fps;
     const char *timelapse_mode;
+    const char *timelapse_codec;
     const char *tuner_device;
     const char *video_device;
     int v4l2_palette;
@@ -123,6 +128,7 @@ struct config {
     char *on_camera_found;
     const char *motionvidpipe;
     const char *netcam_url;
+    const char *netcam_highres;
     const char *netcam_userpass;
     const char *netcam_keepalive;
     const char *netcam_proxy;
@@ -163,14 +169,29 @@ typedef struct {
     int conf_value;                   /* pointer to a field in struct context     */
     conf_copy_func  copy;             /* a function to set the value in 'config'  */
     conf_print_func print;            /* a function to output the value to a file */
+    int  webui_level;                 /* Enum to display in webui: 0,1,2,3,99(always to never)*/
 } config_param;
 
 extern config_param config_params[];
+
+/**
+ * description for deprecated parameters in the config file
+ */
+typedef struct {
+    const char *name;           /* Name of the deprecated option */
+    const char *last_version;   /* Last version this option was used in */
+    const char *info;           /* Short text on why it was deprecated (removed, replaced with, etc) */
+    int conf_value;             /* Pointer to the replacement field in struct context */
+    conf_copy_func copy;        /* Function to set the replacement value */
+} dep_config_param;
+
+extern dep_config_param dep_config_params[];
 
 struct context **conf_load(struct context **);
 struct context **conf_cmdparse(struct context **, const char *, const char *);
 const char *config_type(config_param *);
 void conf_print(struct context **);
+void conf_output_parms(struct context **cnt);
 void malloc_strings(struct context *);
 char *mystrdup(const char *);
 char *mystrcpy(char *, const char *);

@@ -220,12 +220,12 @@ static void put_subjectarea(struct tiff_writing *into, const struct coord *box)
     into->data_offset += 8;
 }
 
-/*
- * put_jpeg_exif writes the EXIF APP1 chunk to the jpeg file.
- * It must be called after jpeg_start_compress() but before
- * any image data is written by jpeg_write_scanlines().
- */
-static void put_jpeg_exif(j_compress_ptr cinfo,
+/* 
+ * prepare_exif() is a comon function used to prepare
+ * exif data to be inserted into jpeg or webp files
+ *
+ */ 
+static unsigned prepare_exif(unsigned char **exif,
               const struct context *cnt,
               const struct timeval *tv1,
               const struct coord *box)
@@ -312,13 +312,13 @@ static void put_jpeg_exif(j_compress_ptr cinfo,
     /* Each IFD takes 12 bytes per tag, plus six more (the tag count and the
      * pointer to the next IFD, always zero in our case)
      */
-    unsigned int ifds_size =
+    int ifds_size =
     ( ifd1_tagcount > 0 ? ( 12 * ifd1_tagcount + 6 ) : 0 ) +
     ( ifd0_tagcount > 0 ? ( 12 * ifd0_tagcount + 6 ) : 0 );
 
     if (ifds_size == 0) {
         /* We're not actually going to write any information. */
-        return;
+        return 0;
     }
 
     unsigned int buffer_size = 6 /* EXIF marker signature */ +
@@ -393,13 +393,60 @@ static void put_jpeg_exif(j_compress_ptr cinfo,
     /* assert we didn't underestimate the original buffer size */
     assert(marker_len <= buffer_size);
 
-    /* EXIF data lives in a JPEG APP1 marker */
-    jpeg_write_marker(cinfo, JPEG_APP0 + 1, marker, marker_len);
-
     free(description);
 
-    free(marker);
+    *exif = marker;
+    return marker_len;
 }
+
+/*
+ * put_jpeg_exif writes the EXIF APP1 chunk to the jpeg file.
+ * It must be called after jpeg_start_compress() but before
+ * any image data is written by jpeg_write_scanlines().
+ */
+static void put_jpeg_exif(j_compress_ptr cinfo,
+              const struct context *cnt,
+              const struct timeval *tv1,
+              const struct coord *box)
+{
+    unsigned char *exif = NULL;
+    unsigned exif_len = prepare_exif(&exif, cnt, tv1, box);
+
+    if(exif_len > 0) {
+        /* EXIF data lives in a JPEG APP1 marker */
+        jpeg_write_marker(cinfo, JPEG_APP0 + 1, exif, exif_len);
+        free(exif);
+    }
+}
+
+#ifdef HAVE_WEBP
+/*
+ * put_webp_exif writes the EXIF APP1 chunk to the webp file.
+ * It must be called after WebPEncode() and the result
+ * can then be written out to webp a file
+ */
+static void put_webp_exif(WebPMux* webp_mux,
+              const struct context *cnt,
+              const struct timeval *tv1,
+              const struct coord *box)
+{
+    unsigned char *exif = NULL;
+    unsigned exif_len = prepare_exif(&exif, cnt, tv1, box);
+
+    if(exif_len > 0) {
+        WebPData webp_exif;
+        /* EXIF in WEBP does not need the EXIF marker signature (6 bytes) that are needed by jpeg */
+        webp_exif.bytes = exif + 6;
+        webp_exif.size = exif_len - 6;
+        
+        WebPMuxError err = WebPMuxSetChunk(webp_mux, "EXIF", &webp_exif, 1);
+        if (err != WEBP_MUX_OK) {
+            MOTION_LOG(ERR, TYPE_CORE, NO_ERRNO, "Unable to set set EXIF to webp chunk");
+        }
+        free(exif);
+    }
+}
+#endif /* HAVE_WEBP */
 
 /**
  * put_jpeg_yuv420p_memory
@@ -562,7 +609,7 @@ static int put_jpeg_grey_memory(unsigned char *dest_image, int image_size, unsig
  */
 static void put_webp_yuv420p_file(FILE *fp,
                   unsigned char *image, int width, int height,
-                  int quality)
+                  int quality, struct context *cnt, struct timeval *tv1, struct coord *box)
 {
     /* Create a config present and check for compatible library version */
     WebPConfig webp_config;
@@ -601,8 +648,24 @@ static void put_webp_yuv420p_file(FILE *fp,
     if (!WebPEncode(&webp_config, &webp_image))
         MOTION_LOG(WRN, TYPE_CORE, NO_ERRNO, "libwebp image compression error");
 
-    /* Write the webp bytestream to file */
-    if (fwrite(webp_writer.mem, sizeof(uint8_t), webp_writer.size, fp) != webp_writer.size)
+    /* A bitstream object is needed for the muxing proces */
+    WebPData webp_bitstream;
+    webp_bitstream.bytes = webp_writer.mem;
+    webp_bitstream.size = webp_writer.size;
+    
+    /* Create a mux from the prepared image data */
+    WebPMux* webp_mux = WebPMuxCreate(&webp_bitstream, 1);
+    put_webp_exif(webp_mux, cnt, tv1, box);
+    
+    /* Add Exif data to the webp image data */
+    WebPData webp_output;
+    WebPMuxError err = WebPMuxAssemble(webp_mux, &webp_output);
+    if (err != WEBP_MUX_OK) {
+        MOTION_LOG(ERR, TYPE_CORE, NO_ERRNO, "unable to assemble webp image");
+    }
+    
+    /* Write the webp final bitstream to the file */
+    if (fwrite(webp_output.bytes, sizeof(uint8_t), webp_output.size, fp) != webp_output.size)
         MOTION_LOG(ERR, TYPE_CORE, NO_ERRNO, "unable to save webp image to file");
 
 #if WEBP_ENCODER_ABI_VERSION > 0x0202
@@ -613,8 +676,12 @@ static void put_webp_yuv420p_file(FILE *fp,
     free(webp_writer.mem);
 #endif /* WEBP_ENCODER_ABI_VERSION */
 
-    /* free the memory used by webp for image object */
+    /* free the memory used by webp for image data */
     WebPPictureFree(&webp_image);
+    /* free the memory used by webp mux object */
+    WebPMuxDelete(webp_mux);
+    /* free the memory used by webp for output data */
+    WebPDataClear(&webp_output);
 }
 #endif /* HAVE_WEBP */
 
@@ -970,44 +1037,54 @@ void overlay_largest_label(struct context *cnt, unsigned char *out)
  *
  * Returns the dest_image_size if successful. Otherwise 0.
  */
-int put_picture_memory(struct context *cnt, unsigned char* dest_image, int image_size,
-                       unsigned char *image, int quality)
+int put_picture_memory(struct context *cnt, unsigned char* dest_image, int image_size, unsigned char *image,
+        int quality, int width, int height)
 {
     switch (cnt->imgs.type) {
     case VIDEO_PALETTE_YUV420P:
         return put_jpeg_yuv420p_memory(dest_image, image_size, image,
-                                       cnt->imgs.width, cnt->imgs.height, quality, cnt, &(cnt->current_image->timestamp_tv), &(cnt->current_image->location));
+                                       width, height, quality, cnt
+                                       , &(cnt->current_image->timestamp_tv)
+                                       , &(cnt->current_image->location));
     case VIDEO_PALETTE_GREY:
-        return put_jpeg_grey_memory(dest_image, image_size, image,
-                                    cnt->imgs.width, cnt->imgs.height, quality);
+        return put_jpeg_grey_memory(dest_image, image_size, image, width, height, quality);
     default:
-        MOTION_LOG(WRN, TYPE_ALL, NO_ERRNO, "Unknown image type %d",
-                   cnt->imgs.type);
+        MOTION_LOG(WRN, TYPE_ALL, NO_ERRNO, "Unknown image type %d", cnt->imgs.type);
     }
 
     return 0;
 }
 
-void put_picture_fd(struct context *cnt, FILE *picture, unsigned char *image, int quality)
-{
+static void put_picture_fd(struct context *cnt, FILE *picture, unsigned char *image, int quality, int ftype){
+    int width, height;
+    int passthrough;
+
+    passthrough = util_check_passthrough(cnt);
+    if ((ftype == FTYPE_IMAGE) && (cnt->imgs.size_high > 0) && (!passthrough)) {
+        width = cnt->imgs.width_high;
+        height = cnt->imgs.height_high;
+    } else {
+        width = cnt->imgs.width;
+        height = cnt->imgs.height;
+    }
+
     if (cnt->imgs.picture_type == IMAGE_TYPE_PPM) {
-        put_ppm_bgr24_file(picture, image, cnt->imgs.width, cnt->imgs.height);
+        put_ppm_bgr24_file(picture, image, width, height);
     } else {
         switch (cnt->imgs.type) {
         case VIDEO_PALETTE_YUV420P:
             #ifdef HAVE_WEBP
             if (cnt->imgs.picture_type == IMAGE_TYPE_WEBP)
-                put_webp_yuv420p_file(picture, image, cnt->imgs.width, cnt->imgs.height, quality);
+                put_webp_yuv420p_file(picture, image, width, height, quality, cnt, &(cnt->current_image->timestamp_tv), &(cnt->current_image->location));
             #endif /* HAVE_WEBP */
             if (cnt->imgs.picture_type == IMAGE_TYPE_JPEG)
-                put_jpeg_yuv420p_file(picture, image, cnt->imgs.width, cnt->imgs.height, quality, cnt, &(cnt->current_image->timestamp_tv), &(cnt->current_image->location));
+                put_jpeg_yuv420p_file(picture, image, width, height, quality, cnt, &(cnt->current_image->timestamp_tv), &(cnt->current_image->location));
             break;
         case VIDEO_PALETTE_GREY:
-            put_jpeg_grey_file(picture, image, cnt->imgs.width, cnt->imgs.height, quality);
+            put_jpeg_grey_file(picture, image, width, height, quality);
             break;
         default:
-            MOTION_LOG(WRN, TYPE_ALL, NO_ERRNO, "Unknown image type %d",
-                       cnt->imgs.type);
+            MOTION_LOG(WRN, TYPE_ALL, NO_ERRNO, "Unknown image type %d", cnt->imgs.type);
         }
     }
 }
@@ -1034,7 +1111,8 @@ void put_picture(struct context *cnt, char *file, unsigned char *image, int ftyp
         }
     }
 
-    put_picture_fd(cnt, picture, image, cnt->conf.quality);
+    put_picture_fd(cnt, picture, image, cnt->conf.quality, ftype);
+
     myfclose(picture);
     event(cnt, EVENT_FILECREATE, NULL, file, (void *)(unsigned long)ftype, NULL);
 }
@@ -1053,12 +1131,12 @@ unsigned char *get_pgm(FILE *picture, int width, int height)
     line[255] = 0;
 
     if (!fgets(line, 255, picture)) {
-        MOTION_LOG(ERR, TYPE_ALL, SHOW_ERRNO, "Could not read from ppm file");
+        MOTION_LOG(ERR, TYPE_ALL, SHOW_ERRNO, "Could not read from pgm file");
         return NULL;
     }
 
     if (strncmp(line, "P5", 2)) {
-        MOTION_LOG(ERR, TYPE_ALL, SHOW_ERRNO, "This is not a ppm file, starts with '%s'",
+        MOTION_LOG(ERR, TYPE_ALL, SHOW_ERRNO, "This is not a pgm file, starts with '%s'",
                    line);
         return NULL;
     }
@@ -1150,7 +1228,7 @@ void put_fixed_mask(struct context *cnt, const char *file)
         }
         return;
     }
-    memset(cnt->imgs.out, 255, cnt->imgs.motionsize); /* Initialize to unset */
+    memset(cnt->imgs.img_motion.image_norm, 255, cnt->imgs.motionsize); /* Initialize to unset */
 
     /* Write pgm-header. */
     fprintf(picture, "P5\n");
@@ -1158,7 +1236,7 @@ void put_fixed_mask(struct context *cnt, const char *file)
     fprintf(picture, "%d\n", 255);
 
     /* Write pgm image data at once. */
-    if ((int)fwrite(cnt->imgs.out, cnt->conf.width, cnt->conf.height, picture) != cnt->conf.height) {
+    if ((int)fwrite(cnt->imgs.img_motion.image_norm, cnt->conf.width, cnt->conf.height, picture) != cnt->conf.height) {
         MOTION_LOG(ERR, TYPE_ALL, SHOW_ERRNO, "Failed writing default mask as pgm file");
         return;
     }
@@ -1183,6 +1261,7 @@ void preview_save(struct context *cnt)
     char previewname[PATH_MAX];
     char filename[PATH_MAX];
     struct image_data *saved_current_image;
+    int passthrough;
 
     if (cnt->imgs.preview_image.diffs) {
         /* Save current global context. */
@@ -1206,7 +1285,14 @@ void preview_save(struct context *cnt)
 
             previewname[basename_len] = '\0';
             strcat(previewname, imageext(cnt));
-            put_picture(cnt, previewname, cnt->imgs.preview_image.image , FTYPE_IMAGE);
+
+            passthrough = util_check_passthrough(cnt);
+            if ((cnt->imgs.size_high > 0) && (!passthrough)) {
+                put_picture(cnt, previewname, cnt->imgs.preview_image.image_high , FTYPE_IMAGE);
+            } else {
+                put_picture(cnt, previewname, cnt->imgs.preview_image.image_norm , FTYPE_IMAGE);
+            }
+
         } else {
             /*
              * Save best preview-shot also when no movies are recorded or imagepath
@@ -1225,10 +1311,43 @@ void preview_save(struct context *cnt)
             mystrftime(cnt, filename, sizeof(filename), imagepath, &cnt->imgs.preview_image.timestamp_tv, NULL, 0);
             snprintf(previewname, PATH_MAX, "%s/%s.%s", cnt->conf.filepath, filename, imageext(cnt));
 
-            put_picture(cnt, previewname, cnt->imgs.preview_image.image, FTYPE_IMAGE);
+            passthrough = util_check_passthrough(cnt);
+            if ((cnt->imgs.size_high > 0) && (!passthrough)) {
+                put_picture(cnt, previewname, cnt->imgs.preview_image.image_high , FTYPE_IMAGE);
+            } else {
+                put_picture(cnt, previewname, cnt->imgs.preview_image.image_norm, FTYPE_IMAGE);
+            }
         }
 
         /* Restore global context values. */
         cnt->current_image = saved_current_image;
     }
 }
+
+/**
+ * scale_half_yuv420p
+ *      scale down by half yuv420p
+ *
+ * Returns pointer to scaled image
+ */
+
+unsigned char *scale_half_yuv420p(int origwidth, int origheight, unsigned char *img)
+{
+    /* allocate buffer for resized image */
+    unsigned char *scaled_img = mymalloc ((origwidth/2 * origheight/2) * 3 / 2);
+
+    int i = 0, x, y;
+    for (y = 0; y < origheight; y+=2)
+        for (x = 0; x < origwidth; x+=2)
+            scaled_img[i++] = img[y * origwidth + x];
+
+    for (y = 0; y < origheight / 2; y+=2)
+       for (x = 0; x < origwidth; x += 4)
+       {
+          scaled_img[i++] = img[(origwidth * origheight) + (y * origwidth) + x];
+          scaled_img[i++] = img[(origwidth * origheight) + (y * origwidth) + (x + 1)];
+       }
+
+    return scaled_img;
+}
+

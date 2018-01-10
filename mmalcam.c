@@ -141,6 +141,15 @@ static int create_camera_component(mmalcam_context_ptr mmalcam, const char *mmal
 
     set_video_port_format(mmalcam, video_port->format);
     video_port->format->encoding = MMAL_ENCODING_I420;
+    // set buffer size for an aligned/padded frame
+    video_port->buffer_size = VCOS_ALIGN_UP(mmalcam->width, 32) *
+        VCOS_ALIGN_UP(mmalcam->height, 16) * 3 / 2;
+
+    if (mmal_port_parameter_set_boolean(video_port, MMAL_PARAMETER_NO_IMAGE_PADDING, 1)
+            != MMAL_SUCCESS) {
+        MOTION_LOG(WRN, TYPE_VIDEO, NO_ERRNO, "MMAL no-padding setup failed");
+    }
+
     status = mmal_port_format_commit(video_port);
 
     if (status) {
@@ -240,7 +249,7 @@ static void destroy_camera_buffer_structures(mmalcam_context_ptr mmalcam)
  *
  *      This routine is called from the main motion thread.  It's job is
  *      to open up the requested camera device via MMAL and do any required
- *      initialisation.
+ *      initialization.
  *
  * Parameters:
  *
@@ -280,7 +289,7 @@ int mmalcam_start(struct context *cnt)
 
     cnt->imgs.width = mmalcam->width;
     cnt->imgs.height = mmalcam->height;
-    cnt->imgs.size = (mmalcam->width * mmalcam->height * 3) / 2;
+    cnt->imgs.size_norm = (mmalcam->width * mmalcam->height * 3) / 2;
     cnt->imgs.motionsize = mmalcam->width * mmalcam->height;
     cnt->imgs.type = VIDEO_PALETTE_YUV420P;
 
@@ -361,7 +370,7 @@ void mmalcam_cleanup(struct mmalcam_context *mmalcam)
  *
  * Returns:             Error code
  */
-int mmalcam_next(struct context *cnt, unsigned char *map)
+int mmalcam_next(struct context *cnt,  struct image_data *img_data)
 {
     mmalcam_context_ptr mmalcam;
 
@@ -373,13 +382,14 @@ int mmalcam_next(struct context *cnt, unsigned char *map)
     MMAL_BUFFER_HEADER_T *camera_buffer = mmal_queue_wait(mmalcam->camera_buffer_queue);
 
     if (camera_buffer->cmd == 0 && (camera_buffer->flags & MMAL_BUFFER_HEADER_FLAG_FRAME_END)
-            && camera_buffer->length == cnt->imgs.size) {
+            && camera_buffer->length >= cnt->imgs.size_norm) {
         mmal_buffer_header_mem_lock(camera_buffer);
-        memcpy(map, camera_buffer->data, cnt->imgs.size);
+        memcpy(img_data->image_norm, camera_buffer->data, cnt->imgs.size_norm);
         mmal_buffer_header_mem_unlock(camera_buffer);
     } else {
-        MOTION_LOG(ERR, TYPE_VIDEO, NO_ERRNO, "cmd %d flags %08x size %d/%d at %08x",
-                camera_buffer->cmd, camera_buffer->flags, camera_buffer->length, camera_buffer->alloc_size, camera_buffer->data);
+        MOTION_LOG(ERR, TYPE_VIDEO, NO_ERRNO, "cmd %d flags %08x size %d/%d at %08x, img_size=%d",
+                camera_buffer->cmd, camera_buffer->flags, camera_buffer->length,
+                camera_buffer->alloc_size, camera_buffer->data, cnt->imgs.size_norm);
     }
 
     mmal_buffer_header_release(camera_buffer);
@@ -396,8 +406,7 @@ int mmalcam_next(struct context *cnt, unsigned char *map)
             MOTION_LOG(ERR, TYPE_VIDEO, NO_ERRNO, "Unable to return a buffer to the camera video port");
     }
 
-    if (cnt->rotate_data.degrees > 0 || cnt->rotate_data.axis != FLIP_TYPE_NONE)
-        rotate_map(cnt, map);
+    rotate_map(cnt,img_data);
 
     return 0;
 }

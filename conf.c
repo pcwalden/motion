@@ -78,8 +78,10 @@ struct config conf_template = {
     .ffmpeg_bps =                      DEF_FFMPEG_BPS,
     .ffmpeg_vbr =                      DEF_FFMPEG_VBR,
     .ffmpeg_video_codec =              DEF_FFMPEG_CODEC,
+    .ffmpeg_passthrough =              0,
     .ipv6_enabled =                    0,
     .stream_port =                     0,
+    .substream_port =                  0,
     .stream_quality =                  50,
     .stream_motion =                   0,
     .stream_maxrate =                  1,
@@ -95,8 +97,10 @@ struct config conf_template = {
     .webcontrol_authentication =       NULL,
     .frequency =                       0,
     .tuner_number =                    0,
-    .timelapse =                       0,
+    .timelapse_interval =              0,
     .timelapse_mode =                  DEF_TIMELAPSE_MODE,
+    .timelapse_fps =                   30,
+    .timelapse_codec =                 DEF_FFMPEG_CODEC,
     .tuner_device =                    NULL,
     .video_device =                    DEF_VIDEO_DEVICE,
     .v4l2_palette =                    DEF_PALETTE,
@@ -115,8 +119,8 @@ struct config conf_template = {
     .sql_log_snapshot =                1,
     .sql_log_movie =                   0,
     .sql_log_timelapse =               0,
-    .sql_query_start =                 DEF_SQL_QUERY_START,
-    .sql_query =                       DEF_SQL_QUERY,
+    .sql_query_start =                 NULL,
+    .sql_query =                       NULL,
     .database_type =                   NULL,
     .database_dbname =                 NULL,
     .database_host =                   "localhost",
@@ -133,6 +137,7 @@ struct config conf_template = {
     .on_camera_found =                 NULL,
     .motionvidpipe =                   NULL,
     .netcam_url =                      NULL,
+    .netcam_highres=                   NULL,
     .netcam_userpass =                 NULL,
     .netcam_keepalive =                "off",
     .netcam_proxy =                    NULL,
@@ -155,7 +160,7 @@ struct config conf_template = {
     .log_file =                        NULL,
     .log_level =                       LEVEL_DEFAULT+10,
     .log_type_str =                    NULL,
-    .camera_dir =                      sysconfdir"/conf.d"
+    .camera_dir =                      NULL
 };
 
 
@@ -169,10 +174,6 @@ static const char *print_bool(struct context **, char **, int, unsigned int);
 static const char *print_int(struct context **, char **, int, unsigned int);
 static const char *print_string(struct context **, char **, int, unsigned int);
 static const char *print_camera(struct context **, char **, int, unsigned int);
-
-/* Deprcated thread config functions */
-static struct context **config_thread(struct context **cnt, const char *str, int val);
-static const char *print_thread(struct context **, char **, int, unsigned int);
 
 static void usage(void);
 
@@ -192,7 +193,8 @@ config_param config_params[] = {
     1,
     CNT_OFFSET(daemon),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "process_id_file",
@@ -200,7 +202,8 @@ config_param config_params[] = {
     1,
     CONF_OFFSET(pid_file),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "setup_mode",
@@ -211,7 +214,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(setup_mode),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "camera_name",
@@ -220,7 +224,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(camera_name),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "logfile",
@@ -228,7 +233,8 @@ config_param config_params[] = {
     1,
     CONF_OFFSET(log_file),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "log_level",
@@ -236,7 +242,8 @@ config_param config_params[] = {
     1,
     CONF_OFFSET(log_level),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "log_type",
@@ -244,7 +251,8 @@ config_param config_params[] = {
     1,
     CONF_OFFSET(log_type_str),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "videodevice",
@@ -256,7 +264,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(video_device),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "v4l2_palette",
@@ -266,7 +275,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(v4l2_palette),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_ADVANCED
     },
 #ifdef __FreeBSD__
     {
@@ -276,7 +286,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(tuner_device),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
 #endif
     {
@@ -286,7 +297,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(input),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "norm",
@@ -295,7 +307,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(norm),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "frequency",
@@ -303,7 +316,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(frequency),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "flip_axis",
@@ -312,7 +326,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(flip_axis),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "rotate",
@@ -321,7 +336,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(rotate_deg),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "width",
@@ -329,7 +345,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(width),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "height",
@@ -337,7 +354,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(height),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "framerate",
@@ -346,7 +364,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(frame_limit),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "minimum_frame_time",
@@ -356,7 +375,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(minimum_frame_time),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "netcam_url",
@@ -366,7 +386,17 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(netcam_url),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
+    },
+    {
+    "netcam_highres",
+    "# High resolution URL for rtsp cameras only.  Same format as netcam_url.",
+    0,
+    CONF_OFFSET(netcam_highres),
+    copy_string,
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "netcam_userpass",
@@ -375,7 +405,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(netcam_userpass),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "netcam_keepalive",
@@ -387,7 +418,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(netcam_keepalive),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "netcam_proxy",
@@ -397,7 +429,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(netcam_proxy),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "netcam_tolerant_check",
@@ -406,7 +439,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(netcam_tolerant_check),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "rtsp_uses_tcp",
@@ -415,7 +449,8 @@ config_param config_params[] = {
     1,
     CONF_OFFSET(rtsp_uses_tcp),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_ADVANCED
     },
 #ifdef HAVE_MMAL
     {
@@ -426,7 +461,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(mmalcam_name),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "mmalcam_control_params",
@@ -435,7 +471,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(mmalcam_control_params),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
 #endif
     {
@@ -447,7 +484,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(autobright),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "brightness",
@@ -458,7 +496,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(brightness),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "contrast",
@@ -467,7 +506,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(contrast),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "saturation",
@@ -476,7 +516,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(saturation),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "hue",
@@ -485,7 +526,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(hue),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "power_line_frequency",
@@ -501,7 +543,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(power_line_frequency),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "roundrobin_frames",
@@ -512,7 +555,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(roundrobin_frames),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "roundrobin_skip",
@@ -520,7 +564,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(roundrobin_skip),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "switchfilter",
@@ -528,7 +573,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(switchfilter),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "threshold",
@@ -540,7 +586,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(max_changes),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "threshold_tune",
@@ -548,7 +595,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(threshold_tune),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "noise_level",
@@ -556,7 +604,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(noise),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "noise_tune",
@@ -564,7 +613,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(noise_tune),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "despeckle_filter",
@@ -575,7 +625,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(despeckle_filter),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "area_detect",
@@ -587,7 +638,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(area_detect),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "mask_file",
@@ -596,7 +648,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(mask_file),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "mask_privacy",
@@ -605,7 +658,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(mask_privacy),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "smart_mask_speed",
@@ -614,18 +668,19 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(smart_mask_speed),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "lightswitch",
     "# Ignore sudden massive light intensity changes given as a percentage of the picture\n"
     "# area that changed intensity. If set to 1, motion will do some kind of\n"
     "# auto-lightswitch. Valid range: 0 - 100 , default: 0 = disabled",
-
     0,
     CONF_OFFSET(lightswitch),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "minimum_motion_frames",
@@ -635,7 +690,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(minimum_motion_frames),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "pre_capture",
@@ -647,7 +703,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(pre_capture),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "post_capture",
@@ -655,7 +712,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(post_capture),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "event_gap",
@@ -668,7 +726,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(event_gap),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "max_movie_time",
@@ -677,7 +736,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(max_movie_time),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "emulate_motion",
@@ -685,7 +745,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(emulate_motion),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "output_pictures",
@@ -701,7 +762,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(output_pictures),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "output_debug_pictures",
@@ -709,7 +771,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(motion_img),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "quality",
@@ -717,7 +780,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(quality),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "camera_id",
@@ -727,7 +791,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(camera_id),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "picture_type",
@@ -736,7 +801,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(picture_type),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "ffmpeg_output_movies",
@@ -750,7 +816,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(ffmpeg_output),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "ffmpeg_output_debug_movies",
@@ -759,25 +826,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(ffmpeg_output_debug),
     copy_bool,
-    print_bool
-    },
-    {
-    "ffmpeg_timelapse",
-    "# Use ffmpeg to encode a timelapse movie\n"
-    "# Default value 0 = off - else save frame every Nth second",
-    0,
-    CONF_OFFSET(timelapse),
-    copy_int,
-    print_int
-    },
-    {
-    "ffmpeg_timelapse_mode",
-    "# The file rollover mode of the timelapse video\n"
-    "# Valid values: hourly, daily (default), weekly-sunday, weekly-monday, monthly, manual",
-    0,
-    CONF_OFFSET(timelapse_mode),
-    copy_string,
-    print_string
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "ffmpeg_bps",
@@ -786,7 +836,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(ffmpeg_bps),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "ffmpeg_variable_bitrate",
@@ -797,14 +848,12 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(ffmpeg_vbr),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "ffmpeg_video_codec",
-    "# Codec to used by ffmpeg for the video compression.\n"
-    "# Timelapse movies are always made in mpeg1 format independent from this option.\n"
-    "# Supported formats are (default:mpeg4):\n"
-    "# mpeg1 - gives you files with extension .mpg (ffmpeg-0.4.8 or later)\n"
+    "# Container/Codec to used by ffmpeg for the video compression.\n"
     "# mpeg4 or msmpeg4 - gives you files with extension .avi\n"
     "# msmpeg4 is recommended for use with Windows Media Player because\n"
     "# it requires no installation of codec on the Windows client.\n"
@@ -819,7 +868,20 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(ffmpeg_video_codec),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
+    },
+    {
+    "ffmpeg_passthrough",
+    "\n############################################################\n"
+    "# Passthrough the packet from the camera to the recording\n"
+    "############################################################\n\n"
+    "# Pass through the packet without decode/encoding(default: off)",
+    0,
+    CONF_OFFSET(ffmpeg_passthrough),
+    copy_bool,
+    print_bool,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "ffmpeg_duplicate_frames",
@@ -828,7 +890,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(ffmpeg_duplicate_frames),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "use_extpipe",
@@ -842,7 +905,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(useextpipe),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "extpipe",
@@ -851,7 +915,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(extpipe),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_RESTRICTED
     },
     {
     "snapshot_interval",
@@ -862,7 +927,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(snapshot_interval),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "locate_motion_mode",
@@ -884,7 +950,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(locate_motion_mode),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "locate_motion_style",
@@ -897,7 +964,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(locate_motion_style),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "text_right",
@@ -907,7 +975,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(text_right),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "text_left",
@@ -917,7 +986,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(text_left),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "text_changes",
@@ -927,7 +997,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(text_changes),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "text_event",
@@ -940,7 +1011,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(text_event),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "text_double",
@@ -948,7 +1020,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(text_double),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "exif_text",
@@ -958,7 +1031,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(exif_text),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "target_dir",
@@ -980,7 +1054,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(filepath),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "snapshot_filename",
@@ -994,7 +1069,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(snappath),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "picture_filename",
@@ -1008,7 +1084,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(imagepath),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "movie_filename",
@@ -1016,12 +1093,49 @@ config_param config_params[] = {
     "# Default: "DEF_MOVIEPATH"\n"
     "# Default value is equivalent to legacy oldlayout option\n"
     "# For Motion 3.0 compatible mode choose: %Y/%m/%d/%H%M%S\n"
-    "# File extension .mpg or .avi is automatically added so do not include this\n"
+    "# File extension is automatically added so do not include this\n"
     "# This option was previously called ffmpeg_filename",
     0,
     CONF_OFFSET(moviepath),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
+    },
+    {
+    "timelapse_interval",
+    "# Interval in seconds between timelapse captures.  Default: 0 = off",
+    0,
+    CONF_OFFSET(timelapse_interval),
+    copy_int,
+    print_int,
+    WEBUI_LEVEL_LIMITED
+    },
+    {
+    "timelapse_mode",
+    "# Timelapse file rollover mode. See motion_guide.html for options and uses.",
+    0,
+    CONF_OFFSET(timelapse_mode),
+    copy_string,
+    print_string,
+    WEBUI_LEVEL_LIMITED
+    },
+    {
+    "timelapse_codec",
+    "# Container/Codec for timelapse video. Valid values: mpg or mpeg4",
+    0,
+    CONF_OFFSET(timelapse_codec),
+    copy_string,
+    print_string,
+    WEBUI_LEVEL_LIMITED
+    },
+    {
+    "timelapse_fps",
+    "# Frame rate for timelapse playback",
+    0,
+    CONF_OFFSET(timelapse_fps),
+    copy_int,
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "timelapse_filename",
@@ -1029,11 +1143,12 @@ config_param config_params[] = {
     "# Default: "DEF_TIMEPATH"\n"
     "# Default value is near equivalent to legacy oldlayout option\n"
     "# For Motion 3.0 compatible mode choose: %Y/%m/%d-timelapse\n"
-    "# File extension .mpg is automatically added so do not include this",
+    "# File extension is automatically added so do not include this",
     0,
     CONF_OFFSET(timepath),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "ipv6_enabled",
@@ -1044,7 +1159,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(ipv6_enabled),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "stream_port",
@@ -1055,7 +1171,20 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(stream_port),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_ADVANCED
+    },
+    {
+    "substream_port",
+    "\n############################################################\n"
+    "# Live Substream Server\n"
+    "############################################################\n\n"
+    "# The mini-http server listens to this port for requests (default: 0 = disabled)",
+    0,
+    CONF_OFFSET(substream_port),
+    copy_int,
+    print_int,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "stream_quality",
@@ -1063,7 +1192,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(stream_quality),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "stream_motion",
@@ -1072,7 +1202,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(stream_motion),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "stream_maxrate",
@@ -1080,7 +1211,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(stream_maxrate),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "stream_localhost",
@@ -1088,7 +1220,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(stream_localhost),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "stream_limit",
@@ -1098,7 +1231,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(stream_limit),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "stream_auth_method",
@@ -1109,7 +1243,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(stream_auth_method),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_RESTRICTED
     },
     {
     "stream_authentication",
@@ -1118,7 +1253,8 @@ config_param config_params[] = {
     1,
     CONF_OFFSET(stream_authentication),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_RESTRICTED
     },
     {
     "stream_preview_scale",
@@ -1126,7 +1262,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(stream_preview_scale),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "stream_preview_newline",
@@ -1134,7 +1271,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(stream_preview_newline),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "webcontrol_port",
@@ -1145,7 +1283,8 @@ config_param config_params[] = {
     1,
     CONF_OFFSET(webcontrol_port),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "webcontrol_localhost",
@@ -1153,7 +1292,8 @@ config_param config_params[] = {
     1,
     CONF_OFFSET(webcontrol_localhost),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "webcontrol_html_output",
@@ -1161,7 +1301,8 @@ config_param config_params[] = {
     1,
     CONF_OFFSET(webcontrol_html_output),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "webcontrol_authentication",
@@ -1170,7 +1311,18 @@ config_param config_params[] = {
     1,
     CONF_OFFSET(webcontrol_authentication),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_RESTRICTED
+    },
+    {
+    "webcontrol_parms",
+    "# Parameters to include on webcontrol.  0=none, 1=limited, 2=advanced, 3=restricted\n"
+    "# Default: 0 (none)",
+    1,
+    CONF_OFFSET(webcontrol_parms),
+    copy_int,
+    print_int,
+    WEBUI_LEVEL_NEVER
     },
     {
     "track_type",
@@ -1183,7 +1335,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(type),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_auto",
@@ -1191,7 +1344,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(active),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_port",
@@ -1199,7 +1353,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(port),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_motorx",
@@ -1207,7 +1362,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(motorx),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_motorx_reverse",
@@ -1215,7 +1371,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(motorx_reverse),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_motory",
@@ -1223,7 +1380,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(motory),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_motory_reverse",
@@ -1231,7 +1389,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(motory_reverse),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_maxx",
@@ -1239,7 +1398,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(maxx),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_minx",
@@ -1247,7 +1407,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(minx),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_maxy",
@@ -1255,7 +1416,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(maxy),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_miny",
@@ -1263,7 +1425,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(miny),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_homex",
@@ -1271,7 +1434,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(homex),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_homey",
@@ -1279,7 +1443,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(homey),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_iomojo_id",
@@ -1287,7 +1452,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(iomojo_id),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_step_angle_x",
@@ -1297,7 +1463,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(step_angle_x),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_step_angle_y",
@@ -1307,7 +1474,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(step_angle_y),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_move_wait",
@@ -1316,7 +1484,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(move_wait),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_speed",
@@ -1324,7 +1493,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(speed),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "track_stepsize",
@@ -1332,7 +1502,8 @@ config_param config_params[] = {
     0,
     TRACK_OFFSET(stepsize),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "quiet",
@@ -1357,7 +1528,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(quiet),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "on_event_start",
@@ -1366,7 +1538,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(on_event_start),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_RESTRICTED
     },
     {
     "on_event_end",
@@ -1375,7 +1548,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(on_event_end),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_RESTRICTED
     },
     {
     "on_picture_save",
@@ -1384,7 +1558,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(on_picture_save),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_RESTRICTED
     },
     {
     "on_motion_detected",
@@ -1392,7 +1567,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(on_motion_detected),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_RESTRICTED
     },
     {
     "on_area_detected",
@@ -1401,7 +1577,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(on_area_detected),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_RESTRICTED
     },
 #ifdef HAVE_FFMPEG
     {
@@ -1411,7 +1588,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(on_movie_start),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_RESTRICTED
     },
     {
     "on_movie_end",
@@ -1420,7 +1598,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(on_movie_end),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_RESTRICTED
     },
 #endif /* HAVE_FFMPEG */
     {
@@ -1432,7 +1611,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(on_camera_lost),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_RESTRICTED
     },
     {
     "on_camera_found",
@@ -1441,7 +1621,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(on_camera_found),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_RESTRICTED
     },
     {
     "sql_log_picture",
@@ -1453,7 +1634,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(sql_log_image),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "sql_log_snapshot",
@@ -1461,7 +1643,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(sql_log_snapshot),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "sql_log_movie",
@@ -1469,7 +1652,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(sql_log_movie),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "sql_log_timelapse",
@@ -1477,7 +1661,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(sql_log_timelapse),
     copy_bool,
-    print_bool
+    print_bool,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "sql_query_start",
@@ -1485,7 +1670,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(sql_query_start),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "sql_query",
@@ -1493,7 +1679,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(sql_query),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "database_type",
@@ -1504,7 +1691,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(database_type),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "database_dbname",
@@ -1513,7 +1701,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(database_dbname),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "database_host",
@@ -1521,7 +1710,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(database_host),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "database_user",
@@ -1529,7 +1719,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(database_user),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_RESTRICTED
     },
     {
     "database_password",
@@ -1537,7 +1728,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(database_password),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_RESTRICTED
     },
     {
     "database_port",
@@ -1546,7 +1738,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(database_port),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "database_busy_timeout",
@@ -1554,7 +1747,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(database_busy_timeout),
     copy_int,
-    print_int
+    print_int,
+    WEBUI_LEVEL_ADVANCED
     },
     {
     "video_pipe",
@@ -1566,7 +1760,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(vidpipe),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "motion_video_pipe",
@@ -1575,7 +1770,8 @@ config_param config_params[] = {
     0,
     CONF_OFFSET(motionvidpipe),
     copy_string,
-    print_string
+    print_string,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "camera",
@@ -1588,34 +1784,59 @@ config_param config_params[] = {
     1,
     0,
     config_camera,
-    print_camera
-    },
-    {
-    "thread",
-    "\n##############################################################\n"
-    "# Deprecated use camera instead of thread.\n"
-    "# Camera config files - One for each camera.\n"
-    "# Except if only one camera - You only need this config file.\n"
-    "# If you have more than one camera you MUST define one camera\n"
-    "# config file for each camera in addition to this config file.\n"
-    "##############################################################\n",
-    1,
-    0,
-    config_thread,
-    print_thread
+    print_camera,
+    WEBUI_LEVEL_ADVANCED
     },
     /* using a conf.d style camera addition */
     {
     "camera_dir",
     "\n##############################################################\n"
-    "# Camera config directory - One for each camera.\n"
+    "# Camera config directory\n"
+    "# Any files ending in '.conf' in this directory will be read\n"
+    "# as a camera config file.\n"
     "##############################################################\n",
     1,
     CONF_OFFSET(camera_dir),
     read_camera_dir,
-    print_string
+    print_string,
+    WEBUI_LEVEL_ADVANCED
     },
-    { NULL, NULL, 0, 0, NULL, NULL }
+    { NULL, NULL, 0, 0, NULL, NULL, 0 }
+};
+
+/*
+ * Array of deprecated config options:
+ * When deprecating an option, remove it from above (config_params array)
+ * and create an entry in this array of name, last version, info,
+ * and (if applicable) a replacement conf value and copy funcion.
+ * Upon reading a deprecated config option, a warning will be logged
+ * with the given information and last version it was used in.
+ * If set, the given value will be copied into the conf value
+ * for backwards compatibility.
+ */
+dep_config_param dep_config_params[] = {
+    {
+    "thread",
+    "3.4.1",
+    "The \"thread\" option has been replaced by the \"camera\" option.",
+    0,
+    config_camera
+    },
+    {
+    "ffmpeg_timelapse",
+    "4.0.1",
+    "\"ffmpeg_timelapse\" replaced with \"timelapse_interval\" option.",
+    CONF_OFFSET(timelapse_interval),
+    copy_int
+    },
+    {
+    "ffmpeg_timelapse_mode",
+    "4.0.1",
+    "\"ffmpeg_timelapse_mode\" replaced with \"timelapse_mode\" option.",
+    CONF_OFFSET(timelapse_mode),
+    copy_string
+    },
+    { NULL, NULL, NULL, 0, NULL}
 };
 
 /**
@@ -1722,8 +1943,7 @@ struct context **conf_cmdparse(struct context **cnt, const char *cmd, const char
              * If the option is a bool, copy_bool is called.
              * If the option is an int, copy_int is called.
              * If the option is a string, copy_string is called.
-             * If the option is a thread, config_thread is called.
-             * If the option is a camera, config_camera is called.
+             * If the option is camera, config_camera is called.
              * The arguments to the function are:
              *  cnt  - a pointer to the context structure.
              *  arg1 - a pointer to the new option value (represented as string).
@@ -1736,10 +1956,28 @@ struct context **conf_cmdparse(struct context **cnt, const char *cmd, const char
         i++;
     }
 
-    /* We reached the end of config_params without finding a matching option. */
-    MOTION_LOG(ALR, TYPE_ALL, NO_ERRNO, "Unknown config option \"%s\"",
-               cmd);
+    /*
+     * We reached the end of config_params without finding a matching option.
+     * Check if it's a deprecated option, log a warning, and if applicable
+     * set the replacement option to the given value.
+     */
+    i = 0;
+    while (dep_config_params[i].name != NULL) {
+        if (!strncasecmp(cmd, dep_config_params[i].name, 255 + 50)) {
+            MOTION_LOG(ALR, TYPE_ALL, NO_ERRNO, "Deprecated config option \"%s\" since after version %s:",
+                       cmd, dep_config_params[i].last_version);
+            MOTION_LOG(ALR, TYPE_ALL, NO_ERRNO, "%s", dep_config_params[i].info);
 
+            if (dep_config_params[i].copy != NULL)
+                cnt = dep_config_params[i].copy(cnt, arg1, dep_config_params[i].conf_value);
+
+            return cnt;
+        }
+        i++;
+    }
+
+    /* If we get here, it's unknown to us. */
+    MOTION_LOG(ALR, TYPE_ALL, NO_ERRNO, "Unknown config option \"%s\"", cmd);
     return cnt;
 }
 
@@ -1747,7 +1985,7 @@ struct context **conf_cmdparse(struct context **cnt, const char *cmd, const char
  * conf_process
  *      Walks through an already open config file line by line
  *      Any line starting with '#' or ';' or empty lines are ignored as a comments.
- *      Any non empty line is process so that the first word is the name of an option 'cnd'
+ *      Any non empty line is processed so that the first word is the name of an option 'cmd'
  *      and the rest of the line is the argument 'arg1'
  *      White space before the first word, between option and argument and end of the line
  *      is discarded. A '=' between option and first word in argument is also discarded.
@@ -1823,10 +2061,9 @@ static struct context **conf_process(struct context **cnt, FILE *fp)
     return cnt;
 }
 
-
 /**
  * conf_print
- *       Is used to write out the config file(s) motion.conf and any thread
+ *       Is used to write out the config file(s) motion.conf and any camera
  *       config files. The function is called when using http remote control.
  *
  * Returns nothing.
@@ -1847,8 +2084,13 @@ void conf_print(struct context **cnt)
         if (!conffile)
             continue;
 
+        char timestamp[32];
+        time_t now = time(0);
+        strftime(timestamp, 32, "%Y-%m-%dT%H:%M:%S", localtime(&now));
+
         fprintf(conffile, "# %s\n", cnt[thread]->conf_filename);
         fprintf(conffile, "#\n# This config file was generated by motion " VERSION "\n");
+        fprintf(conffile, "# at %s\n", timestamp);
         fprintf(conffile, "\n\n");
 
         for (i = 0; config_params[i].param_name; i++) {
@@ -1868,22 +2110,30 @@ void conf_print(struct context **cnt)
                 val = NULL;
                 config_params[i].print(cnt, &val, i, thread);
                 /*
-                 * It can either be a thread file parameter or a disabled parameter.
-                 * If it is a thread parameter write it out.
+                 * It can either be a camera file parameter or a disabled parameter.
+                 * If it is a camera parameter write it out.
                  * Else write the disabled option to the config file but with a
                  * comment mark in front of the parameter name.
                  */
                 if (val) {
                     fprintf(conffile, "%s\n", config_params[i].param_help);
-                    fprintf(conffile, "%s\n", val);
 
-                    if (strlen(val) == 0)
+                    if (strlen(val) > 0)
+                        fprintf(conffile, "%s\n", val);
+                    else
                         fprintf(conffile, "; camera %s/motion/camera1.conf\n", sysconfdir);
 
                     free(val);
                 } else if (thread == 0) {
+                    char value[PATH_MAX];
+                    /* The 'camera_dir' option should keep the installed default value */
+                    if (!strncmp(config_params[i].param_name, "camera_dir", 10))
+                        sprintf(value, "%s", sysconfdir"/motion/conf.d");
+                    else
+                        sprintf(value, "%s", "value");
+
                     fprintf(conffile, "%s\n", config_params[i].param_help);
-                    fprintf(conffile, "; %s value\n\n", config_params[i].param_name);
+                    fprintf(conffile, "; %s %s\n\n", config_params[i].param_name, value);
                 }
             }
         }
@@ -1907,11 +2157,11 @@ void conf_print(struct context **cnt)
  *   so that they point to a malloc'ed piece of memory containing a copy of
  *   the string given in conf_template.
  * - motion.conf is opened and processed. The process populates the cnt[0] and
- *   for each thread config file it populates a cnt[1], cnt[2]... for each
- *   thread
- * - Finally it process the options given in the Command-line. This is done
- *   for each thread cnt[i] so that the Command-line options overrides any
- *   option given by motion.conf or a thread config file.
+ *   for each camera config file it populates a cnt[1], cnt[2]... for each
+ *   camera.
+ * - Finally it processes the options given in the Command-line. This is done
+ *   for each camera cnt[i] so that the Command-line options overrides any
+ *   option given by motion.conf or a camera config file.
  *
  * Returns context struct.
  */
@@ -1950,7 +2200,7 @@ struct context **conf_load(struct context **cnt)
      * 1. Command-line
      * 2. current working directory
      * 3. $HOME/.motion/motion.conf
-     * 4. sysconfig/motion.conf
+     * 4. sysconfdir/motion.conf
      */
     /* Get filename , pid file & log file from Command-line. */
     cnt[0]->log_type_str[0] = 0;
@@ -2041,6 +2291,50 @@ struct context **conf_load(struct context **cnt)
         cnt[0]->conf.log_level = cnt[0]->log_level;
 
     return cnt;
+}
+
+/**
+ * conf_output_parms
+ *      Dump config options to log, useful for support purposes.
+ *      Redact sensitive information and re-add quotation marks where needed (see conf_print).
+ *      Not using the MOTION_LOG macro here to skip the function naming,
+ *      and produce a slightly cleaner dump.
+ *
+ * Returns nothing
+ */
+void conf_output_parms(struct context **cnt)
+{
+    unsigned int i, t = 0;
+    const char *name, *value;
+
+    while(cnt[++t]);
+
+    MOTION_LOG(INF, TYPE_ALL, NO_ERRNO, "Writing configuration parameters from all files (%d):", t);
+    for (t = 0; cnt[t]; t++) {
+        motion_log(INF, TYPE_ALL, NO_ERRNO, "Thread %d - Config file: %s", t, cnt[t]->conf_filename);
+        i = 0;
+        while (config_params[i].param_name != NULL) {
+            name=config_params[i].param_name;
+            if ((value = config_params[i].print(cnt, NULL, i, t)) != NULL) {
+                if (!strncmp(name, "netcam_url", 10) ||
+                    !strncmp(name, "netcam_userpass", 15) ||
+                    !strncmp(name, "netcam_highres", 14) ||
+                    !strncmp(name, "stream_authentication", 21) ||
+                    !strncmp(name, "webcontrol_authentication", 25) ||
+                    !strncmp(name, "database_user", 13) ||
+                    !strncmp(name, "database_password", 17))
+                {
+                    motion_log(INF, TYPE_ALL, NO_ERRNO, "%-25s <redacted>", name);
+                } else {
+                    if (strncmp(name, "text", 4) || strncmp(value, " ", 1))
+                        motion_log(INF, TYPE_ALL, NO_ERRNO, "%-25s %s", name, value);
+                    else
+                        motion_log(INF, TYPE_ALL, NO_ERRNO, "%-25s \"%s\"", name, value);
+                }
+            }
+            i++;
+        }
+    }
 }
 
 /**
@@ -2311,7 +2605,7 @@ static const char *print_bool(struct context **cnt, char **str ATTRIBUTE_UNUSED,
  *
  * Returns If the option is not defined NULL is returned.
  *         If the value is the same, NULL is returned which means that
- *         the option is not written to the thread config file.
+ *         the option is not written to the camera config file.
  */
 static const char *print_string(struct context **cnt,
                                 char **str ATTRIBUTE_UNUSED, int parm,
@@ -2330,6 +2624,16 @@ static const char *print_string(struct context **cnt,
     return *cptr1;
 }
 
+/**
+ * print_int
+ *      Returns a pointer to a string containing the integer of the config option value.
+ *      If the thread number is not 0 the integer is compared with the value of the same
+ *      option in thread 0.
+ *
+ * Returns If the option is different, const char *
+ *         If the option is the same, NULL is returned which means that
+ *         the option is not written to the camera config file.
+ */
 static const char *print_int(struct context **cnt, char **str ATTRIBUTE_UNUSED,
                              int parm, unsigned int threadnr)
 {
@@ -2345,13 +2649,13 @@ static const char *print_int(struct context **cnt, char **str ATTRIBUTE_UNUSED,
     return retval;
 }
 
-static const char *print_thread(struct context **cnt, char **str,
-                                int parm ATTRIBUTE_UNUSED, unsigned int threadnr)
-{
-    MOTION_LOG(WRN, TYPE_ALL, NO_ERRNO, "thread config option deprecated use camera");
-    return print_camera(cnt, str, parm, threadnr);
-}
-
+/**
+ * print_camera
+ *      Modifies a pointer to a string with each 'camera' line.
+ *      Does nothing if single threaded or no pointer was supplied.
+ *
+ * Returns NULL
+ */
 static const char *print_camera(struct context **cnt, char **str,
                                 int parm ATTRIBUTE_UNUSED, unsigned int threadnr)
 {
@@ -2365,6 +2669,10 @@ static const char *print_camera(struct context **cnt, char **str,
     retval[0] = 0;
 
     while (cnt[++i]) {
+        /* Skip config files loaded from conf directory */
+        if (cnt[i]->from_conf_dir)
+            continue;
+
         retval = myrealloc(retval, strlen(retval) + strlen(cnt[i]->conf_filename) + 10,
                            "print_camera");
         sprintf(retval + strlen(retval), "camera %s\n", cnt[i]->conf_filename);
@@ -2376,17 +2684,18 @@ static const char *print_camera(struct context **cnt, char **str,
 }
 
 /**
- * config_camera_dir
+ * read_camera_dir
  *     Read the directory finding all *.conf files in the path
- *     when calls config_camera
+ *     When found calls config_camera
  */
 
 static struct context **read_camera_dir(struct context **cnt, const char *str,
-                                            int val ATTRIBUTE_UNUSED)
+                                            int val)
 {
     DIR *dp;
     struct dirent *ep;
     size_t name_len;
+    int i;
 
     char conf_file[PATH_MAX];
 
@@ -2409,7 +2718,13 @@ static struct context **read_camera_dir(struct context **cnt, const char *str,
                 MOTION_LOG(NTC, TYPE_ALL, NO_ERRNO,
                     "Processing config file %s", conf_file );
                 cnt = config_camera(cnt, conf_file, 0);
-            }
+                /* The last context thread would be ours,
+                 * set it as created from conf directory.
+                 */
+                i = 0;
+                while (cnt[++i]);
+                cnt[i-1]->from_conf_dir = 1;
+	    }
         }
         closedir(dp);
     }
@@ -2419,14 +2734,10 @@ static struct context **read_camera_dir(struct context **cnt, const char *str,
                     "%s not found", str);
     }
 
-    return cnt;
-}
+    /* Store the given config value to allow writing it out */
+    cnt = copy_string(cnt, str, val);
 
-static struct context **config_thread(struct context **cnt, const char *str,
-                                      int val ATTRIBUTE_UNUSED)
-{
-    MOTION_LOG(WRN, TYPE_ALL, NO_ERRNO, "thread config option deprecated use camera");
-    return config_camera(cnt, str, val);
+    return cnt;
 }
 
 /**
@@ -2437,7 +2748,7 @@ static struct context **config_thread(struct context **cnt, const char *str,
  *      copied to the new thread.
  *
  *      cnt  - pointer to the array of pointers pointing to the context structures
- *      str  - pointer to a string which is the filename of the thread config file
+ *      str  - pointer to a string which is the filename of the camera config file
  *      val  - is not used. It is defined to be function header compatible with
  *            copy_int, copy_bool and copy_string.
  */
@@ -2489,13 +2800,13 @@ static struct context **config_camera(struct context **cnt, const char *str,
     /* Mark the end if the array of pointers to context structures. */
     cnt[i + 1] = NULL;
 
-    /* Process the thread's config file and notify user on console. */
+    /* Process the camera's config file and notify user on console. */
     strcpy(cnt[i]->conf_filename, str);
     MOTION_LOG(NTC, TYPE_ALL, NO_ERRNO, "Processing camera config file %s",
                str);
     conf_process(cnt + i, fp);
 
-    /* Finally we close the thread config file. */
+    /* Finally we close the camera config file. */
     myfclose(fp);
 
     return cnt;
@@ -2509,7 +2820,8 @@ static struct context **config_camera(struct context **cnt, const char *str,
  */
 static void usage()
 {
-    printf("motion Version "VERSION", Copyright 2000-2016 Jeroen Vreeken/Folkert van Heusden/Kenneth Lavrsen/Motion-Project maintainers\n");
+    printf("motion Version "VERSION", Copyright 2000-2017 Jeroen Vreeken/Folkert van Heusden/Kenneth Lavrsen/Motion-Project maintainers\n");
+    printf("\nHome page :\t https://motion-project.github.io/ \n");
     printf("\nusage:\tmotion [options]\n");
     printf("\n\n");
     printf("Possible options:\n\n");

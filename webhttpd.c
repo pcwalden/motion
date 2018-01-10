@@ -29,7 +29,7 @@ static const char *ini_template =
     "<!DOCTYPE html>\n"
     "<html>\n"
     "<head><title>Motion "VERSION"</title></head>\n"
-    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=yes\">"
+    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=yes\">\n"
     "<body>\n";
 
 static const char *set_template =
@@ -335,6 +335,27 @@ static void response_client(int client_socket, const char *template, char *back)
 }
 
 /**
+ * get_host
+ *      Gets the host (IP) of a client from the socket file descriptor
+ * Returns nothing
+ */
+static void get_host(char *buf, int fd)
+{
+    struct sockaddr_in6 client;
+    socklen_t client_len = sizeof(client);
+    int res = getpeername(fd, (struct sockaddr *)&client, &client_len);
+    if (res != 0)
+        return;
+
+    char host[NI_MAXHOST];
+    res = getnameinfo((struct sockaddr *)&client, client_len, host, sizeof(host), NULL, 0, NI_NUMERICHOST);
+    if (res != 0)
+        return;
+
+    strncpy(buf, host, NI_MAXHOST - 1);
+}
+
+/**
  * replace
  */
 static char *replace(const char *str, const char *old, const char *new)
@@ -423,10 +444,22 @@ static unsigned int config(char *pointer, char *res, unsigned int length_uri,
 {
     char question='\0';
     char command[256] = {'\0'};
+    char webparms[40];
     unsigned int i;
     struct context **cnt = userdata;
 
     warningkill = sscanf(pointer, "%255[a-z]%c", command , &question);
+
+    if (cnt[0]->conf.webcontrol_parms == 0){
+        sprintf(webparms,"%s","No Configuration Options");
+    } else if (cnt[0]->conf.webcontrol_parms == 1){
+        sprintf(webparms,"%s","Limited Configuration Options");
+    } else if (cnt[0]->conf.webcontrol_parms == 2){
+        sprintf(webparms,"%s","Advanced Configuration Options");
+    } else{
+        sprintf(webparms,"%s","Restricted Configuration Options");
+    }
+
     if (!strcmp(command, "list")) {
         pointer = pointer + 4;
         length_uri = length_uri - 4;
@@ -436,16 +469,21 @@ static unsigned int config(char *pointer, char *res, unsigned int length_uri,
             /*call list*/
             if (cnt[0]->conf.webcontrol_html_output) {
                 send_template_ini_client(client_socket, ini_template);
-                sprintf(res, "<a href=/%u/config>&lt;&ndash; back</a><br><br>\n<b>Camera %d%s%s</b>\n<ul>",
+                sprintf(res, "<a href=/%u/config>&lt;&ndash; back</a><br><br>\n<b>Camera %d%s%s</b><br></br>\n",
                         thread, cnt[thread]->conf.camera_id,
                         cnt[thread]->conf.camera_name ? " -- " : "",
                         cnt[thread]->conf.camera_name ? cnt[thread]->conf.camera_name : "");
+                send_template(client_socket, res);
 
+                sprintf(res, "webcontrol_parms = %d (%s)  <a href='%s#%s' target=_blank>help</a>\n\n<br><br><ul>"
+                        ,cnt[0]->conf.webcontrol_parms, webparms, GUIDE_URL, "webcontrol_parms");
                 send_template(client_socket, res);
 
                 for (i=0; config_params[i].param_name != NULL; i++) {
 
-                    if ((thread != 0) && (config_params[i].main_thread))
+                    if (((thread != 0) && (config_params[i].main_thread)) ||
+                        (config_params[i].webui_level > cnt[0]->conf.webcontrol_parms) ||
+                        (config_params[i].webui_level == WEBUI_LEVEL_NEVER) )
                         continue;
 
                     value = config_params[i].print(cnt, NULL, i, thread);
@@ -514,6 +552,7 @@ static unsigned int config(char *pointer, char *res, unsigned int length_uri,
 
                 sprintf(res, "</ul><a href=/%u/config>&lt;&ndash; back</a>", thread);
                 send_template(client_socket, res);
+
                 send_template_end_client(client_socket);
             } else {
                 send_template_ini_client_raw(client_socket);
@@ -547,7 +586,10 @@ static unsigned int config(char *pointer, char *res, unsigned int length_uri,
                 /* check if command exists and type of command and not end of URI */
                 i=0;
                 while (config_params[i].param_name != NULL) {
-                    if ((thread != 0) && (config_params[i].main_thread)) {
+
+                    if (((thread != 0) && (config_params[i].main_thread)) ||
+                        (config_params[i].webui_level > cnt[0]->conf.webcontrol_parms) ||
+                        (config_params[i].webui_level == WEBUI_LEVEL_NEVER) ) {
                         i++;
                         continue;
                     }
@@ -649,7 +691,9 @@ static unsigned int config(char *pointer, char *res, unsigned int length_uri,
                     (((length_uri = length_uri - strlen(command)) == 0))) {
                     i=0;
                     while (config_params[i].param_name != NULL) {
-                        if ((thread != 0) && (config_params[i].main_thread)) {
+                        if (((thread != 0) && (config_params[i].main_thread)) ||
+                            (config_params[i].webui_level > cnt[0]->conf.webcontrol_parms) ||
+                            (config_params[i].webui_level == WEBUI_LEVEL_NEVER) ) {
                             i++;
                             continue;
                         }
@@ -699,7 +743,7 @@ static unsigned int config(char *pointer, char *res, unsigned int length_uri,
                                          cnt[thread]->conf.camera_name ? " -- " : "",
                                          cnt[thread]->conf.camera_name ? cnt[thread]->conf.camera_name : "",
                                          config_params[i].param_name, config_params[i].param_name,
-                                         option, TWIKI_URL, config_params[i].param_name, text_help);
+                                         option, GUIDE_URL, config_params[i].param_name, text_help);
                         } else {
 
                             if (value == NULL) {
@@ -718,7 +762,7 @@ static unsigned int config(char *pointer, char *res, unsigned int length_uri,
                                          cnt[thread]->conf.camera_name ? " -- " : "",
                                          cnt[thread]->conf.camera_name ? cnt[thread]->conf.camera_name : "",
                                          config_params[i].param_name, config_params[i].param_name,
-                                         value, TWIKI_URL, config_params[i].param_name, text_help);
+                                         value, GUIDE_URL, config_params[i].param_name, text_help);
                         }
 
                         send_template(client_socket, res);
@@ -740,14 +784,23 @@ static unsigned int config(char *pointer, char *res, unsigned int length_uri,
         } else if (length_uri == 0) {
             if (cnt[0]->conf.webcontrol_html_output) {
                 send_template_ini_client(client_socket, set_template);
-                sprintf(res, "<a href=/%u/config>&lt;&ndash; back</a><br><br>\n<b>Camera %d%s%s</b>\n"
-                             "<form name='n'>\n<select name='onames'>\n", thread, cnt[thread]->conf.camera_id,
+                sprintf(res, "<a href=/%u/config>&lt;&ndash; back</a><br><br>\n<b>Camera %d%s%s</b><br></br>\n"
+                             ,thread, cnt[thread]->conf.camera_id,
                              cnt[thread]->conf.camera_name ? " -- " : "",
                              cnt[thread]->conf.camera_name ? cnt[thread]->conf.camera_name : "");
-
                 send_template(client_socket, res);
+
+                sprintf(res, "webcontrol_parms = %d (%s)  <a href='%s#%s' target=_blank>help</a><br></br>\n"
+                        ,cnt[0]->conf.webcontrol_parms, webparms, GUIDE_URL, "webcontrol_parms");
+                send_template(client_socket, res);
+
+                sprintf(res, "<form name='n'>\n<select name='onames'>\n");
+                send_template(client_socket, res);
+
                 for (i=0; config_params[i].param_name != NULL; i++) {
-                    if ((thread != 0) && (config_params[i].main_thread))
+                    if (((thread != 0) && (config_params[i].main_thread)) ||
+                        (config_params[i].webui_level > cnt[0]->conf.webcontrol_parms) ||
+                        (config_params[i].webui_level == WEBUI_LEVEL_NEVER) )
                         continue;
                     sprintf(res, "<option value='%s'>%s</option>\n",
                             config_params[i].param_name, config_params[i].param_name);
@@ -795,7 +848,9 @@ static unsigned int config(char *pointer, char *res, unsigned int length_uri,
                     const char *value = NULL;
                     i = 0;
                     while (config_params[i].param_name != NULL) {
-                        if ((thread != 0) && (config_params[i].main_thread)) {
+                        if (((thread != 0) && (config_params[i].main_thread)) ||
+                            (config_params[i].webui_level > cnt[0]->conf.webcontrol_parms) ||
+                            (config_params[i].webui_level == WEBUI_LEVEL_NEVER) ) {
                             i++;
                             continue;
                         }
@@ -843,9 +898,10 @@ static unsigned int config(char *pointer, char *res, unsigned int length_uri,
                                              cnt[thread]->conf.camera_name ? " -- " : "",
                                              cnt[thread]->conf.camera_name ? cnt[thread]->conf.camera_name : "",
                                              config_params[i].param_name, value,
-                                             TWIKI_URL, config_params[i].param_name, text_help);
+                                             GUIDE_URL, config_params[i].param_name, text_help);
 
                                 send_template(client_socket, res);
+
                                 send_template_end_client(client_socket);
 
                                 free(text_help);
@@ -873,14 +929,23 @@ static unsigned int config(char *pointer, char *res, unsigned int length_uri,
         } else if (length_uri == 0) {
             if (cnt[0]->conf.webcontrol_html_output) {
                 send_template_ini_client(client_socket, ini_template);
-                sprintf(res, "<a href=/%u/config>&lt;&ndash; back</a><br><br>\n<b>Camera %d%s%s</b><br>\n"
-                             "<form action=get>\n"
-                             "<select name='query'>\n", thread, cnt[thread]->conf.camera_id,
+                sprintf(res, "<a href=/%u/config>&lt;&ndash; back</a><br><br>\n<b>Camera %d%s%s</b><br></br>\n"
+                        ,thread, cnt[thread]->conf.camera_id,
                         cnt[thread]->conf.camera_name ? " -- " : "",
                         cnt[thread]->conf.camera_name ? cnt[thread]->conf.camera_name : "");
                 send_template(client_socket, res);
+
+                sprintf(res, "webcontrol_parms = %d (%s)  <a href='%s#%s' target=_blank>help</a><br></br>\n"
+                        ,cnt[0]->conf.webcontrol_parms, webparms, GUIDE_URL, "webcontrol_parms");
+                send_template(client_socket, res);
+
+                sprintf(res, "<form action=get>\n <select name='query'>\n");
+                send_template(client_socket, res);
+
                 for (i=0; config_params[i].param_name != NULL; i++) {
-                    if ((thread != 0) && (config_params[i].main_thread))
+                    if (((thread != 0) && (config_params[i].main_thread)) ||
+                        (config_params[i].webui_level > cnt[0]->conf.webcontrol_parms) ||
+                        (config_params[i].webui_level == WEBUI_LEVEL_NEVER) )
                         continue;
                     sprintf(res, "<option value='%s'>%s</option>\n",
                             config_params[i].param_name, config_params[i].param_name);
@@ -2056,11 +2121,17 @@ static unsigned int handle_get(int client_socket, const char *url, void *userdat
 
     if (*url == '/') {
         int i = 0;
+        int cams;
         char *res=NULL;
         res = mymalloc(2048);
 
         /* get the number of threads */
         while (cnt[++i]);
+        /* If not single threaded, assume main thread and seperate camera threads */
+        cams = i;
+        if (i > 1)
+            cams--;
+
         /* ROOT_URI -> GET / */
         if (!strcmp(url, "/")) {
             int y;
@@ -2070,8 +2141,8 @@ static unsigned int handle_get(int client_socket, const char *url, void *userdat
             //Send the webcontrol section if applicable
             if (cnt[0]->conf.webcontrol_html_output) {
                 send_template_ini_client(client_socket, ini_template);
-                sprintf(res, "<b>Motion "VERSION" Running [%d] Cameras</b><br>\n"
-                             "<a href='/0/'>All</a>\n", i);
+                sprintf(res, "<b>Motion "VERSION" Running [%d] Camera%s</b><br>\n"
+                             "<a href='/0/'>All</a>\n", cams, (cams > 1 ? "s" : ""));
                 send_template(client_socket, res);
 
                 counter = 0;
@@ -2097,8 +2168,13 @@ static unsigned int handle_get(int client_socket, const char *url, void *userdat
                     httphostname = hostname;
                 }
 
-                //Send the preview section
-                for (y = 0; y < i; y++) {
+                /*
+                 * Send the preview section
+                 * Set y to 1 if multi-threaded and to 0 if single-threaded.
+                 * This prevents showing a duplicate preview if 'stream_port'
+                 * is configured in motion.conf when multi-threaded.
+                 */
+                for (y = (i > 1 ? 1 : 0); y < i; y++) {
                     if (cnt[y]->conf.stream_port) {
                         if (cnt[y]->conf.stream_preview_newline) {
                             sprintf(res, "<br>");
@@ -2107,7 +2183,7 @@ static unsigned int handle_get(int client_socket, const char *url, void *userdat
                         sprintf(res, "<a href=http://%s:%d> "
                             "<img src=http://%s:%d/ border=0 width=%d%%></a>\n"
                             ,httphostname,cnt[y]->conf.stream_port
-                            ,httphostname,cnt[y]->conf.stream_port
+                            ,httphostname,(cnt[y]->conf.substream_port)?cnt[y]->conf.substream_port:cnt[y]->conf.stream_port
                             ,cnt[y]->conf.stream_preview_scale);
                         send_template(client_socket, res);
                     }
@@ -2115,7 +2191,7 @@ static unsigned int handle_get(int client_socket, const char *url, void *userdat
                 send_template_end_client(client_socket);
             } else {
                 send_template_ini_client_raw(client_socket);
-                sprintf(res, "Motion "VERSION" Running [%d] Cameras\n0\n", i);
+                sprintf(res, "Motion "VERSION" Running [%d] Camera%s\n0\n", cams, (cams > 1 ? "s" : ""));
                 send_template_raw(client_socket, res);
                 for (y = 1; y < i; y++) {
                     sprintf(res, "%d\n", y);
@@ -2521,6 +2597,9 @@ static unsigned int read_client(int client_socket, void *userdata, char *auth)
                         char response[1024] = {'\0'};
                         snprintf(response, sizeof (response), request_auth_response_template, method);
                         warningkill = write_nonblock(client_socket, response, strlen(response));
+                        char host[NI_MAXHOST] = "unknown";
+                        get_host(host, client_socket);
+                        MOTION_LOG(ALR, TYPE_STREAM, NO_ERRNO, "motion-httpd - failed auth attempt from %s", host);
                         free(hostname);
                         pthread_mutex_unlock(&httpd_mutex);
                         return 1;
@@ -2638,7 +2717,9 @@ void httpd_run(struct context **cnt)
         } else {
             /* Get the Client request */
             client_sent_quit_message = read_client(client_socket_fd, cnt, authentication);
-            MOTION_LOG(NTC, TYPE_STREAM, NO_ERRNO, "motion-httpd - Read from client");
+            char host[NI_MAXHOST] = "unknown";
+            get_host(host, client_socket_fd);
+            MOTION_LOG(INF, TYPE_STREAM, NO_ERRNO, "motion-httpd - Read from client (%s)", host);
 
             /* Close Connection */
             if (client_socket_fd)
@@ -2661,9 +2742,11 @@ void *motion_web_control(void *arg)
 {
     struct context **cnt = arg;
 
-    MOTION_PTHREAD_SETNAME("web_control");
+    util_threadname_set("wc", 0,NULL);
 
     httpd_run(cnt);
+
+
 
     /*
      * Update how many threads we have running. This is done within a

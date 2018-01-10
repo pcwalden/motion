@@ -402,35 +402,31 @@ int vid_mjpegtoyuv420p(unsigned char *map, unsigned char *cap_map, int width, in
     int ret = 0;
 
     ptr_buffer = memmem(cap_map, size, "\xff\xd8", 2);
-    if (ptr_buffer != NULL) {
-        /**
-         Some cameras are sending multiple SOIs in the buffer.
-         Move the pointer to the last SOI in the buffer and proceed.
-        */
-        while (ptr_buffer != NULL && ((size - soi_pos - 1) > 2) ){
-            soi_pos = ptr_buffer - cap_map;
-            ptr_buffer = memmem(cap_map + soi_pos + 1, size - soi_pos - 1, "\xff\xd8", 2);
-        }
-
-        if (soi_pos != 0){
-            MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "SOI position adjusted by %d bytes.", soi_pos);
-        }
-
-        memmove(cap_map, cap_map + soi_pos, size - soi_pos);
-        size -= soi_pos;
-        ret = decode_jpeg_raw(cap_map, size, 0, 420, width, height,
-                map,
-                map + (width * height),
-                map + (width * height) + (width * height) / 4);
-
-    } else {
-        //Buffer does not have a SOI
-        ret = 1;
+    if (ptr_buffer == NULL) {
+        MOTION_LOG(CRT, TYPE_VIDEO, NO_ERRNO, "Corrupt image ... continue");
+        return 1;
+    }
+    /**
+     Some cameras are sending multiple SOIs in the buffer.
+     Move the pointer to the last SOI in the buffer and proceed.
+    */
+    while (ptr_buffer != NULL && ((size - soi_pos - 1) > 2) ){
+        soi_pos = ptr_buffer - cap_map;
+        ptr_buffer = memmem(cap_map + soi_pos + 1, size - soi_pos - 1, "\xff\xd8", 2);
     }
 
-    if (ret == 1) {
+    if (soi_pos != 0){
+        MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "SOI position adjusted by %d bytes.", soi_pos);
+    }
+
+    memmove(cap_map, cap_map + soi_pos, size - soi_pos);
+    size -= soi_pos;
+
+    ret = jpgutl_decode_jpeg(cap_map,size, width, height, map);
+
+    if (ret == -1) {
         MOTION_LOG(CRT, TYPE_VIDEO, NO_ERRNO, "Corrupt image ... continue");
-        ret = 2;
+        ret = 1;
     }
     return ret;
 }
@@ -514,7 +510,7 @@ int vid_do_autobright(struct context *cnt, struct video_dev *viddev)
     int brightness_window_low;
     int brightness_target;
     int i, j = 0, avg = 0, step = 0;
-    unsigned char *image = cnt->imgs.image_virgin; /* Or cnt->current_image ? */
+    unsigned char *image = cnt->imgs.image_virgin.image_norm; /* Or cnt->current_image ? */
 
     int make_change = 0;
 
@@ -581,6 +577,13 @@ void vid_close(struct context *cnt)
         MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "calling netcam_cleanup");
         netcam_cleanup(cnt->netcam, 0);
         cnt->netcam = NULL;
+        return;
+    }
+
+    if (cnt->rtsp) {
+        /* This also cleans up high resolution */
+        MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "calling netcam_rtsp_cleanup");
+        netcam_rtsp_cleanup(cnt, 0);
         return;
     }
 
@@ -652,6 +655,16 @@ int vid_start(struct context *cnt)
         return dev;
     }
 
+    if (cnt->camera_type == CAMERA_TYPE_RTSP) {
+        MOTION_LOG(NTC, TYPE_VIDEO, NO_ERRNO, "Opening Netcam RTSP");
+        dev = netcam_rtsp_setup(cnt);
+        if (dev < 0) {
+            netcam_rtsp_cleanup(cnt, 1);
+            MOTION_LOG(ERR, TYPE_VIDEO, NO_ERRNO, "Netcam RTSP failed to open");
+        }
+        return dev;
+    }
+
     if (cnt->camera_type == CAMERA_TYPE_V4L2) {
         MOTION_LOG(NTC, TYPE_VIDEO, NO_ERRNO, "Opening V4L2 device");
         dev = v4l2_start(cnt);
@@ -695,15 +708,14 @@ int vid_start(struct context *cnt)
  *    with bit 0 set            Non fatal V4L error (copy grey image and discard this image)
  *    with bit 1 set            Non fatal Netcam error
  */
-int vid_next(struct context *cnt, unsigned char *map)
-{
+int vid_next(struct context *cnt, struct image_data *img_data){
 
 #ifdef HAVE_MMAL
      if (cnt->camera_type == CAMERA_TYPE_MMAL) {
         if (cnt->mmalcam == NULL) {
             return NETCAM_GENERAL_ERROR;
         }
-        return mmalcam_next(cnt, map);
+        return mmalcam_next(cnt, img_data);
     }
 #endif
 
@@ -711,15 +723,22 @@ int vid_next(struct context *cnt, unsigned char *map)
         if (cnt->video_dev == -1)
             return NETCAM_GENERAL_ERROR;
 
-        return netcam_next(cnt, map);
+        return netcam_next(cnt, img_data);
+    }
+
+    if (cnt->camera_type == CAMERA_TYPE_RTSP) {
+        if (cnt->video_dev == -1)
+            return NETCAM_GENERAL_ERROR;
+
+        return netcam_rtsp_next(cnt, img_data);
     }
 
     if (cnt->camera_type == CAMERA_TYPE_V4L2) {
-        return v4l2_next(cnt, map);
+        return v4l2_next(cnt, img_data);
    }
 
     if (cnt->camera_type == CAMERA_TYPE_BKTR) {
-        return bktr_next(cnt, map);
+        return bktr_next(cnt, img_data);
     }
 
     return -2;
