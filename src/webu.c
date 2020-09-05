@@ -59,6 +59,12 @@ struct mhdstart_ctx {
     struct sockaddr_in6     lpbk_ipv6;
 };
 
+#if MHD_VERSION >= 0x00097002
+    typedef enum MHD_Result mymhd_retcd;
+#else
+    typedef int mymhd_retcd;
+#endif
+
 
 static void webu_context_init(struct context **cntlst, struct context *cnt, struct webui_ctx *webui) {
 
@@ -384,7 +390,11 @@ static void webu_parseurl_parms(struct webui_ctx *webui, char *st_pos) {
         if (!last_parm){
             /* Get the parameter value */
             st_pos = st_pos + parm_len; /* Move past the equals sign */
-            en_pos = strstr(st_pos,"&");
+            if (!strcasecmp(webui->uri_parm1,"x") || !strcasecmp(webui->uri_parm1,"pan") ){
+                en_pos = strstr(st_pos,"&");
+            } else {
+                en_pos = NULL;
+            }
             if (en_pos == NULL){
                 parm_len = strlen(webui->url) - parm_len;
                 last_parm = TRUE;
@@ -1199,7 +1209,7 @@ static void webu_answer_strm_type(struct webui_ctx *webui) {
 
 }
 
-static int webu_answer_ctrl(void *cls
+static mymhd_retcd webu_answer_ctrl(void *cls
         , struct MHD_Connection *connection
         , const char *url
         , const char *method
@@ -1271,7 +1281,7 @@ static int webu_answer_ctrl(void *cls
 
 }
 
-static int webu_answer_strm(void *cls
+static mymhd_retcd webu_answer_strm(void *cls
         , struct MHD_Connection *connection
         , const char *url
         , const char *method
@@ -1314,9 +1324,15 @@ static int webu_answer_strm(void *cls
     }
 
     /* Do not answer a request until the motion loop has completed at least once */
-    if (webui->cnt->passflag == 0) return MHD_NO;
+    if (webui->cnt->passflag == 0) {
+        MOTION_LOG(DBG, TYPE_STREAM, NO_ERRNO, _("Stream picture is not ready yet"));
+        return MHD_NO;
+    }
 
-    if (webui->cnt->webcontrol_finish) return MHD_NO;
+    if (webui->cnt->webcontrol_finish) {
+        MOTION_LOG(DBG, TYPE_STREAM, NO_ERRNO, _("Stream is about to finish"));
+        return MHD_NO;
+    }
 
     if (strlen(webui->clientip) == 0){
         webu_clientip(webui);
@@ -1828,7 +1844,7 @@ static void webu_mhd_opts(struct mhdstart_ctx *mhdst){
 static void webu_mhd_flags(struct mhdstart_ctx *mhdst){
 
     /* This sets the MHD startup flags based upon what user put into configuration */
-    mhdst->mhd_flags = MHD_USE_THREAD_PER_CONNECTION | MHD_USE_POLL| MHD_USE_SELECT_INTERNALLY;
+    mhdst->mhd_flags = MHD_USE_THREAD_PER_CONNECTION;
 
     if (mhdst->ipv6) mhdst->mhd_flags = mhdst->mhd_flags | MHD_USE_DUAL_STACK;
 

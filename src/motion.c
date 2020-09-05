@@ -486,6 +486,7 @@ static void motion_detected(struct context *cnt, int dev, struct image_data *img
     struct config *conf = &cnt->conf;
     struct images *imgs = &cnt->imgs;
     struct coord *location = &img->location;
+    int indx;
 
     /* Draw location */
     if (cnt->locate_motion_mode == LOCATE_ON) {
@@ -535,8 +536,16 @@ static void motion_detected(struct context *cnt, int dev, struct image_data *img
                        cnt->conf.text_event, &img->timestamp_tv, NULL, 0);
 
             /* EVENT_FIRSTMOTION triggers on_event_start_command and event_ffmpeg_newfile */
-            event(cnt, EVENT_FIRSTMOTION, img, NULL, NULL,
-                &cnt->imgs.image_ring[cnt->imgs.image_ring_out].timestamp_tv);
+
+            indx = cnt->imgs.image_ring_out-1;
+            do {
+                indx++;
+                if (indx == cnt->imgs.image_ring_size) indx = 0;
+                if ((cnt->imgs.image_ring[indx].flags & (IMAGE_SAVE | IMAGE_SAVED)) == IMAGE_SAVE){
+                    event(cnt, EVENT_FIRSTMOTION, img, NULL, NULL, &cnt->imgs.image_ring[indx].timestamp_tv);
+                    indx = cnt->imgs.image_ring_in;
+                }
+            } while (indx != cnt->imgs.image_ring_in);
 
             MOTION_LOG(NTC, TYPE_ALL, NO_ERRNO, _("Motion detected - starting event %d"),
                        cnt->event_nr);
@@ -1028,16 +1037,18 @@ static void dbse_global_init(void){
 static int dbse_init_mysql(struct context *cnt){
 
     #if defined(HAVE_MYSQL) || defined(HAVE_MARIADB)
+        int dbport;
         if ((!strcmp(cnt->conf.database_type, "mysql")) && (cnt->conf.database_dbname)) {
-            // close database to be sure that we are not leaking
-            mysql_close(cnt->database);
             cnt->database_event_id = 0;
-
             cnt->database = mymalloc(sizeof(MYSQL));
             mysql_init(cnt->database);
-
+            if ((cnt->conf.database_port < 0) || (cnt->conf.database_port > 65535)){
+                dbport = 0;
+            } else {
+                dbport = cnt->conf.database_port;
+            }
             if (!mysql_real_connect(cnt->database, cnt->conf.database_host, cnt->conf.database_user,
-                cnt->conf.database_password, cnt->conf.database_dbname, 0, NULL, 0)) {
+                cnt->conf.database_password, cnt->conf.database_dbname, dbport, NULL, 0)) {
                 MOTION_LOG(ERR, TYPE_DB, NO_ERRNO
                     ,_("Cannot connect to MySQL database %s on host %s with user %s")
                     ,cnt->conf.database_dbname, cnt->conf.database_host
@@ -1047,7 +1058,7 @@ static int dbse_init_mysql(struct context *cnt){
                 return -2;
             }
             #if (defined(MYSQL_VERSION_ID)) && (MYSQL_VERSION_ID > 50012)
-                my_bool my_true = TRUE;
+                int my_true = TRUE;
                 mysql_options(cnt->database, MYSQL_OPT_RECONNECT, &my_true);
             #endif
         }
@@ -1153,6 +1164,7 @@ static void dbse_deinit(struct context *cnt){
     if (cnt->conf.database_type) {
         #if defined(HAVE_MYSQL) || defined(HAVE_MARIADB)
             if ( (!strcmp(cnt->conf.database_type, "mysql")) && (cnt->conf.database_dbname)) {
+                mysql_thread_end();
                 mysql_close(cnt->database);
                 cnt->database_event_id = 0;
             }
@@ -1276,6 +1288,19 @@ static int motion_init(struct context *cnt)
     }
     if (cnt->conf.width  < 64) cnt->conf.width  = 64;
     if (cnt->conf.height < 64) cnt->conf.height = 64;
+
+    if (cnt->conf.netcam_decoder != NULL){
+        cnt->netcam_decoder = mymalloc(strlen(cnt->conf.netcam_decoder)+1);
+        retcd = snprintf(cnt->netcam_decoder,strlen(cnt->conf.netcam_decoder)+1
+            ,"%s",cnt->conf.netcam_decoder);
+        if (retcd < 0){
+            free(cnt->netcam_decoder);
+            cnt->netcam_decoder = NULL;
+        }
+    } else {
+        cnt->netcam_decoder = NULL;
+    }
+
 
     /* set the device settings */
     cnt->video_dev = vid_start(cnt);
@@ -1707,6 +1732,11 @@ static void motion_cleanup(struct context *cnt) {
     cnt->eventtime_tm = NULL;
 
     dbse_deinit(cnt);
+
+    if (cnt->netcam_decoder){
+        free(cnt->netcam_decoder);
+        cnt->netcam_decoder = NULL;
+    }
 
 }
 
@@ -2209,7 +2239,7 @@ static void mlp_detection(struct context *cnt){
              * 'lightswitch_frames' frames to allow the camera to settle.
              * Don't check if we have lost connection, we detect "Lost signal" frame as lightswitch
              */
-            if (cnt->conf.lightswitch_percent > 1 && !cnt->lost_connection) {
+            if (cnt->conf.lightswitch_percent >= 1 && !cnt->lost_connection) {
                 if (alg_lightswitch(cnt, cnt->current_image->diffs)) {
                     MOTION_LOG(INF, TYPE_ALL, NO_ERRNO, _("Lightswitch detected"));
 
@@ -3274,7 +3304,7 @@ static void motion_startup(int daemonize, int argc, char *argv[])
         MOTION_LOG(NTC, TYPE_ALL, NO_ERRNO, _("Logging to syslog"));
     }
 
-    MOTION_LOG(NTC, TYPE_ALL, NO_ERRNO, "Motion %s Started",VERSION);
+    MOTION_LOG(NTC, TYPE_ALL, NO_ERRNO, _("Motion %s Started"),VERSION);
 
     if ((cnt_list[0]->conf.log_type == NULL) ||
         !(cnt_list[0]->log_type = get_log_type(cnt_list[0]->conf.log_type))) {

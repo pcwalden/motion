@@ -68,6 +68,8 @@ struct config conf_template = {
     .netcam_proxy =                    NULL,
     .netcam_tolerant_check =           FALSE,
     .netcam_use_tcp =                  TRUE,
+    .netcam_decoder =                  NULL,
+    .netcam_rate =                     -99,
 
     .mmalcam_name =                    NULL,
     .mmalcam_control_params =          NULL,
@@ -496,6 +498,24 @@ config_param config_params[] = {
     copy_bool,
     print_bool,
     WEBUI_LEVEL_ADVANCED
+    },
+    {
+    "netcam_decoder",
+    "# User requested decoder for netcam.",
+    0,
+    CONF_OFFSET(netcam_decoder),
+    copy_string,
+    print_string,
+    WEBUI_LEVEL_ADVANCED
+    },
+    {
+    "netcam_rate",
+    "# The frames per second that Motion will use to capture images from the network camera.",
+    0,
+    CONF_OFFSET(netcam_rate),
+    copy_int,
+    print_int,
+    WEBUI_LEVEL_LIMITED
     },
     {
     "mmalcam_name",
@@ -2082,7 +2102,7 @@ struct context **conf_cmdparse(struct context **cnt, const char *cmd, const char
     i = 0;
     while (dep_config_params[i].name != NULL) {
         if (!strncasecmp(cmd, dep_config_params[i].name, 255 + 50)) {
-            MOTION_LOG(ALR, TYPE_ALL, NO_ERRNO, "%s after version %s"
+            MOTION_LOG(ALR, TYPE_ALL, NO_ERRNO, _("%s after version %s")
                 , dep_config_params[i].info, dep_config_params[i].last_version);
 
             if (dep_config_params[i].copy != NULL){
@@ -2772,23 +2792,22 @@ static struct context **copy_html_output(struct context **cnt, const char *str, 
 
 struct context **copy_uri(struct context **cnt, const char *str, int val) {
 
-    // Here's a complicated regex I found here: https://stackoverflow.com/questions/38608116/how-to-check-a-specified-string-is-a-valid-url-or-not-using-c-code
-    // Use it for validating URIs.
-    const char *regex_str = "^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$";
+    const char *regex_str = "(http|https)://(((.*):(.*))@)?([^/:]|[-_.a-z0-9]+)(:([0-9]+))?($|(/[^*]*))";
 
     regex_t regex;
     if (regcomp(&regex, regex_str, REG_EXTENDED) != 0) {
-        MOTION_LOG(ERR, TYPE_STREAM, NO_ERRNO
+        MOTION_LOG(ERR, TYPE_ALL, NO_ERRNO
             ,_("Error compiling regex in copy_uri"));
         return cnt;
     }
 
     // A single asterisk is also valid, so check for that.
+    // Getting a perfect regex for all the uri's that are possible is
+    // almost impossible so if it fails, we warn the user but still accept
+    // that they know what they typed and move on.
     if (strcmp(str, "*") != 0 && regexec(&regex, str, 0, NULL, 0) == REG_NOMATCH) {
-        MOTION_LOG(ERR, TYPE_STREAM, NO_ERRNO
-            ,_("Invalid origin for cors_header in copy_uri"));
-        regfree(&regex);
-        return cnt;
+        MOTION_LOG(WRN, TYPE_ALL, NO_ERRNO
+            ,_("The CORS header may not be valid %s"),str);
     }
 
     regfree(&regex);
@@ -3040,6 +3059,7 @@ struct context **read_camera_dir(struct context **cnt, const char *str, int val)
     {
         MOTION_LOG(ALR, TYPE_ALL, SHOW_ERRNO
             ,_("Camera directory config %s not found"), str);
+        return cnt;
     }
 
     /* Store the given config value to allow writing it out */
@@ -3128,7 +3148,7 @@ static struct context **config_camera(struct context **cnt, const char *str,
  */
 static void usage()
 {
-    printf("motion Version "VERSION", Copyright 2000-2019 Jeroen Vreeken/Folkert van Heusden/Kenneth Lavrsen/Motion-Project maintainers\n");
+    printf("motion Version "VERSION", Copyright 2000-2020 Jeroen Vreeken/Folkert van Heusden/Kenneth Lavrsen/Motion-Project maintainers\n");
     printf("\nHome page :\t https://motion-project.github.io/ \n");
     printf("\nusage:\tmotion [options]\n");
     printf("\n\n");
@@ -3186,6 +3206,8 @@ static void config_parms_intl(){
         MOTION_LOG(DBG, TYPE_ALL, NO_ERRNO,"%s:%s","netcam_proxy",_("netcam_proxy"));
         MOTION_LOG(DBG, TYPE_ALL, NO_ERRNO,"%s:%s","netcam_tolerant_check",_("netcam_tolerant_check"));
         MOTION_LOG(DBG, TYPE_ALL, NO_ERRNO,"%s:%s","netcam_use_tcp",_("netcam_use_tcp"));
+        MOTION_LOG(DBG, TYPE_ALL, NO_ERRNO,"%s:%s","netcam_decoder",_("netcam_decoder"));
+        MOTION_LOG(DBG, TYPE_ALL, NO_ERRNO,"%s:%s","netcam_rate",_("netcam_rate"));
         MOTION_LOG(DBG, TYPE_ALL, NO_ERRNO,"%s:%s","mmalcam_name",_("mmalcam_name"));
         MOTION_LOG(DBG, TYPE_ALL, NO_ERRNO,"%s:%s","mmalcam_control_params",_("mmalcam_control_params"));
         MOTION_LOG(DBG, TYPE_ALL, NO_ERRNO,"%s:%s","width",_("width"));

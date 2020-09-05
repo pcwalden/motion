@@ -192,16 +192,17 @@ static void ffmpeg_free_nal(struct ffmpeg *ffmpeg){
     }
 }
 
-static void ffmpeg_encode_nal(struct ffmpeg *ffmpeg){
+static int ffmpeg_encode_nal(struct ffmpeg *ffmpeg){
     // h264_v4l2m2m has NAL units separated from the first frame, which makes
     // some players very unhappy.
     if ((ffmpeg->pkt.pts == 0) && (!(ffmpeg->pkt.flags & AV_PKT_FLAG_KEY))) {
         ffmpeg_free_nal(ffmpeg);
         ffmpeg->nal_info_len = ffmpeg->pkt.size;
         ffmpeg->nal_info = malloc(ffmpeg->nal_info_len);
-        if (ffmpeg->nal_info)
+        if (ffmpeg->nal_info) {
             memcpy(ffmpeg->nal_info, &ffmpeg->pkt.data[0], ffmpeg->nal_info_len);
-        else
+            return 1;
+        } else
             ffmpeg->nal_info_len = 0;
     } else if (ffmpeg->nal_info) {
         int old_size = ffmpeg->pkt.size;
@@ -210,6 +211,7 @@ static void ffmpeg_encode_nal(struct ffmpeg *ffmpeg){
         memcpy(&ffmpeg->pkt.data[0], ffmpeg->nal_info, ffmpeg->nal_info_len);
         ffmpeg_free_nal(ffmpeg);
     }
+    return 0;
 }
 
 static int ffmpeg_timelapse_exists(const char *fname){
@@ -463,7 +465,10 @@ static int ffmpeg_encode_video(struct ffmpeg *ffmpeg){
     }
 
     if (ffmpeg->preferred_codec == USER_CODEC_V4L2M2M){
-        ffmpeg_encode_nal(ffmpeg);
+        if (ffmpeg_encode_nal(ffmpeg)) {
+            // Throw special return code
+            return -2;
+        }
     }
 
     return 0;
@@ -489,7 +494,10 @@ static int ffmpeg_encode_video(struct ffmpeg *ffmpeg){
 
     /* This kills compiler warnings.  Nal setting is only for recent ffmpeg versions*/
     if (ffmpeg->preferred_codec == USER_CODEC_V4L2M2M){
-        ffmpeg_encode_nal(ffmpeg);
+        if (ffmpeg_encode_nal(ffmpeg)) {
+            // Throw special return code
+            return -2;
+        }
     }
 
     return 0;
@@ -529,7 +537,10 @@ static int ffmpeg_encode_video(struct ffmpeg *ffmpeg){
 
     /* This kills compiler warnings.  Nal setting is only for recent ffmpeg versions*/
     if (ffmpeg->preferred_codec == USER_CODEC_V4L2M2M){
-        ffmpeg_encode_nal(ffmpeg);
+        if (ffmpeg_encode_nal(ffmpeg)) {
+            // Throw special return code
+            return -2;
+        }
     }
 
     return 0;
@@ -686,9 +697,11 @@ static const char *ffmpeg_codec_is_blacklisted(const char *codec_name){
         {"h264_v4l2m2m", "FFMpeg version is too old"},
 #endif
     };
-    size_t i;
+    size_t i, i_mx;
 
-    for (i = 0; i < sizeof(blacklisted_codec)/sizeof(blacklisted_codec[0]); i++) {
+    i_mx = (size_t)(sizeof(blacklisted_codec)/sizeof(blacklisted_codec[0]));
+
+    for (i = 0; i < i_mx; i++) {
         if (strcmp(codec_name, blacklisted_codec[i].codec_name) == 0)
             return blacklisted_codec[i].reason;
     }
@@ -800,7 +813,7 @@ static int ffmpeg_set_codec(struct ffmpeg *ffmpeg){
             (strcmp(ffmpeg->codec_name, "mp4") == 0) ||
             (strcmp(ffmpeg->codec_name, "hevc") == 0) ||
             (strcmp(ffmpeg->codec_name, "mpeg4")   == 0)) {
-            MOTION_LOG(NTC, TYPE_ENCODER, NO_ERRNO, "Low fps. Encoding %d frames into a %d frames container.", ffmpeg->fps, 10);
+            MOTION_LOG(NTC, TYPE_ENCODER, NO_ERRNO, _("Low fps. Encoding %d frames into a %d frames container."), ffmpeg->fps, 10);
             ffmpeg->fps = 10;
         }
     }
@@ -1178,7 +1191,7 @@ static void ffmpeg_passthru_write(struct ffmpeg *ffmpeg, int indx){
     retcd = my_copy_packet(&ffmpeg->pkt, &ffmpeg->rtsp_data->pktarray[indx].packet);
     if (retcd < 0) {
         av_strerror(retcd, errstr, sizeof(errstr));
-        MOTION_LOG(INF, TYPE_ENCODER, NO_ERRNO, "av_copy_packet: %s",errstr);
+        MOTION_LOG(INF, TYPE_ENCODER, NO_ERRNO, _("av_copy_packet: %s"),errstr);
         my_packet_unref(ffmpeg->pkt);
         return;
     }
@@ -1352,7 +1365,7 @@ static int ffmpeg_passthru_codec(struct ffmpeg *ffmpeg){
 
         ffmpeg->video_st->time_base         = stream_in->time_base;
     pthread_mutex_unlock(&ffmpeg->rtsp_data->mutex_transfer);
-    MOTION_LOG(INF, TYPE_ENCODER, NO_ERRNO, "Pass-through stream opened");
+    MOTION_LOG(INF, TYPE_ENCODER, NO_ERRNO, _("Pass-through stream opened"));
     return 0;
 
 }

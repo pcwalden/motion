@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: 4.x\n"
 "Report-Msgid-Bugs-To: https://motion-project.github.io\n"
 "POT-Creation-Date: 2020-01-12 17:18-0700\n"
-"PO-Revision-Date: 2020-01-12 17:46-0700\n"
-"Last-Translator: MrDave <MotionMrDave@gmail.com>\n"
-"Language-Team: MrDave <MotionMrDave@gmail.com>\n"
-"Language: fr\n"
+"PO-Revision-Date: 2020-01-10 21:18-0700\n"
+"Last-Translator: Dusan Mikulas <dmkil22@gmail.com>\n"
+"Language-Team: Dusan Mikulas <dmkil22@gmail.com>\n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,100 +19,96 @@ msgstr ""
 #: src/conf.c
 #, c-format
 msgid "%s after version %s"
-msgstr "%s après la version %s"
+msgstr "%s po verzii %s"
 
 #: src/conf.c
 #, c-format
 msgid "Unknown config option \"%s\""
-msgstr "Option de configuration \"%s\" inconnue "
+msgstr "Neznáme  nastavenie\"%s\""
 
 #: src/conf.c
 #, c-format
 msgid "Writing config file to %s"
-msgstr "Ecriture du fichier de configuration sur %s"
+msgstr "Zápis konfig. súboru %s"
 
 #: src/conf.c
 #, c-format
 msgid "Configfile %s not found - trying defaults."
-msgstr ""
-"Fichier de configuration %s non trouvé - essaie les valeurs par défault."
+msgstr "Konfig. súbor %s nenájdený - skúste predvolený."
 
 #: src/conf.c
 msgid "Error getcwd"
-msgstr "Erreur getcwd"
+msgstr "Chyba getcwd"
 
 #: src/conf.c
 #, c-format
 msgid "could not open configfile %s"
-msgstr "ne peut pas ouvrir le fichier de configuration %s"
+msgstr "Problém otvoriť konfig. súbor %s"
 
 #: src/conf.c
 #, c-format
 msgid "Invalid file name %s"
-msgstr "Nom de fichier invalide %s"
+msgstr "Neplatný názov súboru %s"
 
 #: src/conf.c
 #, c-format
 msgid "Processing thread 0 - config file %s"
-msgstr "Traitement tread 0 - fichier de configuration %s"
+msgstr "Vlákno procesu 0 - konfig súbor %s"
 
 #: src/conf.c
 msgid "No config file to process, using default values"
-msgstr ""
-"Pas de fichier de configuration à traiter, utilisation des valeurs par "
-"défault"
+msgstr "Konfig. súbor nie je spustený, použijú sa predvolené hodnoty "
 
 #: src/conf.c
 #, c-format
 msgid "Writing configuration parameters from all files (%d):"
-msgstr ""
-"Ecriture des paramètres de configuration depuis tous les fichiers (%d):"
+msgstr "Zapísanie konfig. parametrov zo všetkých súborov (%d):"
 
 #: src/conf.c
 #, c-format
 msgid "Thread %d - Config file: %s"
-msgstr "Thread %d - Fichier de configuration: %s"
+msgstr "Vlákno %d - konfig. súbor: %s"
 
 #: src/conf.c
 #, c-format
 msgid "%-25s <redacted>"
-msgstr "%-25s <expurgé>"
+msgstr "%-25s <redacted>"
 
 #: src/conf.c
 msgid "Unable to locate vid_control_params"
-msgstr "Impossible de trouver vid_control_params"
+msgstr "Nemožné určiť vid_control_params"
 
 #: src/conf.c
 msgid "No value provided to put into vid_control_params"
-msgstr "Aucune valeur fournie pour intégrer à vid_control_params"
+msgstr "Nie je hodnota na vloženie do vid_control_params"
 
 #: src/conf.c
 msgid "Error compiling regex in copy_uri"
-msgstr "Erreur lors de la compilation de regex dans copy uri"
+msgstr "Chzba prekladu regex v copy_uri"
 
 #: src/conf.c
 msgid "Invalid origin for cors_header in copy_uri"
-msgstr "Origine non valide pour l'en-tête cors dans l'URI de copie"
+msgstr "Neplatný pôvod pre hlavičku korzetu v kópii uri"
 
 #: src/conf.c
 #, c-format
 msgid "Processing config file %s"
-msgstr "Traitement du fichier de configuration %s"
+msgstr "Spracovávaný konfig. súbor %s"
 
 #: src/conf.c
 #, c-format
 msgid "Camera directory config %s not found"
-msgstr "Répertoire de caméra config %s introuvable"
+msgstr "Konfigurácia adresára fotoaparátu %s sa nenašla"
 
 #: src/conf.c
 #, c-format
 msgid "Camera config file %s not found"
-msgstr "Fichier de configuration de l'appareil photo %s introuvable"
+msgstr "Konfiguračný súbor fotoaparátu %s nebol nájdený"
 
 #: src/conf.c
 #, c-format
 msgid "Processing camera config file %s"
-msgstr "Traitement du fichier de configuration camera %s"
+msgstr "Spracovávaný konfig. súbor kamery %s"
 
 #: src/conf.c
 msgid "daemon"
@@ -120,71 +116,71 @@ msgstr "démon"
 
 #: src/conf.c
 msgid "setup_mode"
-msgstr "Mode de configuration"
+msgstr "režim nastavenia"
 
 #: src/conf.c
 msgid "pid_file"
-msgstr "fichier pid"
+msgstr "súbor pid"
 
 #: src/conf.c
 msgid "log_file"
-msgstr "fichier journal"
+msgstr "súbor denníka"
 
 #: src/conf.c
 msgid "log_level"
-msgstr "niveau de journalisation"
+msgstr "log úroveň"
 
 #: src/conf.c
 msgid "log_type"
-msgstr "type de journal"
+msgstr "typ denníka"
 
 #: src/conf.c
 msgid "quiet"
-msgstr "silencieux"
+msgstr "tichý"
 
 #: src/conf.c
 msgid "native_language"
-msgstr "langue maternelle"
+msgstr "materinský jazyk"
 
 #: src/conf.c
 msgid "camera_name"
-msgstr "nom de la caméra"
+msgstr "názov kamery"
 
 #: src/conf.c
 msgid "camera_id"
-msgstr "identifiant de la caméra"
+msgstr "ID kamery"
 
 #: src/conf.c
 msgid "target_dir"
-msgstr "répertoire cible"
+msgstr "cieľová r"
 
 #: src/conf.c
 msgid "videodevice"
-msgstr "appareil vidéo"
+msgstr "videodevice"
 
 #: src/conf.c
 msgid "vid_control_params"
-msgstr "paramètres de contrôle de vid"
+msgstr "vid control params"
 
 #: src/conf.c
 msgid "v4l2_palette"
-msgstr "palette v4l2"
+msgstr "paleta v4l2"
 
 #: src/conf.c
 msgid "input"
-msgstr "contribution"
+msgstr "vstup"
 
 #: src/conf.c
 msgid "norm"
-msgstr "norme"
+msgstr "norma"
 
 #: src/conf.c
 msgid "frequency"
-msgstr "la fréquence"
+msgstr "kmitočet"
 
 #: src/conf.c
 msgid "auto_brightness"
-msgstr "Luminosité automatique"
+msgstr "automatický jas"
 
 #: src/conf.c
 msgid "tunerdevice"
@@ -192,19 +188,19 @@ msgstr "tunerdevice"
 
 #: src/conf.c
 msgid "roundrobin_frames"
-msgstr "cadres roundrobin"
+msgstr "rámy na guľatinu"
 
 #: src/conf.c
 msgid "roundrobin_skip"
-msgstr "roundrobin skip"
+msgstr "preskočiť"
 
 #: src/conf.c
 msgid "roundrobin_switchfilter"
-msgstr "filtre commutateur roundrobin"
+msgstr "spínaný filter"
 
 #: src/conf.c
 msgid "netcam_url"
-msgstr "URL netcam"
+msgstr "webová adresa netcam"
 
 #: src/conf.c
 msgid "netcam_highres"
@@ -220,267 +216,267 @@ msgstr "netcam keepalive"
 
 #: src/conf.c
 msgid "netcam_proxy"
-msgstr "proxy netcam"
+msgstr "proxy servera netcam"
 
 #: src/conf.c
 msgid "netcam_tolerant_check"
-msgstr "contrôle de tolérance netcam"
+msgstr "kontrola tolerovaná voči"
 
 #: src/conf.c
 msgid "netcam_use_tcp"
-msgstr "netcam utiliser tcp"
+msgstr "netcam použitie tcp"
 
 #: src/conf.c
 msgid "netcam_decoder"
-msgstr "Décodeur Netcam"
+msgstr "dekodér netcam"
 
 #: src/conf.c
 msgid "mmalcam_name"
-msgstr "nom mmalcam"
+msgstr "mmalcam name"
 
 #: src/conf.c
 msgid "mmalcam_control_params"
-msgstr "paramètres de contrôle mmalcam"
+msgstr "Parametre ovládania mmalcam"
 
 #: src/conf.c
 msgid "width"
-msgstr "largeur"
+msgstr "šírka"
 
 #: src/conf.c
 msgid "height"
-msgstr "la taille"
+msgstr "výška"
 
 #: src/conf.c
 msgid "framerate"
-msgstr "framerate"
+msgstr "snímok za sekundu"
 
 #: src/conf.c
 msgid "minimum_frame_time"
-msgstr "temps de trame minimum"
+msgstr "minimálny čas na snímku"
 
 #: src/conf.c
 msgid "rotate"
-msgstr "tourner"
+msgstr "točiť sa"
 
 #: src/conf.c
 msgid "flip_axis"
-msgstr "axe de retournement"
+msgstr "preklopná os"
 
 #: src/conf.c
 msgid "locate_motion_mode"
-msgstr "localiser le mode mouvement"
+msgstr "vyhľadajte režim pohybu"
 
 #: src/conf.c
 msgid "locate_motion_style"
-msgstr "localiser le style de mouvement"
+msgstr "vyhľadajte štýl pohybu"
 
 #: src/conf.c
 msgid "text_left"
-msgstr "texte à gauche"
+msgstr "text zostáva"
 
 #: src/conf.c
 msgid "text_right"
-msgstr "texte droit"
+msgstr "text vpravo"
 
 #: src/conf.c
 msgid "text_changes"
-msgstr "changements de texte"
+msgstr "zmeny textu"
 
 #: src/conf.c
 msgid "text_scale"
-msgstr "échelle de texte"
+msgstr "textová stupnica"
 
 #: src/conf.c
 msgid "text_event"
-msgstr "événement de texte"
+msgstr "textová udalosť"
 
 #: src/conf.c
 msgid "emulate_motion"
-msgstr "émuler le mouvement"
+msgstr "napodobniť pohyb"
 
 #: src/conf.c
 msgid "threshold"
-msgstr "seuil"
+msgstr "prah"
 
 #: src/conf.c
 msgid "threshold_maximum"
-msgstr "seuil maximum"
+msgstr "maximálna prahová hodnota"
 
 #: src/conf.c
 msgid "threshold_tune"
-msgstr "mélodie de seuil"
+msgstr "prahová hodnota"
 
 #: src/conf.c
 msgid "noise_level"
-msgstr "niveau de bruit"
+msgstr "úroveň hluku"
 
 #: src/conf.c
 msgid "noise_tune"
-msgstr "mélodie de bruit"
+msgstr "ladenie hluku"
 
 #: src/conf.c
 msgid "despeckle_filter"
-msgstr "filtre anti-taches"
+msgstr "odvápňovací filter"
 
 #: src/conf.c
 msgid "area_detect"
-msgstr "détection de zone"
+msgstr "detekcia oblasti"
 
 #: src/conf.c
 msgid "mask_file"
-msgstr "fichier de masque"
+msgstr "súbor masky"
 
 #: src/conf.c
 msgid "mask_privacy"
-msgstr "masque la vie privée"
+msgstr "maska ​​súkromia"
 
 #: src/conf.c
 msgid "smart_mask_speed"
-msgstr "masque intelligent vitesse"
+msgstr "rýchlosť inteligentnej masky"
 
 #: src/conf.c
 msgid "lightswitch_percent"
-msgstr "commutateur de lumière pour cent"
+msgstr "percento prepínača svetiel"
 
 #: src/conf.c
 msgid "lightswitch_frames"
-msgstr "cadres de commutation de lumière"
+msgstr "rámy svetiel"
 
 #: src/conf.c
 msgid "minimum_motion_frames"
-msgstr "images de mouvement minimum"
+msgstr "minimum pohybových rámcov"
 
 #: src/conf.c
 msgid "event_gap"
-msgstr "écart d'événement"
+msgstr "medzera udalosti"
 
 #: src/conf.c
 msgid "pre_capture"
-msgstr "pré capture"
+msgstr "pred zachytením"
 
 #: src/conf.c
 msgid "post_capture"
-msgstr "post capture"
+msgstr "po zachytení"
 
 #: src/conf.c
 msgid "on_event_start"
-msgstr "au début de l'événement"
+msgstr "na začiatku udalosti"
 
 #: src/conf.c
 msgid "on_event_end"
-msgstr "à la fin de l'événement"
+msgstr "na konci udalosti"
 
 #: src/conf.c
 msgid "on_picture_save"
-msgstr "sur la sauvegarde de l'image"
+msgstr "na obrázku uložiť"
 
 #: src/conf.c
 msgid "on_area_detected"
-msgstr "sur la zone détectée"
+msgstr "na zistenej ploche"
 
 #: src/conf.c
 msgid "on_motion_detected"
-msgstr "en mouvement détecté"
+msgstr "pri detekcii pohybu"
 
 #: src/conf.c
 msgid "on_movie_start"
-msgstr "au début du film"
+msgstr "na začiatku filmu"
 
 #: src/conf.c
 msgid "on_movie_end"
-msgstr "à la fin du film"
+msgstr "na konci filmu"
 
 #: src/conf.c
 msgid "on_camera_lost"
-msgstr "à la caméra perdu"
+msgstr "na kamere stratil"
 
 #: src/conf.c
 msgid "on_camera_found"
-msgstr "à la caméra trouvé"
+msgstr "nájdená kamera"
 
 #: src/conf.c
 msgid "picture_output"
-msgstr "sortie d'image"
+msgstr "obrazový výstup"
 
 #: src/conf.c
 msgid "picture_output_motion"
-msgstr "mouvement de sortie d'image"
+msgstr "obrazový výstupný pohyb"
 
 #: src/conf.c
 msgid "picture_type"
-msgstr "type d'image"
+msgstr "typ obrázku"
 
 #: src/conf.c
 msgid "picture_quality"
-msgstr "qualité de l'image"
+msgstr "kvalita obrazu"
 
 #: src/conf.c
 msgid "picture_exif"
-msgstr "photo exif"
+msgstr "obrázok exif"
 
 #: src/conf.c
 msgid "picture_filename"
-msgstr "image nom de fichier"
+msgstr "názov súboru obrázka"
 
 #: src/conf.c
 msgid "snapshot_interval"
-msgstr "intervalle d'instantané"
+msgstr "interval snímok"
 
 #: src/conf.c
 msgid "snapshot_filename"
-msgstr "nom de fichier instantané"
+msgstr "názov súboru snímky"
 
 #: src/conf.c
 msgid "movie_output"
-msgstr "sortie de film"
+msgstr "filmový výstup"
 
 #: src/conf.c
 msgid "movie_output_motion"
-msgstr "mouvement de sortie de film"
+msgstr "pohyb výstupu filmu"
 
 #: src/conf.c
 msgid "movie_max_time"
-msgstr "temps maximum de film"
+msgstr "maximálny čas filmu"
 
 #: src/conf.c
 msgid "movie_bps"
-msgstr "film bps"
+msgstr "filmový bps"
 
 #: src/conf.c
 msgid "movie_quality"
-msgstr "qualité du film"
+msgstr "kvalita filmu"
 
 #: src/conf.c
 msgid "movie_codec"
-msgstr "codec de film"
+msgstr "filmový kodek"
 
 #: src/conf.c
 msgid "movie_duplicate_frames"
-msgstr "doublons de film"
+msgstr "film duplicitné snímky"
 
 #: src/conf.c
 msgid "movie_passthrough"
-msgstr "passthrough de film"
+msgstr "filmový priechod"
 
 #: src/conf.c
 msgid "movie_filename"
-msgstr "Nom du film"
+msgstr "názov súboru filmu"
 
 #: src/conf.c
 msgid "movie_extpipe_use"
-msgstr "utilisation de film extpipe"
+msgstr "použitie filmovej extéry"
 
 #: src/conf.c
 msgid "movie_extpipe"
-msgstr "film extpipe"
+msgstr "filmová dráha"
 
 #: src/conf.c
 msgid "timelapse_interval"
-msgstr "intervalle de temps"
+msgstr "časový odstup"
 
 #: src/conf.c
 msgid "timelapse_mode"
-msgstr "mode timelapse"
+msgstr "režim timelapse"
 
 #: src/conf.c
 msgid "timelapse_fps"
@@ -488,23 +484,23 @@ msgstr "timelapse fps"
 
 #: src/conf.c
 msgid "timelapse_codec"
-msgstr "codec timelapse"
+msgstr "timelapse kodek"
 
 #: src/conf.c
 msgid "timelapse_filename"
-msgstr "nom de fichier timelapse"
+msgstr "názov súboru timelapse"
 
 #: src/conf.c
 msgid "video_pipe"
-msgstr "pipe vidéo"
+msgstr "video kanál"
 
 #: src/conf.c
 msgid "video_pipe_motion"
-msgstr "mouvement du tuyau vidéo"
+msgstr "pohyb videa"
 
 #: src/conf.c
 msgid "webcontrol_port"
-msgstr "port de contrôle Web"
+msgstr "webcontrol port"
 
 #: src/conf.c
 msgid "webcontrol_ipv6"
@@ -516,19 +512,19 @@ msgstr "webcontrol localhost"
 
 #: src/conf.c
 msgid "webcontrol_parms"
-msgstr "WebControl Parms"
+msgstr "webcontrol parms"
 
 #: src/conf.c
 msgid "webcontrol_interface"
-msgstr "interface webcontrol"
+msgstr "rozhranie webcontrol"
 
 #: src/conf.c
 msgid "webcontrol_auth_method"
-msgstr "méthode d'authentification Webcontrol"
+msgstr "metóda autorizácie webcontrol"
 
 #: src/conf.c
 msgid "webcontrol_authentication"
-msgstr "authentification webcontrol"
+msgstr "autentifikácia pomocou webového riadenia"
 
 #: src/conf.c
 msgid "webcontrol_tls"
@@ -540,239 +536,239 @@ msgstr "webcontrol cert"
 
 #: src/conf.c
 msgid "webcontrol_key"
-msgstr "clé de contrôle Web"
+msgstr "webcontrol key"
 
 #: src/conf.c
 msgid "webcontrol_cors_header"
-msgstr "entête webcontrol cors"
+msgstr "hlavička webcontrol"
 
 #: src/conf.c
 msgid "stream_port"
-msgstr "port de flux"
+msgstr "port prúdu"
 
 #: src/conf.c
 msgid "stream_localhost"
-msgstr "flux localhost"
+msgstr "stream localhost"
 
 #: src/conf.c
 msgid "stream_auth_method"
-msgstr "méthode d'authentification de flux"
+msgstr "metóda autorizácie toku"
 
 #: src/conf.c
 msgid "stream_authentication"
-msgstr "authentification par flux"
+msgstr "autentifikácia prúdom"
 
 #: src/conf.c
 msgid "stream_tls"
-msgstr "flux tls"
+msgstr "stream tls"
 
 #: src/conf.c
 msgid "stream_cors_header"
-msgstr "en-tête cors de flux"
+msgstr "stream cors header"
 
 #: src/conf.c
 msgid "stream_preview_scale"
-msgstr "échelle de prévisualisation de flux"
+msgstr "mierka ukážky prúdu"
 
 #: src/conf.c
 msgid "stream_preview_newline"
-msgstr "aperçu de flux newline"
+msgstr "ukážka prúdu Newline"
 
 #: src/conf.c
 msgid "stream_preview_method"
-msgstr "méthode de prévisualisation de flux"
+msgstr "metóda ukážky prúdu"
 
 #: src/conf.c
 msgid "stream_quality"
-msgstr "qualité du flux"
+msgstr "kvalita prúdu"
 
 #: src/conf.c
 msgid "stream_grey"
-msgstr "gris de ruisseau"
+msgstr "prúd šedá"
 
 #: src/conf.c
 msgid "stream_motion"
-msgstr "mouvement de flux"
+msgstr "prúdový pohyb"
 
 #: src/conf.c
 msgid "stream_maxrate"
-msgstr "flux maxrate"
+msgstr "maximálny tok"
 
 #: src/conf.c
 msgid "stream_limit"
-msgstr "limite de flux"
+msgstr "limit prúdu"
 
 #: src/conf.c
 msgid "database_type"
-msgstr "type de base de données"
+msgstr "typ databázy"
 
 #: src/conf.c
 msgid "database_dbname"
-msgstr "base de données"
+msgstr "databáza dbname"
 
 #: src/conf.c
 msgid "database_host"
-msgstr "hôte de base de données"
+msgstr "hostiteľ databázy"
 
 #: src/conf.c
 msgid "database_port"
-msgstr "port de base de données"
+msgstr "databázový port"
 
 #: src/conf.c
 msgid "database_user"
-msgstr "utilisateur de base de données"
+msgstr "užívateľ databázy"
 
 #: src/conf.c
 msgid "database_password"
-msgstr "mot de passe de base de données"
+msgstr "heslo databázy"
 
 #: src/conf.c
 msgid "database_busy_timeout"
-msgstr "délai d'attente de la base de données occupé"
+msgstr "časový limit databázy zaneprázdnený"
 
 #: src/conf.c
 msgid "sql_log_picture"
-msgstr "image de journal SQL"
+msgstr "sql log obrázok"
 
 #: src/conf.c
 msgid "sql_log_snapshot"
-msgstr "capture instantanée de journal SQL"
+msgstr "SQL log snímka"
 
 #: src/conf.c
 msgid "sql_log_movie"
-msgstr "film de journal sql"
+msgstr "sql log film"
 
 #: src/conf.c
 msgid "sql_log_timelapse"
-msgstr "journal SQL timelapse"
+msgstr "sql log timelapse"
 
 #: src/conf.c
 msgid "sql_query_start"
-msgstr "début de requête SQL"
+msgstr "sql dotaz start"
 
 #: src/conf.c
 msgid "sql_query_stop"
-msgstr "stop requête SQL"
+msgstr "sql dotaz stop"
 
 #: src/conf.c
 msgid "sql_query"
-msgstr "requête SQL"
+msgstr "sql dotaz"
 
 #: src/conf.c
 msgid "track_type"
-msgstr "type de piste"
+msgstr "typ stopy"
 
 #: src/conf.c
 msgid "track_auto"
-msgstr "piste automatique"
+msgstr "sledovať auto"
 
 #: src/conf.c
 msgid "track_port"
-msgstr "suivre le port"
+msgstr "sledovať port"
 
 #: src/conf.c
 msgid "track_motorx"
-msgstr "piste motorx"
+msgstr "sledovať motorx"
 
 #: src/conf.c
 msgid "track_motorx_reverse"
-msgstr "suivre motorx reverse"
+msgstr "sledovať motorx dozadu"
 
 #: src/conf.c
 msgid "track_motory"
-msgstr "piste motory"
+msgstr "koľajové motory"
 
 #: src/conf.c
 msgid "track_motory_reverse"
-msgstr "piste motory reverse"
+msgstr "spätný chod"
 
 #: src/conf.c
 msgid "track_maxx"
-msgstr "suivre maxx"
+msgstr "sledovať maxx"
 
 #: src/conf.c
 msgid "track_minx"
-msgstr "piste minx"
+msgstr "stopa minx"
 
 #: src/conf.c
 msgid "track_maxy"
-msgstr "suivre maxy"
+msgstr "sledovať maxy"
 
 #: src/conf.c
 msgid "track_miny"
-msgstr "piste miny"
+msgstr "sledovať miny"
 
 #: src/conf.c
 msgid "track_homex"
-msgstr "suivre homex"
+msgstr "sledovať homex"
 
 #: src/conf.c
 msgid "track_homey"
-msgstr "piste intime"
+msgstr "sledovať domácke"
 
 #: src/conf.c
 msgid "track_iomojo_id"
-msgstr "suivre l'identifiant iomojo"
+msgstr "stopa iomojo id"
 
 #: src/conf.c
 msgid "track_step_angle_x"
-msgstr "suivre l'angle de pas x"
+msgstr "uhol krokovania stopy x"
 
 #: src/conf.c
 msgid "track_step_angle_y"
-msgstr "suivre l'angle de pas y"
+msgstr "uhol krokovania stopy y"
 
 #: src/conf.c
 msgid "track_move_wait"
-msgstr "suivre le mouvement attendre"
+msgstr "sledovať pohyb čakať"
 
 #: src/conf.c
 msgid "track_speed"
-msgstr "vitesse de la piste"
+msgstr "rýchlosť koľaje"
 
 #: src/conf.c
 msgid "track_stepsize"
-msgstr "suivre pas à pas"
+msgstr "sledovať kroky"
 
 #: src/conf.c
 msgid "track_generic_move"
-msgstr "suivre le mouvement générique"
+msgstr "sledovať generický ťah"
 
 #: src/conf.c
 msgid "camera"
-msgstr "caméra"
+msgstr "fotoaparát"
 
 #: src/conf.c
 msgid "camera_dir"
-msgstr "caméra dir"
+msgstr "kamera dir"
 
 #: src/event.c src/track.c
 #, c-format
 msgid "Unable to start external command '%s'"
-msgstr "Impossible d'exécuter la commande externe '%s'"
+msgstr "Nedá sa spustiť externý príkaz '%s'"
 
 #: src/event.c src/track.c
 #, c-format
 msgid "Executing external command '%s'"
-msgstr "Exécution de la commande externe '%s'"
+msgstr "Spustenie externého príkazu '%s'"
 
 #: src/event.c
 #, c-format
 msgid "File of type %ld saved to: %s"
-msgstr "Fichier de type %ld enregistré vers: %s"
+msgstr "Súbor typu %ld je zapísaný do: %s"
 
 #: src/event.c
 msgid "Ignoring empty sql query"
-msgstr "Ignorer la requête SQL vide"
+msgstr "Ignorovanie prázdneho dotazu SQL"
 
 #: src/event.c
 msgid "Executing mysql query"
-msgstr "Exécution de la requête mysql"
+msgstr "Vykonáva sa dotaz mysql"
 
 #: src/event.c
 #, c-format
 msgid "Mysql query failed %s error code %d"
-msgstr "Echec de la requête Mysql %s, code d'erreur %d"
+msgstr "Príkaz bol neúspešný Mysql %s, kód chyby %d"
 
 #: src/event.c
 #, c-format
@@ -780,115 +776,115 @@ msgid ""
 "Cannot reconnect to MySQL database %s on host %s with user %s MySQL error "
 "was %s"
 msgstr ""
-"Impossible de se reconnecter à la base de données MySQL %s sur l'hôte %s "
-"avec l'erreur MySQL de l'utilisateur %sétait %s"
+"Problém so znovupripojením na MySql db  %s host %s  uživateľ %s MySQL chyba "
+"bol %s"
 
 #: src/event.c
 #, c-format
 msgid "Re-Connection to Mysql database '%s' Succeed"
-msgstr "Succès de la reconnexion à la base de données Mysql '%s' "
+msgstr "Úspešné znovupripojenie na MySql db '%s' "
 
 #: src/event.c
 #, c-format
 msgid "after re-connection Mysql query failed %s error code %d"
-msgstr "après la reconnexion, la requête Mysql a échoué %s le code d'erreur %d"
+msgstr "po opätovnom pripojení zlyhal dotaz Mysql %s kód chyby %d"
 
 #: src/event.c
 msgid "Executing postgresql query"
-msgstr "Exécution de la requête postgresql"
+msgstr "Vykonáva sa postgresql dotaz"
 
 #: src/event.c src/motion.c
 #, c-format
 msgid "Connection to PostgreSQL database '%s' failed: %s"
-msgstr "La connexion à la base de données PostgreSQL '%s' à échouée : %s"
+msgstr "Pripojenie na PostgreSQL '%s' chybné : %s"
 
 #: src/event.c
 #, c-format
 msgid "Re-Connection to PostgreSQL database '%s' failed: %s"
-msgstr "La reconnexion à la base de données PostgreSQL '%s' à échouée : %s"
+msgstr "Znovupripojenie na PostgreSQL db '%s' chybné: %s"
 
 #: src/event.c
 #, c-format
 msgid "Re-Connection to PostgreSQL database '%s' Succeed"
-msgstr "Succès de la reconnexion à la base de données PostgreSQL '%s' "
+msgstr "Znovupripojenie naPostgreSQL '%s' úspešné"
 
 #: src/event.c
 #, c-format
 msgid "PGSQL query failed: [%s]  %s %s"
-msgstr "Échec de la requête PGSQL: [%s] %s %s"
+msgstr "Dopyt PGSQL zlyhal: [%s] %s %s"
 
 #: src/event.c
 msgid "Executing sqlite query"
-msgstr "Exécution d'une requête sqlite"
+msgstr "Vykonáva sa dotaz typu sqlite"
 
 #: src/event.c
 #, c-format
 msgid "SQLite error was %s"
-msgstr "l'erreur SQLite était  %s "
+msgstr "Chyba SQLite bola %s "
 
 #: src/event.c
 msgid "Failed to put image into video pipe"
-msgstr "Impossible de mettre l'image dans le conduit video"
+msgstr "Problém vložiť obrázok do video rúry"
 
 #: src/event.c
 #, c-format
 msgid "Could not create symbolic link [%s]"
-msgstr "Ne peut pas créer le lien symbolique [%s]"
+msgstr "Problém vytvoriť symbolickú linku [%s]"
 
 #: src/event.c
 #, c-format
 msgid "Error creating preview pipe name %d %s"
-msgstr "Erreur lors de la création du nom du canal d'aperçu %d %s"
+msgstr "Chyba zápisu do rúry, chybný stav %d %s"
 
 #: src/event.c
 #, c-format
 msgid "Error creating file name base %d %s"
-msgstr "Erreur lors de la création de la base de noms de fichiers %d %s"
+msgstr "Chyba zápisu do rúry, chybný stav %d %s"
 
 #: src/event.c
 #, c-format
 msgid "Error creating preview name %d %s"
-msgstr "Erreur lors de la création du nom de l'aperçu %d %s"
+msgstr "Pri vytváraní názvu ukážky %d %s sa vyskytla chyba"
 
 #: src/event.c
 #, c-format
 msgid "CLOSING: extpipe file desc %d, error state %d"
-msgstr "FERMETURE: fichier extpipe desc %d, état d'erreur %d"
+msgstr "ZATVORENÉ: súbor extpipe desc %d, chybový stav %d"
 
 #: src/event.c
 #, c-format
 msgid "pclose return: %d"
-msgstr "pclose return: %d"
+msgstr "návrat výplaty: %d"
 
 #: src/event.c
 #, c-format
 msgid "moviepath: %s"
-msgstr "Moviepath: %s"
+msgstr "cesta filmu: %s"
 
 #: src/event.c
 #, c-format
 msgid "no write access to target directory %s"
-msgstr "pas de droit d'écriture dans le dossier cible %s"
+msgstr "nie sú práva na prístop do adresára %s"
 
 #: src/event.c
 #, c-format
 msgid "path not found, trying to create it %s ..."
-msgstr "chemin non trouvé, essaye de le créer %s ..."
+msgstr "cesta nenájdená, pokúšam sa ju vytvoriť %s ..."
 
 #: src/event.c
 #, c-format
 msgid "error accesing path %s"
-msgstr "erreur lors de l'accès au chemin %s"
+msgstr "chyba prístupu na cestu %s"
 
 #: src/event.c
 #, c-format
 msgid "Error specifying command line: %s"
-msgstr "Erreur lors de la spécification de la ligne de commande: %s"
+msgstr "Chyba pri určovaní príkazového riadku: %s"
 
 #: src/event.c
 #, c-format
 msgid "pipe: %s"
-msgstr "tuyau: %s"
+msgstr "pipe: %s"
 
 #: src/event.c
 #, c-format
@@ -897,144 +893,143 @@ msgstr "cnt-> moviefps: %d"
 
 #: src/event.c
 msgid "popen failed"
-msgstr "échec de popen"
+msgstr "popen zlyhalo"
 
 #: src/event.c
 msgid "Using extpipe"
-msgstr "Utilise extpipe"
+msgstr "pužítie extpipe"
 
 #: src/event.c
 #, c-format
 msgid "Error writing in pipe , state error %d"
-msgstr "Erreur lors de l'écriture dans le pipe, erreur %d"
+msgstr "Chyba zápisu do rúry, chybný stav %d"
 
 #: src/event.c
 #, c-format
 msgid "pipe %s not created or closed already "
-msgstr "pipe %s non créé ou déjà fermé "
+msgstr "rúra %s nevytvorená, alebo už zatvorená "
 
 #: src/event.c
 #, c-format
 msgid "Source FPS %d"
-msgstr "Source FPS %d"
+msgstr "Zdroj FPS %d"
 
 #: src/event.c
 msgid "The ogg container is no longer supported.  Changing to mpeg4"
-msgstr "Le conteneur ogg n'est plus pris en charge. Passer à mpeg4"
+msgstr "Ogg kontajner už nie je podporovaný. Zmena na MPEG4"
 
 #: src/event.c
 msgid "Running test of the various output formats."
-msgstr "Test en cours des différents formats de sortie."
+msgstr "Bežiaci test rôznych výstupných formátov."
 
 #: src/event.c
 msgid "Error opening context for movie output."
-msgstr "Erreur lors de l'ouverture du contexte pour la sortie du film."
+msgstr "Pri otváraní kontextu pre výstup filmu sa vyskytla chyba."
 
 #: src/event.c
 #, c-format
 msgid "ffopen_open error creating (motion) file [%s]"
-msgstr ""
-"Erreur d'ouverture de ffopen lors de la création du fichier (mouvement) [ %s]"
+msgstr "ffopen otvoriť chybu pri vytváraní (pohybu) súboru [ %s]"
 
 #: src/event.c
 msgid ""
 "The swf container for timelapse no longer supported.  Using mpg container."
 msgstr ""
-"Le conteneur swf pour timelapse n'est plus pris en charge. Utiliser un "
-"conteneur mpg."
+"Kontajner SWF pre časový odstup už nie je podporovaný. Použitie kontajnera "
+"mpg."
 
 #: src/event.c
 msgid "Timelapse using mpg codec."
-msgstr "Timelapse utilise le codec mpg."
+msgstr "Timelapse pužíva codec mpg."
 
 #: src/event.c
 msgid "Events will be appended to file"
-msgstr "Les évènements seront ajouté au fichier"
+msgstr "Udalosť bude zapísana do súboru"
 
 #: src/event.c
 msgid "Timelapse using mpeg4 codec."
-msgstr "Timelapse utilise le codec mpeg4."
+msgstr "Timelapse pužíva codec mpeg4."
 
 #: src/event.c
 msgid "Events will be trigger new files"
-msgstr "Les événements seront déclencher de nouveaux fichiers"
+msgstr "Udalosti spustia nové súbory"
 
 #: src/event.c
 #, c-format
 msgid "ffopen_open error creating (timelapse) file [%s]"
-msgstr "erreur ffopen_open lors de la création du fichier (timelapse) [%s]"
+msgstr "ffopen_open chyba vytvorenia (timelapse) súboru [%s]"
 
 #: src/event.c
 msgid "Error encoding image"
-msgstr "Erreur lors de l'encodage de l'image"
+msgstr "Chyba kódovania obrázku"
 
 #: src/ffmpeg.c
 msgid "Failed to allocate memory for codec name"
-msgstr "Impossible d'allouer de la mémoire pour le nom du codec"
+msgstr "Chyba získania pamäte pre názov kodeku"
 
 #: src/ffmpeg.c
 msgid ""
 "The frame rate specified is too high for the ffmpeg movie type specified. "
 "Choose a different ffmpeg container or lower framerate."
 msgstr ""
-"Choisissez un conteneur ffmpeg différent ou une fréquence d'image plus basse."
+"Obnovovací kmitočet je príliš veľký pre špecifikované ffmpeg video. Zmeň "
+"ffmpeg kontainer, alebo zníž obnovovací kmitočet."
 
 #: src/ffmpeg.c
 msgid "Error setting base file name"
-msgstr "Erreur lors de la définition du nom du fichier de base"
+msgstr "Pri nastavovaní základného názvu súboru sa vyskytla chyba"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Error setting timelapse append for codec %s"
-msgstr "Erreur lors de la configuration de timelapse append pour le codec %s"
+msgstr "Pri nastavovaní dodatku timelapse pre kodek %s sa vyskytla chyba"
 
 #: src/ffmpeg.c
 msgid "Error setting file name"
-msgstr "Erreur lors de la définition du nom de fichier"
+msgstr "Chyba kódovania obrázku"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "codec option value %s is not supported"
-msgstr "la valeur %s pour l'option codec n'est pas supportée"
+msgstr "volená hodnota kodeka %s nie je podporovaná"
 
 #: src/ffmpeg.c
 msgid "Could not get the codec"
-msgstr "Impossible de récupérer le codec"
+msgstr "Nie je možné získať kodek"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Error sending frame for encoding:%s"
-msgstr "Erreur d'envoi du cadre pour l'encodage: %s"
+msgstr "Chyba pri odosielaní rámca na kódovanie: %s"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Receive packet threw EAGAIN returning -2 code :%s"
-msgstr "Le paquet reçu a été renvoyé par EAGAIN et renvoyait le code -2: %s"
+msgstr "Prijať paket hodil EAGAIN vrátením -2 kód: %s"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Error receiving encoded packet video:%s"
-msgstr "Erreur lors de la réception de la vidéo en paquets codés: %s"
+msgstr "Chyba pri prijímaní kódovaného paketového videa: %s"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Error encoding video:%s"
-msgstr "Erreur d’encodage de la vidéo: %s"
+msgstr "Chyba pri kódovaní videa: %s"
 
 #: src/ffmpeg.c
 msgid "Error encoding video"
-msgstr "Erreur d'encodage de la vidéo"
+msgstr "Chyba pri kódovaní videa"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "PTS %<PRId64> Base PTS %<PRId64> ms interval %<PRId64> timebase %d-%d"
 msgstr ""
-"PTS %<PRId64> PTS de base %<PRId64> intervalle ms %<PRId64> base de temps "
-"%d- %d"
+"PTS %<PRId64> Základný PTS %<PRId64> ms interval %<PRId64> timebase %d- %d"
 
 #: src/ffmpeg.c
 msgid "BAD TIMING!! Frame skipped."
-msgstr "MAUVAIS TIMING!! Cadre sauté."
+msgstr "ZLÉ NAČASOVANIE!! Rám bol preskočený."
 
 #: src/ffmpeg.c
 #, c-format
@@ -1042,587 +1037,575 @@ msgid ""
 "PTS %<PRId64> Base PTS %<PRId64> ms interval %<PRId64> timebase %d-%d Change "
 "%d"
 msgstr ""
-"PTS %<PRId64> de base PTS %<PRId64> ms intervalle %<PRId64> base de temps %d-"
-"%d %d"
+"PTS %<PRId64> Základný PTS %<PRId64> ms interval %<PRId64> timebase %d- %d "
+"Zmena %d"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "%s codec vbr/crf/bit_rate: %d"
-msgstr "%s codec vbr / crf / débit: %d"
+msgstr "%s kodek vbr / crf / bitová rýchlosť: %d"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Preferred codec %s has been blacklisted: %s"
-msgstr "Le codec préféré %s a été mis sur liste noire: %s"
+msgstr "Preferovaný kodek %s bol zaradený na čiernu listinu: %s"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Preferred codec %s not found"
-msgstr "Codec préféré %s non trouvé"
+msgstr "Preferovaný kodek %s nebol nájdený"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Codec %s not found"
-msgstr "Codec %s non trouvé"
+msgstr "Kodek %s nebol nájdený"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Using codec %s"
-msgstr "Utilisation du codec %s"
+msgstr "Použitie kodeku %s"
 
 #: src/ffmpeg.c
 msgid "Could not alloc stream"
-msgstr "Impossible d'allouer le flux"
+msgstr "Nepodarilo sa prideliť stream"
 
 #: src/ffmpeg.c
 msgid "Failed to allocate decoder!"
-msgstr "Échec d'attribution du décodeur!"
+msgstr "Nepodarilo sa prideliť dekodér!"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Low fps. Encoding %d frames into a %d frames container."
-msgstr "Fps faibles. Encodage de %d images dans un conteneur d'images %d."
+msgstr "Nízke fps. Kódovanie %d snímok do kontajnera %d snímok."
 
 #: src/ffmpeg.c
 msgid "Unable to set quality"
-msgstr "Impossible de définir la qualité"
+msgstr "Nemožno nastaviť kvalitu"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Reported FPS Supported %d/%d"
-msgstr "FPS signalé pris en charge %d / %d"
+msgstr "Podporované hlásené FPS %d / %d"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Could not open codec %s"
-msgstr "Impossible d'ouvrir le codec %s"
+msgstr "Nepodarilo sa otvoriť kodek %s"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Failed to copy decoder parameters!: %s"
-msgstr "Échec de la copie des paramètres du décodeur !: %s"
+msgstr "Nepodarilo sa skopírovať parametre dekodéra !: %s"
 
 #: src/ffmpeg.c
 msgid "could not alloc frame"
-msgstr "ne pouvait pas allouer cadre"
+msgstr "rám nemohol prideliť"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "could not alloc buffers %s"
-msgstr "impossible d'allouer des tampons %s"
+msgstr "Problém otvoriť konfig. súbor %s"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "error opening file %s"
-msgstr "erreur d'ouverture du fichier %s"
+msgstr "Chyba pri otváraní súboru %s"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Permission denied. %s"
-msgstr "Permission refusée. %s"
+msgstr "Prístup zamietnutý. %s"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Error opening file %s"
-msgstr "Erreur lors de l'ouverture du fichier %s"
+msgstr "Chyba pri otváraní súboru %s"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Could not write ffmpeg header %s"
-msgstr "Impossible d'écrire l'en-tête ffmpeg %s"
+msgstr "Nepodarilo sa zapísať hlavičku ffmpeg %s"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Error entering draining mode:%s"
-msgstr "Erreur lors de l’entrée en mode vidange: %s"
+msgstr "Chyba pri vstupe do odtokového režimu: %s"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Error draining codec:%s"
-msgstr "Erreur de vidage du codec: %s"
+msgstr "Chyba pri vyprázdňovaní kodeku: %s"
 
 #: src/ffmpeg.c
 msgid "Error writing draining video frame"
-msgstr "Erreur d'écriture d'une image vidéo épuisante"
+msgstr "Chyba pri vyprázdňovaní videa"
 
 #: src/ffmpeg.c
 msgid "Error while encoding picture"
-msgstr "Erreur lors du codage de l'image"
+msgstr "Chyba pri kódovaní obrázka"
 
 #: src/ffmpeg.c
 msgid "Error while writing video frame"
-msgstr "Erreur lors de l'écriture d'une image vidéo"
+msgstr "Chyba pri zápise videa"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "av_copy_packet: %s"
-msgstr "av_copy_packet:%s"
+msgstr "av_copy_packet: %s"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "Error while writing video frame: %s"
-msgstr "Erreur lors de l'écriture de l'image vidéo: %s"
+msgstr "Chyba pri zápise video snímky: %s"
 
 #: src/ffmpeg.c
 msgid "RTSP context not available."
-msgstr "Contexte RTSP non disponible."
+msgstr "Kontext RTSP nie je k dispozícii."
 
 #: src/ffmpeg.c
 msgid "rtsp camera not ready for pass-through."
-msgstr "La caméra RTSP n'est pas prête pour le passage."
+msgstr "rtsp kamera nie je pripravená na prechod."
 
 #: src/ffmpeg.c
 msgid "pass-through mode enabled.  Changing to MP4 container."
-msgstr "mode de transmission activé. Passage au conteneur MP4."
+msgstr "režim pass-through povolený. Zmena na kontajner MP4."
 
 #: src/ffmpeg.c
 msgid "Could not get codec!"
-msgstr "Impossible d'obtenir le codec!"
+msgstr "Nepodarilo sa získať kodek!"
 
 #: src/ffmpeg.c src/netcam_rtsp.c
 msgid "Unable to copy codec parameters"
-msgstr "Impossible de copier les paramètres du codec"
+msgstr "Nie je možné kopírovať parametre kodeku"
 
 #: src/ffmpeg.c
 msgid "Pass-through disabled.  ffmpeg too old"
-msgstr "Pass-through désactivé. ffmpeg trop vieux"
+msgstr "Prechod zakázaný. ffmpeg je príliš starý"
 
 #: src/ffmpeg.c
 msgid "Pass-through stream opened"
-msgstr "Flux d'intercommunication ouvert"
+msgstr "Priechodný tok sa otvoril"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "ffmpeg libavcodec version %d.%d.%d libavformat version %d.%d.%d"
-msgstr ""
-"ffmpeg version de libavcodec %d. %d. %d version de libavformat %d. %d. %d"
+msgstr "ffmpeg libavcodec verzia %d. %d. %d libavformat verzia %d. %d. %d"
 
 #: src/ffmpeg.c
 #, c-format
 msgid "av_lockmgr_register failed (%d)"
-msgstr "v lockmgr register failed ( %d)"
+msgstr "av lockmgr register zlyhal ( %d)"
 
 #: src/ffmpeg.c
 msgid "No ffmpeg functionality included"
-msgstr "Aucune fonctionnalité ffmpeg incluse"
+msgstr "Nie sú zahrnuté žiadne funkcie ffmpeg"
 
 #: src/ffmpeg.c
 msgid "av_lockmgr_register reset failed on cleanup"
-msgstr "la réinitialisation du registre av lockmgr a échoué lors du nettoyage"
+msgstr "Vynulovanie registrov lockmgr zlyhalo pri vyčistení"
 
 #: src/ffmpeg.c
 msgid "Could not allocate output context"
-msgstr "Impossible d'allouer le contexte de sortie"
+msgstr "Nepodarilo sa priradiť výstupný kontext"
 
 #: src/ffmpeg.c
 msgid "Could not setup passthru!"
-msgstr "Impossible de configurer le passthru!"
+msgstr "Passthru sa nepodarilo nastaviť!"
 
 #: src/ffmpeg.c
 msgid "Failed to allocate codec!"
-msgstr "Échec d'attribution du codec!"
+msgstr "Nepodarilo sa prideliť kodek!"
 
 #: src/ffmpeg.c
 msgid "Could not set the stream"
-msgstr "Impossible de définir le flux"
+msgstr "Stream sa nepodarilo nastaviť"
 
 #: src/ffmpeg.c
 msgid "Error flushing codec"
-msgstr "Erreur de vidage du codec"
+msgstr "Chyba pri preplachovaní kodeku"
 
 #: src/ffmpeg.c
 msgid "Excessive attempts to clear buffered packet"
-msgstr "Tentatives excessives d'effacer le paquet en mémoire tampon"
+msgstr "Nadmerné pokusy o vyčistenie vyrovnávaného paketu"
 
 #: src/ffmpeg.c
 msgid "Buffered packet"
-msgstr "Paquet tamponné"
+msgstr "Vyrovnávací paket"
 
 #: src/ffmpeg.c
 msgid "No ffmpeg support"
-msgstr "Pas de support ffmpeg"
+msgstr "Žiadna podpora ffmpeg"
 
 #: src/jpegutils.c
 #, c-format
 msgid "%s: Given jpeg buffer was too small"
-msgstr "%s: le tampon jpeg étant trop petit"
+msgstr "%s: Daný buffer jpeg bol príliš malý"
 
 #: src/jpegutils.c
 msgid "Invalid JPEG image dimensions"
-msgstr "Dimensions de l'image JPEG non valides"
+msgstr "Neplatné rozmery obrázka JPEG"
 
 #: src/jpegutils.c src/netcam_jpeg.c
 #, c-format
 msgid "JPEG image size %dx%d, JPEG was %dx%d"
-msgstr "Taille de l'image JPEG %dx %d, JPEG était de %dx %d"
+msgstr "Veľkosť obrázka JPEG %dx %d, JPEG bolo %dx %d"
 
 #: src/mmalcam.c
 #, c-format
 msgid "Received unexpected camera control callback event, 0x%08x"
-msgstr ""
-"Réception d'un événement de rappel de contrôle de caméra inattendu, 0x %08x"
+msgstr "Prijatá neočakávaná udalosť spätného volania s kamerou, 0x %08x"
 
 #: src/mmalcam.c
 msgid "A high frame rate can cause problems with exposure of images"
 msgstr ""
-"Une fréquence d'images élevée peut entraîner des problèmes d'exposition des "
-"images"
+"Vysoká snímková frekvencia môže spôsobiť problémy s expozíciou obrázkov"
 
 #: src/mmalcam.c
 msgid "If autoexposure is not working, try a lower frame rate."
 msgstr ""
-"Si l'exposition automatique ne fonctionne pas, essayez une cadence d'images "
-"plus faible."
+"Ak automatická expozícia nefunguje, skúste použiť nižšiu obnovovaciu "
+"frekvenciu."
 
 #: src/mmalcam.c
 #, c-format
 msgid "Failed to create MMAL camera component %s"
-msgstr "Impossible de créer le composant de caméra MMAL %s"
+msgstr "Nepodarilo sa vytvoriť zložku kamery MMAL %s"
 
 #: src/mmalcam.c
 #, c-format
 msgid "MMAL camera %s doesn't have output ports"
-msgstr "La caméra MMAL %s n'a pas de ports de sortie"
+msgstr "Kamera MMAL %s nemá výstupné porty"
 
 #: src/mmalcam.c
 #, c-format
 msgid "Unable to enable control port : error %d"
-msgstr "Impossible d'activer le port de contrôle: erreur %d"
+msgstr "Nemožno povoliť riadiaci port: chyba %d"
 
 #: src/mmalcam.c
 msgid "MMAL no-padding setup failed"
-msgstr "La configuration sans remplissage de MMAL a échoué"
+msgstr "Nastavenie bez vypnutia MMAL zlyhalo"
 
 #: src/mmalcam.c
 msgid "camera video format couldn't be set"
-msgstr "le format vidéo de la caméra n'a pas pu être défini"
+msgstr "video formát kamery nie je možné nastaviť"
 
 #: src/mmalcam.c
 msgid "camera component couldn't be enabled"
-msgstr "composant de la caméra n'a pas pu être activé"
+msgstr "komponent fotoaparátu nebolo možné povoliť"
 
 #: src/mmalcam.c
 msgid "MMAL camera component created"
-msgstr "Composant caméra MMAL créé"
+msgstr "Komponent kamery MMAL bol vytvorený"
 
 #: src/mmalcam.c
 msgid "MMAL camera buffer pool creation failed"
-msgstr "La création du pool de mémoire tampon de la caméra MMAL a échoué"
+msgstr "Vytvorenie fondu vyrovnávacej pamäte MMAL kamery zlyhalo"
 
 #: src/mmalcam.c
 msgid "MMAL camera buffer queue creation failed"
-msgstr ""
-"La création de la file d'attente de la mémoire tampon de la caméra MMAL a "
-"échoué"
+msgstr "Vytvorenie frontu vyrovnávacej pamäte kamery MMAL zlyhalo"
 
 #: src/mmalcam.c
 #, c-format
 msgid "Unable to get a required buffer %d from pool queue"
-msgstr "Impossible d'obtenir un tampon requis %d de la file d'attente du pool"
+msgstr "Požadovaný buffer %d sa nedá získať z frontu oblasti"
 
 #: src/mmalcam.c
 #, c-format
 msgid "Unable to send a buffer to port (%d)"
-msgstr "Impossible d'envoyer un tampon au port ( %d)"
+msgstr "Nepodarilo sa poslať vyrovnávaciu pamäť na port ( %d)"
 
 #: src/mmalcam.c
 #, c-format
 msgid "MMAL Camera thread starting... for camera (%s) of %d x %d at %d fps"
-msgstr ""
-"MMAL Filetage de la caméra commençant ... pour la caméra ( %s) de %dx %d à "
-"%d fps"
+msgstr "MMAL Začiatok vlákna kamery ... pre kameru ( %s) %dx %d pri %d fps"
 
 #: src/mmalcam.c
 msgid "camera params couldn't be allocated"
-msgstr "paramètres de caméra ne pouvaient pas être attribués"
+msgstr "parametre fotoaparátu nebolo možné priradiť"
 
 #: src/mmalcam.c
 msgid "MMAL camera capture port enabling failed"
-msgstr "Échec de l'activation du port de capture de caméra MMAL"
+msgstr "Povolenie portu na zachytenie kamery MMAL zlyhalo"
 
 #: src/mmalcam.c
 msgid "MMAL camera capture start failed"
-msgstr "Échec de la capture de la caméra MMAL"
+msgstr "Začatie snímania kamery MMAL zlyhalo"
 
 #: src/mmalcam.c
 msgid "MMAL Camera cleanup"
-msgstr "MMAL nettoyage de la caméra"
+msgstr "MMAL Vyčistenie kamery"
 
 #: src/mmalcam.c
 #, c-format
 msgid "cmd %d flags %08x size %d/%d at %08x, img_size=%d"
-msgstr "cmd %d drapeaux %08x taille %d / %d à %08x, img taille = %d"
+msgstr "cmd %d príznaky %08x veľkosť %d / %d pri %08x, veľkosť img = %d"
 
 #: src/mmalcam.c
 msgid "Unable to return a buffer to the camera video port"
-msgstr "Impossible de renvoyer un tampon sur le port vidéo de la caméra"
+msgstr "Nie je možné vrátiť vyrovnávaciu pamäť na port videa kamery"
 
 #: src/motion.c
 #, c-format
 msgid "Resizing pre_capture buffer to %d items"
-msgstr "Redimensionnement du tampon de pré-capture en %d éléments"
+msgstr "Zmena veľkosti vyrovnávacej pamäte pred zachytením na %d položky"
 
 #: src/motion.c
 msgid "Removed process id file (pid file)."
-msgstr "Fichier d'ID de processus supprimé (fichier pid)."
+msgstr "Odstránený súbor s ID procesu (súbor pid)."
 
 #: src/motion.c
 msgid "Error removing pid file"
-msgstr "Erreur lors de la suppression du fichier pid"
+msgstr "Chyba pri odstraňovaní súboru pid"
 
 #: src/motion.c
 #, c-format
 msgid "Closing logfile (%s)."
-msgstr "Fermeture du fichier journal ( %s)."
+msgstr "Zatvára sa logfile ( %s)."
 
 #: src/motion.c
 #, c-format
 msgid "Motion detected - starting event %d"
-msgstr "Mouvement détecté - événement de départ %d"
+msgstr "Zistený pohyb - počiatočná udalosť %d"
 
 #: src/motion.c
 #, c-format
 msgid "Added %d fillerframes into movie"
-msgstr "Ajout de %d cadres de remplissage dans le film"
+msgstr "Do filmu bolo pridané %d výplňové snímky"
 
 #: src/motion.c
 msgid "Unable to determine camera type (MMAL, Netcam, V4L2, BKTR)"
-msgstr "Impossible de déterminer le type de caméra (MMAL, Netcam, V4L2, BKTR)"
+msgstr "Nie je možné určiť typ kamery (MMAL, Netcam, V4L2, BKTR)"
 
 #: src/motion.c
 msgid "Opening privacy mask file"
-msgstr "Ouverture du fichier de masque de confidentialité"
+msgstr "Otvorenie súboru masky na ochranu súkromia"
 
 #: src/motion.c
 msgid "Opening high resolution privacy mask file"
-msgstr "Ouverture d'un fichier de masque de confidentialité haute résolution"
+msgstr "Otvorenie súboru masky súkromia s vysokým rozlíšením"
 
 #: src/motion.c
 #, c-format
 msgid "Error opening mask file %s"
-msgstr "Erreur lors de l'ouverture du fichier de masque %s"
+msgstr "Chyba pri otváraní súboru masky %s"
 
 #: src/motion.c
 msgid "Failed to read mask privacy image. Mask privacy feature disabled."
 msgstr ""
-"Échec de lecture de l'image de confidentialité du masque. La fonctionnalité "
-"de confidentialité du masque est désactivée."
+"Nepodarilo sa prečítať obrázok ochrany masky. Funkcia ochrany osobných "
+"údajov masky je zakázaná."
 
 #: src/motion.c
 #, c-format
 msgid "Mask privacy file \"%s\" loaded."
-msgstr "Le fichier de confidentialité du masque \" %s \" a été chargé."
+msgstr "Načítal sa súbor ochrany osobných údajov masky \" %s \"."
 
 #: src/motion.c
 #, c-format
 msgid "Invalid text scale.  Adjusted to %d"
-msgstr "Echelle de texte invalide. Ajusté à %d"
+msgstr "Neplatná stupnica textu. Upravené na %d"
 
 #: src/motion.c
 msgid "Closing MYSQL"
-msgstr "Fermeture de MYSQL"
+msgstr "Zatváranie MYSQL"
 
 #: src/motion.c
 msgid "Initializing database"
-msgstr "Initialisation de la base de données"
+msgstr "Inicializácia databázy"
 
 #: src/motion.c
 #, c-format
 msgid "SQLite3 Database filename %s"
-msgstr "SQLite3 Nom de la base de données %s"
+msgstr "SQLite3 Názov súboru databázy %s"
 
 #: src/motion.c
 msgid "SQLite3 is threadsafe"
-msgstr "SQLite3 est threadsafe"
+msgstr "SQLite3 je vlákno bezpečný"
 
 #: src/motion.c
 #, c-format
 msgid "SQLite3 serialized %s"
-msgstr "SQLite3 sérialisé %s"
+msgstr "SQLite3 serializovaný %s"
 
 #: src/motion.c
 msgid "FAILED"
-msgstr "ÉCHOUÉ"
+msgstr "ZLYHALO"
 
 #: src/motion.c
 msgid "SUCCESS"
-msgstr "SUCCÈS"
+msgstr "ÚSPECH"
 
 #: src/motion.c
 #, c-format
 msgid "Can't open database %s : %s"
-msgstr "Impossible d'ouvrir la base de données %s: %s"
+msgstr "Nie je možné otvoriť databázu %s: %s"
 
 #: src/motion.c
 #, c-format
 msgid "database_busy_timeout %d msec"
-msgstr "délai d'inactivité de la base de données %d msec"
+msgstr "časový limit databázy zaneprázdnený %d msec"
 
 #: src/motion.c
 #, c-format
 msgid "database_busy_timeout failed %s"
-msgstr "délai d'attente de la base de données occupé a échoué %s"
+msgstr "zlyhalo vypršanie časového limitu databázy %s"
 
 #: src/motion.c
 #, c-format
 msgid "Cannot connect to MySQL database %s on host %s with user %s"
 msgstr ""
-"Impossible de se connecter à la base de données MySQL %s sur l'hôte %s avec "
-"l'utilisateur %s"
+"Nemožno sa pripojiť k databáze MySQL %s na hostiteľovi %s pomocou "
+"používateľa %s"
 
 #: src/motion.c
 #, c-format
 msgid "MySQL error was %s"
-msgstr "Erreur MySQL était %s"
+msgstr "Chyba MySQL bola %s"
 
 #: src/motion.c
 msgid "SQLite3 using shared handle"
-msgstr "SQLite3 utilisant un handle partagé"
+msgstr "SQLite3 pomocou zdieľaného handle"
 
 #: src/motion.c
 #, c-format
 msgid "Database backend %s"
-msgstr "Base de données backend %s"
+msgstr "Backend databázy %s"
 
 #: src/motion.c
 #, c-format
 msgid "Camera %d started: motion detection %s"
-msgstr "Caméra %d démarrée: détection de mouvement %s"
+msgstr "Fotoaparát %d začal: detekcia pohybu %s"
 
 #: src/motion.c
 msgid "Disabled"
-msgstr "désactivé"
+msgstr "invalidný"
 
 #: src/motion.c
 msgid "Enabled"
-msgstr "Activée"
+msgstr "povolené"
 
 #: src/motion.c
 msgid "Pass-through processing disabled."
-msgstr "Traitement d'intercommunication désactivé."
+msgstr "Spracovanie priechodu je zakázané."
 
 #: src/motion.c
 #, c-format
 msgid "Invalid configuration dimensions %dx%d"
-msgstr "Dimensions de configuration non valides %dx %d"
+msgstr "Neplatné konfiguračné rozmery %dx %d"
 
 #: src/motion.c
 #, c-format
 msgid "Using default dimensions %dx%d"
-msgstr "Utilisation des dimensions par défaut %dx %d"
+msgstr "Použitie predvolených rozmerov %dx %d"
 
 #: src/motion.c src/netcam_rtsp.c
 #, c-format
 msgid "Image width (%d) requested is not modulo 8."
-msgstr "La largeur de l'image ( %d) demandée n'est pas modulo 8."
+msgstr "Požadovaná šírka obrázka ( %d) nie je modulo 8."
 
 #: src/motion.c src/netcam_rtsp.c
 #, c-format
 msgid "Adjusting width to next higher multiple of 8 (%d)."
-msgstr "Ajuster la largeur au multiple de 8 immédiatement supérieur ( %d)."
+msgstr "Šírka nastavenia na najbližšiu vyššiu, násobok 8 ( %d)."
 
 #: src/motion.c src/netcam_rtsp.c
 #, c-format
 msgid "Image height (%d) requested is not modulo 8."
-msgstr "La hauteur de l'image ( %d) demandée n'est pas modulo 8."
+msgstr "Požadovaná výška obrázka ( %d) nie je modulo 8."
 
 #: src/motion.c src/netcam_rtsp.c
 #, c-format
 msgid "Adjusting height to next higher multiple of 8 (%d)."
-msgstr "Ajuster la hauteur au multiple de 8 immédiatement supérieur ( %d)."
+msgstr "Nastavenie výšky na najbližší vyšší násobok 8 ( %d)."
 
 #: src/motion.c
 msgid "Could not fetch initial image from camera "
-msgstr "Impossible de récupérer l'image initiale de la caméra"
+msgstr "Nepodarilo sa načítať počiatočný obrázok z fotoaparátu"
 
 #: src/motion.c
 msgid "Motion continues using width and height from config file(s)"
-msgstr ""
-"Le mouvement continue en utilisant la largeur et la hauteur des fichiers de "
-"configuration"
+msgstr "Pohyb naďalej používa šírku a výšku z konfiguračného súboru (súborov)"
 
 #: src/motion.c
 msgid "Motion only supports width and height modulo 8"
-msgstr "Motion ne prend en charge que la largeur et la hauteur modulo 8"
+msgstr "Pohyb podporuje iba šírku a výšku modulo 8"
 
 #: src/motion.c
 #, c-format
 msgid "Image width (%d) or height(%d) requested is not modulo 8."
-msgstr ""
-"La largeur ( %d) ou la hauteur ( %d) de l’image demandée n’est pas modulo 8."
+msgstr "Požadovaná šírka obrázka ( %d) alebo výška ( %d) nie je modulo 8."
 
 #: src/motion.c
 #, c-format
 msgid "Motion only supports width and height greater than or equal to 64 %dx%d"
-msgstr ""
-"Motion ne prend en charge que les largeurs et les hauteurs supérieures ou "
-"égales à 64 %dx %d"
+msgstr "Pohyb podporuje iba šírku a výšku väčšiu alebo rovnú 64 %dx %d"
 
 #: src/motion.c
 msgid "Substream not available.  Image sizes not modulo 16."
-msgstr "Sous-flux non disponible. Tailles d'image non modulo 16."
+msgstr "Substream nie je k dispozícii. Veľkosti obrázkov nie sú modulo 16."
 
 #: src/motion.c
 msgid "webp image format is not available, failing back to jpeg"
-msgstr "Le format d'image Webp n'est pas disponible, échouant en jpeg"
+msgstr ""
+"obrazový formát webového servera nie je k dispozícii a nedarí sa mu vrátiť "
+"späť do formátu JPEG"
 
 #: src/motion.c
 msgid "Error capturing first image"
-msgstr "Erreur lors de la capture de la première image"
+msgstr "Chyba pri zachytávaní prvého obrázka"
 
 #: src/motion.c
 msgid "Opening video loopback device for normal pictures"
-msgstr "Ouverture d'un périphérique de bouclage vidéo pour des images normales"
+msgstr "Otváranie videozáberov pre normálne obrázky"
 
 #: src/motion.c
 msgid "Failed to open video loopback for normal pictures"
-msgstr "Impossible d'ouvrir la boucle vidéo pour les images normales"
+msgstr "Nepodarilo sa otvoriť spätnú slučku videa pre bežné obrázky"
 
 #: src/motion.c
 msgid "Opening video loopback device for motion pictures"
-msgstr "Dispositif d'ouverture de boucle vidéo pour images animées"
+msgstr "Otváranie video slučky pre filmy"
 
 #: src/motion.c
 msgid "Failed to open video loopback for motion pictures"
-msgstr "Impossible d'ouvrir la boucle vidéo pour les images animées"
+msgstr "Nepodarilo sa otvoriť spätnú slučku videa pre filmy"
 
 #: src/motion.c
 msgid "Failed to read mask image. Mask feature disabled."
-msgstr ""
-"Impossible de lire l'image du masque. La fonctionnalité de masque est "
-"désactivée."
+msgstr "Nepodarilo sa prečítať obrázok masky. Funkcia masky je zakázaná."
 
 #: src/motion.c
 #, c-format
 msgid "Maskfile \"%s\" loaded."
-msgstr "Le fichier de masque \" %s \" est chargé."
+msgstr "Maskfile \" %s \" je načítaný."
 
 #: src/motion.c
 #, c-format
 msgid "Problem enabling motion-stream server in port %d"
-msgstr "Problème d'activation du serveur de flux de mouvement sur le port %d"
+msgstr "Problém s povolením servera Motion-stream v portu %d"
 
 #: src/motion.c
 #, c-format
 msgid "Started motion-stream server on port %d (auth %s)"
-msgstr "Démarrage du serveur Motion-Stream sur le port %d (auth %s)"
+msgstr "Spustený server Motion-stream na porte %d (auth %s)"
 
 #: src/motion.c
 msgid "Emulating motion"
-msgstr "Mouvement d'émulation"
+msgstr "Emulujúci pohyb"
 
 #: src/motion.c
 msgid "Calling vid_close() from motion_cleanup"
-msgstr "Appel de vid close () depuis le nettoyage du mouvement"
+msgstr "Volanie vid blízko () z čistenia pohybu"
 
 #: src/motion.c
 #, c-format
 msgid "Motion in area %d detected."
-msgstr "Mouvement dans la zone %d détecté."
+msgstr "Bol detekovaný pohyb v oblasti %d."
 
 #: src/motion.c
 msgid "Retrying until successful connection with camera"
-msgstr "Réessayer jusqu'à la connexion avec l'appareil photo"
+msgstr "Opakuje sa pokus, až kým sa nepripojí k fotoaparátu"
 
 #: src/motion.c
 msgid ""
@@ -1632,472 +1615,457 @@ msgid ""
 "Restarting Motion thread to reinitialize all image buffers to new picture "
 "dimensions"
 msgstr ""
-"La caméra est enfin disponible \n"
-"l'image de la caméra a une largeur et une hauteur différentes de celles "
-"contenues dans le fichier de configuration.Vous devriez corriger ça \n"
-"Redémarrage du thread Motion pour réinitialiser tous les tampons d'image sur "
-"une nouvelle imagedimensions"
+"Fotoaparát je konečne k dispozícii \n"
+"Obrázok kamery má rôznu šírku a výšku od toho, čo je v konfiguračnom súbore. "
+"Mali by ste to opraviť \n"
+"Reštartovanie vlákna vlákna na opätovné inicializáciu všetkých vyrovnávacích "
+"pamätí obrázkov do nového obrázkarozmery"
 
 #: src/motion.c
 msgid "Video signal re-acquired"
-msgstr "Signal vidéo ré-acquis"
+msgstr "Video signál bol znovu získaný"
 
 #: src/motion.c
 msgid "Video device fatal error - Closing video device"
-msgstr "Erreur fatale du périphérique vidéo - Fermeture du périphérique vidéo"
+msgstr "Závažná chyba obrazového zariadenia - zatvorenie obrazového zariadenia"
 
 #: src/motion.c
 msgid "Restarting Motion thread to reinitialize all image buffers"
 msgstr ""
-"Redémarrage du thread Motion pour réinitialiser tous les tampons d'image"
+"Reštartovaním vlákna vlákna sa inicializujú všetky vyrovnávacie pamäte "
+"obrázkov"
 
 #: src/motion.c
 msgid "Video signal lost - Adding grey image"
-msgstr "Signal vidéo perdu - Ajout d'une image grise"
+msgstr "Video signál sa stratil - Pridáva sa sivý obrázok"
 
 #: src/motion.c
 msgid "Video signal still lost - Trying to close video device"
-msgstr ""
-"Le signal vidéo est toujours perdu - Tentative de fermer le périphérique "
-"vidéo"
+msgstr "Video signál stále stratený - Pokúša sa zatvoriť video zariadenie"
 
 #: src/motion.c
 msgid "Lightswitch detected"
-msgstr "Lightswitch détecté"
+msgstr "Bol zistený spínač svetiel"
 
 #: src/motion.c
 msgid "Switchfilter detected"
-msgstr "Switchfilter détecté"
+msgstr "Rozpoznaný prepínací filter"
 
 #: src/motion.c
 msgid "micro-lightswitch!"
-msgstr "micro-interrupteur!"
+msgstr "micro-LightSwitch!"
 
 #: src/motion.c
 #, c-format
 msgid "End of event %d"
-msgstr "Fin de l'événement %d"
+msgstr "Koniec udalosti %d"
 
 #: src/motion.c
 #, c-format
 msgid "Raw changes: %5d - changes after '%s': %5d"
-msgstr "Changements bruts: %5d - changements après ' %s': %5d"
+msgstr "Nespracované zmeny: %5d - zmeny po ' %s': %5d"
 
 #: src/motion.c
 #, c-format
 msgid " - labels: %3d"
-msgstr "- étiquettes: %3d"
+msgstr "- menovky: %3d"
 
 #: src/motion.c
 #, c-format
 msgid "Changes: %5d"
-msgstr "Changements: %5d"
+msgstr "Zmeny: %5d"
 
 #: src/motion.c
 #, c-format
 msgid " - noise level: %2d"
-msgstr "- niveau de bruit: %2d"
+msgstr "- hladina hluku: %2d"
 
 #: src/motion.c
 #, c-format
 msgid " - threshold: %d"
-msgstr "- seuil: %d"
+msgstr "- prahová hodnota: %d"
 
 #: src/motion.c
 #, c-format
 msgid "Invalid timelapse_mode argument '%s'"
-msgstr "Argument de mode timelapse non valide ' %s'"
+msgstr "Neplatný argument režimu timelapse ' %s'"
 
 #: src/motion.c
 msgid "%:s Defaulting to manual timelapse mode"
-msgstr "%: s Par défaut en mode timelapse manuel"
+msgstr "%: s Predvolené na manuálny režim timelapse"
 
 #: src/motion.c
 msgid "Thread exiting"
-msgstr "Fil sortant"
+msgstr "Ukončenie vlákna"
 
 #: src/motion.c
 msgid "Motion going to daemon mode"
-msgstr "Mouvement en mode démon"
+msgstr "Pohyb prejde do režimu démona"
 
 #: src/motion.c
 #, c-format
 msgid "Exit motion, cannot create process id file (pid file) %s"
-msgstr ""
-"Quitter le mouvement, impossible de créer un fichier d’identification de "
-"processus (fichier pid) %s"
+msgstr "Ukončite pohyb, nemôžete vytvoriť súbor ID procesu (súbor pid) %s"
 
 #: src/motion.c
 msgid "Could not change directory"
-msgstr "Impossible de changer de répertoire"
+msgstr "Adresár sa nepodarilo zmeniť"
 
 #: src/motion.c
 #, c-format
 msgid "Created process id file %s. Process ID is %d"
-msgstr ""
-"Fichier d'identification de processus créé %s. l'ID de processus est %d"
+msgstr "Vytvorený ID súboru procesu %s. ID procesu je %d"
 
 #: src/motion.c
 msgid ""
 "Camara IDs are not unique or have values over 32,000.  Falling back to "
 "thread numbers"
 msgstr ""
-"Les identifiants Camara ne sont pas uniques ou ont une valeur supérieure à "
-"32,000. Retomber surnuméros de fil"
+"ID Camara nie sú jedinečné alebo majú hodnoty vyše 32 000. Spadá späť "
+"dočísla nití"
 
 #: src/motion.c
 msgid "v4l2   : available"
-msgstr "v4l2: disponible"
+msgstr "v4l2: k dispozícii"
 
 #: src/motion.c
 msgid "v4l2   : not available"
-msgstr "v4l2: non disponible"
+msgstr "v4l2: nie je k dispozícii"
 
 #: src/motion.c
 msgid "bktr   : available"
-msgstr "bktr: disponible"
+msgstr "bktr: k dispozícii"
 
 #: src/motion.c
 msgid "bktr   : not available"
-msgstr "bktr: non disponible"
+msgstr "bktr: nie je k dispozícii"
 
 #: src/motion.c
 msgid "webp   : available"
-msgstr "webp: disponible"
+msgstr "webp: k dispozícii"
 
 #: src/motion.c
 msgid "webp   : not available"
-msgstr "webp: non disponible"
+msgstr "webp: nie je k dispozícii"
 
 #: src/motion.c
 msgid "mmal   : available"
-msgstr "mmal: disponible"
+msgstr "mmal: k dispozícii"
 
 #: src/motion.c
 msgid "mmal   : not available"
-msgstr "mmal: non disponible"
+msgstr "mmal: nie je k dispozícii"
 
 #: src/motion.c
 msgid "ffmpeg : available"
-msgstr "ffmpeg: disponible"
+msgstr "ffmpeg: k dispozícii"
 
 #: src/motion.c
 msgid "ffmpeg : not available"
-msgstr "ffmpeg: non disponible"
+msgstr "ffmpeg: nie je k dispozícii"
 
 #: src/motion.c
 msgid "mysql  : available"
-msgstr "mysql: disponible"
+msgstr "mysql: k dispozícii"
 
 #: src/motion.c
 msgid "mysql  : not available"
-msgstr "mysql: non disponible"
+msgstr "mysql: nie je k dispozícii"
 
 #: src/motion.c
 msgid "MariaDB: available"
-msgstr "MariaDB: disponible"
+msgstr "MariaDB: k dispozícii"
 
 #: src/motion.c
 msgid "MariaDB: not available"
-msgstr "MariaDB: non disponible"
+msgstr "MariaDB: nie je k dispozícii"
 
 #: src/motion.c
 msgid "sqlite3: available"
-msgstr "sqlite3: disponible"
+msgstr "sqlite3: k dispozícii"
 
 #: src/motion.c
 msgid "sqlite3: not available"
-msgstr "sqlite3: non disponible"
+msgstr "sqlite3: nie je k dispozícii"
 
 #: src/motion.c
 msgid "pgsql  : available"
-msgstr "pgsql: disponible"
+msgstr "pgsql: k dispozícii"
 
 #: src/motion.c
 msgid "pgsql  : not available"
-msgstr "pgsql: non disponible"
+msgstr "pgsql: nie je k dispozícii"
 
 #: src/motion.c
 msgid "nls    : available"
-msgstr "nls: disponible"
+msgstr "nls: k dispozícii"
 
 #: src/motion.c
 msgid "nls    : not available"
-msgstr "nls: non disponible"
+msgstr "nls: nie je k dispozícii"
 
 #: src/motion.c
 #, c-format
 msgid "Using default log level (%s) (%d)"
-msgstr "Utilisation du niveau de journalisation par défaut ( %s) ( %d)"
+msgstr "Použitie predvolenej úrovne denníka ( %s) ( %d)"
 
 #: src/motion.c
 #, c-format
 msgid "Logging to file (%s)"
-msgstr "Enregistrement dans un fichier ( %s)"
+msgstr "Prihlasovanie do súboru ( %s)"
 
 #: src/motion.c
 #, c-format
 msgid "Exit motion, cannot create log file %s"
-msgstr "Quitter le mouvement, impossible de créer le fichier journal %s"
+msgstr "Ukončite pohyb, nemôžete vytvoriť súbor denníka %s"
 
 #: src/motion.c
 msgid "Logging to syslog"
-msgstr "Se connecter à syslog"
+msgstr "Prihlasovanie do syslogu"
 
 #: src/motion.c
 #, c-format
 msgid "Motion %s Started"
-msgstr "Motion% s démarré"
+msgstr "Pohyb %s začal"
 
 #: src/motion.c
 #, c-format
 msgid "Using default log type (%s)"
-msgstr "Utilisation du type de journal par défaut ( %s)"
+msgstr "Použitie predvoleného typu denníka ( %s)"
 
 #: src/motion.c
 #, c-format
 msgid "Using log type (%s) log level (%s)"
-msgstr "Utilisation du type de journal ( %s) niveau de journal ( %s)"
+msgstr "Použitie typu denníka ( %s) úroveň denníka ( %s)"
 
 #: src/motion.c
 msgid "Motion running as daemon process"
-msgstr "Mouvement exécuté en tant que processus démon"
+msgstr "Pohyb beží ako proces démona"
 
 #: src/motion.c
 msgid "Motion running in setup mode."
-msgstr "Mouvement en mode de configuration."
+msgstr "Pohyb beží v nastavovacom režime."
 
 #: src/motion.c
 #, c-format
 msgid "Camera ID: %d is from %s"
-msgstr "Identifiant de la caméra: %d est de %s"
+msgstr "ID kamery: %d je od %s"
 
 #: src/motion.c
 #, c-format
 msgid "Camera ID: %d Camera Name: %s Service: %s"
-msgstr "Identifiant de la caméra: %d Nom de la caméra: %s Service: %s"
+msgstr "ID kamery: %d Názov kamery: %s Služba: %s"
 
 #: src/motion.c
 #, c-format
 msgid "Camera ID: %d Camera Name: %s Device: %s"
-msgstr "Identifiant de la caméra: %d Nom de la caméra: %s Appareil: %s"
+msgstr "ID kamery: %d Názov kamery: %s Zariadenie: %s"
 
 #: src/motion.c
 #, c-format
 msgid "Stream port number %d for thread %d conflicts with the control port"
 msgstr ""
-"Le numéro de port de flux %d pour le thread %d est en conflit avec le port "
-"de contrôle"
+"Streamujte číslo portu %d pre vlákno %d v konflikte s kontrolným portom"
 
 #: src/motion.c
 #, c-format
 msgid "Stream feature for thread %d is disabled."
-msgstr "La fonctionnalité de flux pour le thread %d est désactivée."
+msgstr "Funkcia toku pre vlákno %d je zakázaná."
 
 #: src/motion.c
 #, c-format
 msgid "Stream port number %d for thread %d conflicts with thread %d"
-msgstr ""
-"Le numéro de port du flux %d pour le thread %d entre en conflit avec le "
-"thread %d"
+msgstr "Číslo portu prúdu %d pre vlákno %d je v konflikte s vláknom %d"
 
 #: src/motion.c
 msgid "Restarting motion."
-msgstr "Mouvement de redémarrage."
+msgstr "Opätovné spustenie pohybu."
 
 #: src/motion.c
 msgid "Motion restarted"
-msgstr "Motion recommencée"
+msgstr "Pohyb sa znova spustil"
 
 #: src/motion.c
 #, c-format
 msgid "Thread %d - Watchdog timeout. Trying to do a graceful restart"
 msgstr ""
-"Thread %d - Délai d'attente du chien de garde. Essayer de faire un "
-"redémarrage en douceur"
+"Vlákno %d - Časový limit strážneho psa. Pokúšam sa urobiť elegantný reštart"
 
 #: src/motion.c
 #, c-format
 msgid "Thread %d - Watchdog timeout did NOT restart, killing it!"
-msgstr ""
-"Thread %d - Le délai d'attente du chien de garde n'A PAS redémarré, ce qui "
-"l'a tué!"
+msgstr "Vlákno %d - Timeout strážneho psa sa nereštartoval a nezabil!"
 
 #: src/motion.c
 #, c-format
 msgid "Thread %d - Cleaning thread."
-msgstr "Fil %d - Fil de nettoyage."
+msgstr "Závit %d - Čistiaca niť."
 
 #: src/motion.c
 #, c-format
 msgid "DEBUG-1 threads_running %d motion_threads_running %d , finish %d"
-msgstr ""
-"Les threads DEBUG-1 exécutant %d les threads animés exécutant %d, terminent "
-"%d"
+msgstr "Vlákna DEBUG-1 s %d pohybovými vláknami s %d, dokončovacie %d"
 
 #: src/motion.c
 #, c-format
 msgid "Waiting for threads to finish, pid: %d"
-msgstr "En attente de la fin des threads, pid: %d"
+msgstr "Čaká sa na dokončenie vlákien, pid: %d"
 
 #: src/motion.c
 #, c-format
 msgid "Motion thread %d restart"
-msgstr "Motion thread %d redémarrer"
+msgstr "Pohybové vlákno %d reštartujte"
 
 #: src/motion.c
 msgid "Threads finished"
-msgstr "Fils finis"
+msgstr "Vlákna skončili"
 
 #: src/motion.c src/webu.c
 msgid "Motion terminating"
-msgstr "Motion mettant fin"
+msgstr "Ukončenie pohybu"
 
 #: src/motion.c
 #, c-format
 msgid "Could not allocate %llu bytes of memory!"
-msgstr "Impossible d'allouer %llu octets de mémoire!"
+msgstr "Nepodarilo sa prideliť %llu bajtov pamäte!"
 
 #: src/motion.c
 #, c-format
 msgid "Warning! Function %s tries to resize memoryblock at %p to 0 bytes!"
 msgstr ""
-"Attention! La fonction %s essaie de redimensionner memoryblock de %p à 0 "
-"octets!"
+"Výstraha! Funkcia %s sa pokúša zmeniť veľkosť bloku pamäte na %p na 0 bajtov!"
 
 #: src/motion.c
 #, c-format
 msgid "Could not resize memory-block at offset %p to %llu bytes (function %s)!"
 msgstr ""
-"Impossible de redimensionner le bloc de mémoire au décalage %p en %llu "
-"octets (fonction %s)!"
+"Nepodarilo sa zmeniť veľkosť bloku pamäte pri posunu %p na %llu bajtov "
+"(funkcia %s)!"
 
 #: src/motion.c
 #, c-format
 msgid "Problem creating directory %s"
-msgstr "Problème lors de la création du répertoire %s"
+msgstr "Pri vytváraní adresára %s sa vyskytol problém"
 
 #: src/motion.c
 #, c-format
 msgid "creating directory %s"
-msgstr "création du répertoire %s"
+msgstr "vytvára sa priečinok %s"
 
 #: src/motion.c
 #, c-format
 msgid "Error opening file %s with mode %s"
-msgstr "Erreur lors de l'ouverture du fichier %s avec le mode %s"
+msgstr "Chyba pri otváraní súboru %s v režime %s"
 
 #: src/motion.c
 msgid "Error closing file"
-msgstr "Erreur de fermeture du fichier"
+msgstr "Chyba pri zatváraní súboru"
 
 #: src/motion.c
 #, c-format
 msgid "invalid format specifier keyword %*.*s"
-msgstr "Mot-clé de spécification de format non valide %*.*s"
+msgstr "neplatné kľúčové slovo so špecifikátorom formátu %*.*s"
 
 #: src/motion.c
 #, c-format
 msgid "Unable to set thread name %s"
-msgstr "Impossible de définir le nom du thread %s"
+msgstr "Názov vlákna %s sa nedá nastaviť"
 
 #: src/motion.c
 msgid "FFMPEG version too old. Disabling pass-through processing."
-msgstr ""
-"La version FFMPEG est trop ancienne. Désactivation du traitement relais."
+msgstr "Verzia FFMPEG je príliš stará. Zakázanie spracovania pass-through."
 
 #: src/motion.c
 msgid "pass-through is enabled but is still experimental."
-msgstr "le pass-through est activé mais reste expérimental."
+msgstr "prechod je povolený, ale stále je experimentálny."
 
 #: src/netcam.c
 msgid "Invalid URL.  Can not parse values."
-msgstr "URL invalide. Impossible d'analyser les valeurs."
+msgstr "Neplatná URL adresa. Nemožno analyzovať hodnoty."
 
 #: src/netcam.c
 #, c-format
 msgid "Using port number %d"
-msgstr "Utilisation du numéro de port %d"
+msgstr "Použitie čísla portu %d"
 
 #: src/netcam.c
 #, c-format
 msgid "Camera handler thread [%d] started"
-msgstr "Le thread du gestionnaire de caméra [ %d] a commencé"
+msgstr "Začalo sa vlákno obsluhy fotoaparátu [ %d]"
 
 #: src/netcam.c
 msgid ""
 "Closing netcam socket as Keep-Alive time is up (camera sent Close field). A "
 "reconnect should happen."
 msgstr ""
-"Fermeture de la prise netcam alors que le temps de maintien en vie est "
-"écoulé (champ proche envoyé par la caméra). UNEreconnecter devrait arriver."
+"Uzatvára sa zásuvka netcam, keď je čas Keep-Alive vypršaný (kamera odoslala "
+"pole Close).malo by dôjsť k opätovnému pripojeniu."
 
 #: src/netcam.c
 msgid "re-opening camera (non-streaming)"
-msgstr "réouverture de la caméra (non-streaming)"
+msgstr "znovuotvorenie fotoaparátu (bez streamingu)"
 
 #: src/netcam.c
 msgid "camera re-connected"
-msgstr "caméra re-connectée"
+msgstr "kamera je znova pripojená"
 
 #: src/netcam.c
 #, c-format
 msgid "Unrecognized image header (%d)"
-msgstr "En-tête d'image non reconnu ( %d)"
+msgstr "Nerozpoznaná hlavička obrázka ( %d)"
 
 #: src/netcam.c
 #, c-format
 msgid "Error in header (%d)"
-msgstr "Erreur dans l'en-tête ( %d)"
+msgstr "Chyba v hlavičke ( %d)"
 
 #: src/netcam.c
 msgid "re-opening camera (streaming)"
-msgstr "réouverture de la caméra (streaming)"
+msgstr "opätovné otvorenie kamery (streamovanie)"
 
 #: src/netcam.c
 msgid "Error getting jpeg image"
-msgstr "Erreur lors de l'obtention de l'image jpeg"
+msgstr "Chyba pri získavaní obrázka vo formáte JPEG"
 
 #: src/netcam.c
 msgid "Trying to re-connect"
-msgstr "Essayer de se reconnecter"
+msgstr "Pokúšam sa znova pripojiť"
 
 #: src/netcam.c src/netcam_rtsp.c
 msgid "netcam camera handler: finish set, exiting"
-msgstr "gestionnaire de caméra netcam: jeu de finition, sortie"
+msgstr "obsluha kamery netcam: dokončovacia sada, ukončenie"
 
 #: src/netcam.c
 msgid "No response from camera handler - it must have already died"
-msgstr "Pas de réponse du gestionnaire de la caméra - il doit déjà être mort"
+msgstr "Žiadna odozva od obsluhy kamery - musí už zomrieť"
 
 #: src/netcam.c
 msgid "called with no data in buffer"
-msgstr "appelé sans données dans le tampon"
+msgstr "volaná bez údajov vo vyrovnávacej pamäti"
 
 #: src/netcam.c
 #, c-format
 msgid "Network Camera starting for camera (%s)"
-msgstr "Caméra réseau démarrant pour la caméra ( %s)"
+msgstr "Sieťová kamera začína pre kameru ( %s)"
 
 #: src/netcam.c
 #, c-format
 msgid "Invalid netcam_proxy (%s)"
-msgstr "Proxy netcam invalide ( %s)"
+msgstr "Neplatný proxy servera netcam ( %s)"
 
 #: src/netcam.c
 msgid "Username/password not allowed on a proxy URL"
-msgstr ""
-"Le nom d'utilisateur / mot de passe n'est pas autorisé sur une URL de proxy"
+msgstr "Používateľské meno / heslo nie je povolené na proxy serveri"
 
 #: src/netcam.c
 #, c-format
 msgid "Invalid netcam service '%s' "
-msgstr "Service netcam non valide ' %s'"
+msgstr "Neplatná služba netcam ' %s'"
 
 #: src/netcam.c
 #, c-format
 msgid "Invalid netcam_url for camera (%s)"
-msgstr "URL netcam non valide pour la caméra ( %s)"
+msgstr "Neplatná webová adresa netcam pre kameru ( %s)"
 
 #: src/netcam.c
 #, c-format
@@ -2105,338 +2073,337 @@ msgid ""
 "Netcam_http parameter '%s' converts to flags: HTTP/1.0: %s HTTP/1.1: %s Keep-"
 "Alive %s."
 msgstr ""
-"Le paramètre http Netcam ' %s' est converti en indicateurs: HTTP / 1.0: %s "
-"HTTP / 1.1: %s Keep-Vivant %s."
+"Parameter http %s sa prevádza na príznaky: HTTP / 1.0: %s HTTP / 1.1: %s "
+"Keep-Živé %s."
 
 #: src/netcam.c
 msgid "now calling netcam_setup_html()"
-msgstr "appelle maintenant netcam setup html ()"
+msgstr "teraz volá netcam setup html ()"
 
 #: src/netcam.c
 msgid "now calling netcam_setup_ftp"
-msgstr "appelle maintenant netcam setup ftp"
+msgstr "teraz volá netcam setup ftp"
 
 #: src/netcam.c
 msgid "now calling netcam_setup_file()"
-msgstr "appelle maintenant le fichier d'installation de netcam ()"
+msgstr "teraz sa volá inštalačný súbor netcam ()"
 
 #: src/netcam.c
 #, c-format
 msgid ""
 "Invalid netcam service '%s' - must be http, ftp, mjpg, mjpeg, v4l2 or jpeg."
 msgstr ""
-"Le service netcam non valide ' %s' doit être http, ftp, mjpg, mjpeg, v4l2 ou "
+"Neplatná služba netcam ' %s' - musí byť http, ftp, mjpg, mjpeg, v4l2 alebo "
 "jpeg."
 
 #: src/netcam.c src/netcam_rtsp.c
 #, c-format
 msgid "Failed trying to read first image - retval:%d"
-msgstr ""
-"Échec lors de la tentative de lecture de la première image - Retval: %d"
+msgstr "Nepodarilo sa prečítať prvý obrázok - retval: %d"
 
 #: src/netcam.c
 msgid "libjpeg decompression failure on first frame - giving up!"
-msgstr "échec de la décompression de libjpeg à la première image - abandon!"
+msgstr "zlyhanie dekompresie libjpeg na prvom snímke - vzdanie sa!"
 
 #: src/netcam.c
 #, c-format
 msgid "Width/height(%dx%d) must be multiples of 8"
-msgstr "Largeur / hauteur ( %dx %d) doit être un multiple de 8"
+msgstr "Šírka / výška ( %dx %d) musí byť násobkom 8"
 
 #: src/netcam.c
 #, c-format
 msgid "Error starting camera handler thread [%d]"
-msgstr "Erreur lors du démarrage du thread du gestionnaire de caméra [ %d]"
+msgstr "Pri spúšťaní vlákna obsluhy fotoaparátu [ %d] sa vyskytla chyba"
 
 #: src/netcam_ftp.c
 msgid "recv failed in ftp_get_more"
-msgstr "recv échoué en ftp obtenir plus"
+msgstr "recv zlyhalo v ftp získať viac"
 
 #: src/netcam_ftp.c
 #, c-format
 msgid "Server Response: %s"
-msgstr "Réponse du serveur: %s"
+msgstr "Odozva servera: %s"
 
 #: src/netcam_ftp.c
 msgid "send failed in ftp_send_user"
-msgstr "Échec de l'envoi dans l'utilisateur de l'envoi ftp"
+msgstr "odoslanie zlyhalo v ftp odoslať používateľa"
 
 #: src/netcam_ftp.c
 msgid "send failed in ftp_send_passwd"
-msgstr "échec de l'envoi dans ftp envoi du mot de passe"
+msgstr "odoslanie zlyhalo v ftp odoslať passwd"
 
 #: src/netcam_ftp.c
 msgid "send failed in ftp_quit"
-msgstr "envoi a échoué dans ftp quit"
+msgstr "odoslanie zlyhalo v ftp quit"
 
 #: src/netcam_ftp.c
 msgid "gethostbyname failed in ftp_connect"
-msgstr "gethostbyname a échoué dans la connexion ftp"
+msgstr "gethostbyname zlyhalo v ftp connect"
 
 #: src/netcam_ftp.c
 msgid "gethostbyname address mismatch in ftp_connect"
-msgstr "incompatibilité d'adresse gethostbyname dans ftp connect"
+msgstr "nezhoda adresy gethostbyname v ftp connect"
 
 #: src/netcam_ftp.c
 msgid "socket failed"
-msgstr "socket a échoué"
+msgstr "soket zlyhal"
 
 #: src/netcam_ftp.c
 msgid "Failed to create a connection"
-msgstr "Impossible de créer une connexion"
+msgstr "Nepodarilo sa vytvoriť pripojenie"
 
 #: src/netcam_ftp.c
 msgid "FTP server asking for ACCT on anonymous"
-msgstr "Serveur FTP demandant ACCT sur anonyme"
+msgstr "FTP server so žiadosťou o ACCT anonymne"
 
 #: src/netcam_ftp.c
 msgid "setting socket option SO_REUSEADDR"
-msgstr "réglage de l'option de socket SO REUSEADDR"
+msgstr "nastavenie možnosti soketu SO REUSEADDR"
 
 #: src/netcam_ftp.c
 msgid "send failed in ftp_get_connection"
-msgstr "échec de l'envoi dans la connexion ftp"
+msgstr "odoslanie zlyhalo v pripojení ftp"
 
 #: src/netcam_ftp.c
 msgid "Invalid answer to PASV"
-msgstr "Réponse invalide à PASV"
+msgstr "Neplatná odpoveď na PASV"
 
 #: src/netcam_ftp.c
 msgid "Failed to create a data connection"
-msgstr "Impossible de créer une connexion de données"
+msgstr "Nepodarilo sa vytvoriť dátové pripojenie"
 
 #: src/netcam_ftp.c
 msgid "bind failed"
-msgstr "lier échoué"
+msgstr "väzba zlyhala"
 
 #: src/netcam_ftp.c
 msgid "listen failed"
-msgstr "écouter a échoué"
+msgstr "počúvanie zlyhalo"
 
 #: src/netcam_ftp.c
 msgid "send failed in ftp_get_socket"
-msgstr "envoi a échoué dans ftp get socket"
+msgstr "odoslanie zlyhalo v zásuvke ftp"
 
 #: src/netcam_ftp.c
 msgid "accept in ftp_get_socket"
-msgstr "accepter en ft get get socket"
+msgstr "akceptovať v ftp get socket"
 
 #: src/netcam_ftp.c
 msgid "recv failed in ftp_read"
-msgstr "recv échoué en lecture FTP"
+msgstr "V čítaní ftp zlyhalo recv"
 
 #: src/netcam_ftp.c
 msgid "ftp_get_socket failed"
-msgstr "ftp get socket a échoué"
+msgstr "FTP soket zlyhal"
 
 #: src/netcam_ftp.c
 msgid "Error sending TYPE I to ftp server"
-msgstr "Erreur lors de l'envoi de TYPE I au serveur FTP"
+msgstr "Chyba pri odosielaní TYPU I na ftp server"
 
 #: src/netcam_http.c
 #, c-format
 msgid "malformed token Content-Length but value %ld"
-msgstr "Jeton malformé Content-Length mais valeur %ld"
+msgstr "chybne tvarovaný token Content-Length, ale hodnota %ld"
 
 #: src/netcam_http.c
 #, c-format
 msgid "Content-Length %ld"
-msgstr "Contenu-Longueur %ld"
+msgstr "Dĺžka obsahu %ld"
 
 #: src/netcam_http.c
 #, c-format
 msgid "Content-type %s"
-msgstr "Type de contenu %s"
+msgstr "Typ obsahu %s"
 
 #: src/netcam_http.c
 msgid "Error reading image header, streaming mode (1). Null header."
 msgstr ""
-"Erreur de lecture de l'en-tête de l'image, mode de diffusion en continu (1). "
-"En-tête nul."
+"Pri čítaní hlavičky obrázka sa vyskytla chyba, režim streamovania (1). "
+"Nulová hlavička."
 
 #: src/netcam_http.c
 #, c-format
 msgid "Error reading image header, streaming mode (1). Unknown header '%s'"
 msgstr ""
-"Erreur de lecture de l'en-tête de l'image, mode de diffusion en continu (1). "
-"En-tête inconnu ' %s'"
+"Pri čítaní hlavičky obrázka sa vyskytla chyba, režim streamovania (1). "
+"Neznáma hlavička '%s'"
 
 #: src/netcam_http.c
 msgid "Error reading image header (2)"
-msgstr "Erreur lors de la lecture de l'en-tête de l'image (2)"
+msgstr "Chyba pri čítaní hlavičky obrázka (2)"
 
 #: src/netcam_http.c
 msgid "Header not JPEG"
-msgstr "En-tête pas JPEG"
+msgstr "Hlavička nie je JPEG"
 
 #: src/netcam_http.c
 msgid "Content-Length 0"
-msgstr "Longueur du contenu 0"
+msgstr "Obsah-dĺžka 0"
 
 #: src/netcam_http.c
 msgid "Found image header record"
-msgstr "Enregistrement d'en-tête d'image trouvé"
+msgstr "Našiel sa záznam hlavičky obrázka"
 
 #: src/netcam_http.c
 msgid "Error sending 'connect' request"
-msgstr "Erreur lors de l'envoi de la requête 'connect'"
+msgstr "Pri odosielaní žiadosti o pripojenie došlo k chybe"
 
 #: src/netcam_http.c
 #, c-format
 msgid "Received first header ('%s')"
-msgstr "Premier en-tête reçu (' %s')"
+msgstr "Prijatá prvá hlavička (' %s')"
 
 #: src/netcam_http.c
 #, c-format
 msgid "Error reading first header (%s)"
-msgstr "Erreur de lecture du premier en-tête ( %s)"
+msgstr "Chyba pri čítaní prvej hlavičky ( %s)"
 
 #: src/netcam_http.c
 #, c-format
 msgid "HTTP Result code %d"
-msgstr "Code de résultat HTTP %d"
+msgstr "Výsledný kód HTTP %d"
 
 #: src/netcam_http.c
 msgid "Removed netcam Keep-Alive flag due to apparent closed HTTP connection."
 msgstr ""
-"Drapeau Netcam Keep-Alive supprimé en raison d'une connexion HTTP "
-"apparemment fermée."
+"Odstránený príznak netcam Keep-Alive v dôsledku zjavného uzavretého "
+"pripojenia HTTP."
 
 #: src/netcam_http.c
 msgid "Non-streaming camera (keep-alive set)"
-msgstr "Caméra non-streaming (ensemble persistant)"
+msgstr "Neprúdová kamera (sada udržiavaná nažive)"
 
 #: src/netcam_http.c
 msgid "Non-streaming camera (keep-alive not set)"
-msgstr "Caméra non-en streaming (Keep-Alive non défini)"
+msgstr "Neprúdová kamera (udržiavaná naživo nie je nastavená)"
 
 #: src/netcam_http.c
 msgid "Streaming camera"
-msgstr "Caméra en streaming"
+msgstr "Streamovanie kamery"
 
 #: src/netcam_http.c
 #, c-format
 msgid "Boundary string [%s]"
-msgstr "Chaîne de limite [ %s]"
+msgstr "Hraničný reťazec [ %s]"
 
 #: src/netcam_http.c
 msgid "Boundary string not found in header"
-msgstr "Chaîne de limite introuvable dans l'en-tête"
+msgstr "Hraničný reťazec sa nenašiel v hlavičke"
 
 #: src/netcam_http.c
 msgid ""
 "Streaming camera probably using MJPG-blocks, consider using mjpg:// "
 "netcam_url."
 msgstr ""
-"Caméra en streaming utilisant probablement des blocs MJPG, envisagez "
-"d'utiliser mjpg:// netcam_url"
+"Streamujúca kamera pravdepodobne používa bloky MJPG, zvážte použitie "
+"mjpg: // webová adresa netcam."
 
 #: src/netcam_http.c
 msgid "Unrecognized content type"
-msgstr "Type de contenu non reconnu"
+msgstr "Nerozpoznaný typ obsahu"
 
 #: src/netcam_http.c
 msgid "Content-length present"
-msgstr "Contenu de longueur présente"
+msgstr "Obsahová dĺžka je prítomná"
 
 #: src/netcam_http.c
 msgid "Content-length 0"
-msgstr "Longueur du contenu 0"
+msgstr "Obsahová dĺžka 0"
 
 #: src/netcam_http.c
 #, c-format
 msgid "Found Conn: close header ('%s')"
-msgstr "Conn trouvé: fermer l'en-tête (' %s')"
+msgstr "Found Conn: close header (' %s')"
 
 #: src/netcam_http.c
 msgid ""
 "Both 'Connection: Keep-Alive' and 'Connection: close' header received. "
 "Motion removes keepalive."
 msgstr ""
-"Les en-têtes 'Connection: Keep-Alive' et 'Connection: close' ont été reçus. "
-"Motion supprime Keepalive."
+"Prijali sa hlavičky „Connection: Keep-Alive“ a „Connection: close“.Pohyb "
+"odstraňuje udržovač."
 
 #: src/netcam_http.c
 msgid ""
 "Both 'Connection: Keep-Alive' and 'Connection: close' header received. "
 "Motion continues unchanged."
 msgstr ""
-"Les en-têtes 'Connection: Keep-Alive' et 'Connection: close' ont été reçus. "
-"La motion continue sans changement."
+"Prijali sa hlavičky „Connection: Keep-Alive“ a „Connection: close“.Pohyb "
+"pokračuje bez zmeny."
 
 #: src/netcam_http.c
 msgid "Received a Keep-Alive field in this set of headers."
-msgstr "Réception d'un champ Keep-Alive dans cet ensemble d'en-têtes."
+msgstr "V tejto sade hlavičiek sme dostali pole Keep-Alive."
 
 #: src/netcam_http.c
 msgid ""
 "No 'Connection: Keep-Alive' nor 'Connection: close' header received.\n"
 " Motion removes keepalive."
 msgstr ""
-"Aucun en-tête \"Connexion: Keep-Alive\" ni \"Connexion: fermer\" n'a été "
-"reçu. \n"
-" Motion supprime Keepalive."
+"Nebolo prijaté žiadne spojenie „Spojenie: Zachovať živé“ ani „Spojenie: "
+"zatvorené“. \n"
+" Pohyb odstraňuje udržovač."
 
 #: src/netcam_http.c
 msgid ""
 "No 'Connection: Keep-Alive' nor 'Connection: close' header received.\n"
 " Motion continues unchanged."
 msgstr ""
-"Aucun en-tête \"Connexion: Keep-Alive\" ni \"Connexion: fermer\" n'a été "
-"reçu. \n"
-" La motion continue sans changement."
+"Nebolo prijaté žiadne spojenie „Spojenie: Zachovať živé“ ani „Spojenie: "
+"zatvorené“. \n"
+" Pohyb pokračuje bez zmeny."
 
 #: src/netcam_http.c
 msgid ""
 "Removed netcam Keep-Alive flag because 'Connection: close' header received.\n"
 " Netcam does not support Keep-Alive. Motion continues in non-Keep-Alive."
 msgstr ""
-"Suppression de l'indicateur Keep-Alive de netcam car l'en-tête \"Connection: "
-"close\" a été reçu. \n"
-" Netcam ne prend pas en charge Keep-Alive. La motion continue dans non-Keep-"
-"Alive."
+"Odstránený príznak netcam Keep-Alive, pretože bola prijatá hlavička "
+"'Connection: close'. \n"
+" Netcam nepodporuje Keep-Alive. Pohyb pokračuje non-Keep-Alive."
 
 #: src/netcam_http.c
 msgid ""
 "Keep-Alive has reached end of valid period.\n"
 "Motion will close netcam, then resume Keep-Alive with a new socket."
 msgstr ""
-"Keep-Alive a atteint la fin de la période de validité. \n"
-" Motion fermera netcam, puis reprendra Keep-Alive avec un nouveau socket."
+"Keep-Alive dosiahol koniec platného obdobia. \n"
+" Pohyb sa zatvorí netcam, potom sa obnoví funkcia Keep-Alive s novou "
+"zásuvkou."
 
 #: src/netcam_http.c
 msgid "disconnect"
-msgstr "déconnecter"
+msgstr "odpojiť"
 
 #: src/netcam_http.c
 #, c-format
 msgid "getaddrinfo() failed (%s): %s"
-msgstr "getaddrinfo () a échoué ( %s): %s"
+msgstr "getaddrinfo () zlyhalo ( %s): %s"
 
 #: src/netcam_http.c
 msgid "disconnecting netcam (1)"
-msgstr "déconnecter netcam (1)"
+msgstr "odpojovací netcam (1)"
 
 #: src/netcam_http.c
 msgid "disconnecting netcam since keep-alive not set."
-msgstr "déconnexion de netcam puisque le maintien en vie n’est pas défini."
+msgstr "odpojenie netcam, pretože udržanie nažive nie je nastavené."
 
 #: src/netcam_http.c
 msgid "with no keepalive, attempt to create socket failed."
-msgstr "sans keepalive, la tentative de création de socket a échoué."
+msgstr "bez udržania, pokus o vytvorenie soketu zlyhal."
 
 #: src/netcam_http.c
 #, c-format
 msgid "with no keepalive, new socket created fd %d"
-msgstr "sans keepalive, nouvelle socket créée fd %d"
+msgstr "bez udržania, nový soket vytvorený fd %d"
 
 #: src/netcam_http.c
 msgid ""
 "with keepalive set, invalid socket.This could be the first time. Creating a "
 "new one failed."
 msgstr ""
-"avec keepalive set, socket invalide.Cela pourrait être la première fois. "
-"Créer unle nouveau a échoué."
+"s setalive set, neplatný socket.To by mohlo byť prvýkrát. Vytvorenie anový "
+"zlyhal."
 
 #: src/netcam_http.c
 #, c-format
@@ -2444,250 +2411,248 @@ msgid ""
 "with keepalive set, invalid socket.This could be first time, created a new "
 "one with fd %d"
 msgstr ""
-"avec keepalive set, socket invalide.Cela pourrait être la première fois, "
-"créé un nouveauun avec fd %d"
+"s setalive set, neplatný socket.To by mohlo byť prvýkrát, vytvoril novýjeden "
+"s fd %d"
 
 #: src/netcam_http.c
 #, c-format
 msgid "SO_KEEPALIVE is %s"
-msgstr "SO KEEPALIVE est %s"
+msgstr "Takže KEEPALIVE je %s"
 
 #: src/netcam_http.c
 msgid "ON"
-msgstr "SUR"
+msgstr "ON"
 
 #: src/netcam_http.c
 msgid "OFF"
-msgstr "DE"
+msgstr "OFF"
 
 #: src/netcam_http.c
 msgid "SO_KEEPALIVE set on socket."
-msgstr "SO KEEPALIVE réglé sur le socket."
+msgstr "SO KEEPALIVE nastavený na pätici."
 
 #: src/netcam_http.c
 #, c-format
 msgid "re-using socket %d since keepalive is set."
-msgstr "réutiliser socket %d depuis que keepalive est défini."
+msgstr "opätovné použitie soketu %d, pretože je nastavený parameter keepalive."
 
 #: src/netcam_http.c
 msgid "fcntl(1) on socket"
-msgstr "fcntl (1) sur le socket"
+msgstr "fcntl (1) na sokete"
 
 #: src/netcam_http.c
 msgid "fcntl(2) on socket"
-msgstr "fcntl (2) sur le socket"
+msgstr "fcntl (2) na sokete"
 
 #: src/netcam_http.c
 #, c-format
 msgid "connect() failed (%d)"
-msgstr "connect () a échoué ( %d)"
+msgstr "pripojenie () zlyhalo ( %d)"
 
 #: src/netcam_http.c
 msgid "disconnecting netcam (4)"
-msgstr "déconnecter netcam (4)"
+msgstr "odpojovací netcam (4)"
 
 #: src/netcam_http.c
 msgid "timeout on connect()"
-msgstr "délai d'attente sur connect ()"
+msgstr "časový limit pri pripojení ()"
 
 #: src/netcam_http.c
 msgid "disconnecting netcam (2)"
-msgstr "déconnecter netcam (2)"
+msgstr "odpojovací netcam (2)"
 
 #: src/netcam_http.c
 msgid "getsockopt after connect"
-msgstr "getsockopt après la connexion"
+msgstr "getockopt po pripojení"
 
 #: src/netcam_http.c
 msgid "connect returned error"
-msgstr "connect a renvoyé une erreur"
+msgstr "chyba vrátenia pripojenia"
 
 #: src/netcam_http.c
 msgid "disconnecting netcam (3)"
-msgstr "déconnecter netcam (3)"
+msgstr "odpojovací netcam (3)"
 
 #: src/netcam_http.c
 #, c-format
 msgid "expanding buffer from [%d/%d] to [%d/%d] bytes."
-msgstr "expansion du tampon de [ %d / %d] à [ %d / %d] octets."
+msgstr "expandujúci pufer z [ %d / %d] na [ %d / %d] bajtov."
 
 #: src/netcam_http.c
 #, c-format
 msgid "Potential split boundary - %d chars flushed, %d re-positioned"
 msgstr ""
-"Limite de division potentielle - %d caractères supprimés, %d repositionnés"
+"Potenciálna hranica rozdelenia - %d znakov spláchnutých, %d premiestnených"
 
 #: src/netcam_http.c
 msgid "recv() fail after boundary string"
-msgstr "recv () échoue après la chaîne limite"
+msgstr "recv () zlyhá po hraničnom reťazci"
 
 #: src/netcam_http.c
 msgid "leaving netcam connected."
-msgstr "laissant netcam connecté."
+msgstr "necháva netcam pripojený."
 
 #: src/netcam_http.c
 #, c-format
 msgid "about to try to connect, time #%d"
-msgstr "sur le point d’essayer de vous connecter, temps # %d"
+msgstr "o pokuse o pripojenie, čas # %d"
 
 #: src/netcam_http.c
 msgid "Failed to open camera - check your config and that netcamera is online"
 msgstr ""
-"Échec d'ouverture de la caméra - vérifiez votre configuration et que "
-"netcamera est en ligne"
+"Nepodarilo sa otvoriť fotoaparát - skontrolujte svoju konfiguráciu a že "
+"sieťová kamera je online"
 
 #: src/netcam_http.c
 msgid "Error reading first header - re-trying"
-msgstr "Erreur de lecture du premier en-tête - nouvelle tentative"
+msgstr "Pri čítaní prvej hlavičky sa vyskytla chyba - skúste to znova"
 
 #: src/netcam_http.c
 msgid "Failed to read first camera header - giving up for now"
-msgstr "Échec de lecture du premier en-tête de caméra - abandon pour l'instant"
+msgstr "Nepodarilo sa prečítať prvú hlavičku kamery - zatiaľ sa nevzdáva"
 
 #: src/netcam_http.c
 #, c-format
 msgid "Netcam has flags: HTTP/1.0: %s HTTP/1.1: %s Keep-Alive %s."
-msgstr "Netcam a des drapeaux: HTTP / 1.0: %s HTTP / 1.1: %s Keep-Alive %s."
+msgstr "Netcam má príznaky: HTTP / 1.0: %s HTTP / 1.1: %s Keep-Alive %s."
 
 #: src/netcam_http.c
 msgid ""
 "Removed netcam_keepalive flag due to proxy set.Proxy is incompatible with "
 "Keep-Alive."
 msgstr ""
-"Netcam keepalive flag supprimé en raison de la définition du proxy. Proxy "
-"est incompatible avecRester en vie."
+"Odstránený príznak udržiavania siete netcam kvôli množine proxyUdržať nažive."
 
 #: src/netcam_http.c
 msgid "Failed to read first stream header - giving up for now"
-msgstr "Échec de lecture du premier en-tête de flux - abandon pour l'instant"
+msgstr "Nepodarilo sa prečítať hlavičku prvého toku - zatiaľ sa nevzdávam"
 
 #: src/netcam_http.c
 msgid "connected, going on to read image."
-msgstr "connecté, passe à lire l'image."
+msgstr "pripojený, pokračuje v čítaní obrázka."
 
 #: src/netcam_http.c
 msgid "Read error, trying to reconnect.."
-msgstr "Erreur de lecture, tentative de reconnexion .."
+msgstr "Chyba pri čítaní, pokus o opätovné pripojenie."
 
 #: src/netcam_http.c
 msgid "lost the cam."
-msgstr "perdu la cam."
+msgstr "stratil kameru."
 
 #: src/netcam_http.c
 #, c-format
 msgid "Refilled buffer with [%d] bytes from the network."
-msgstr "Tampon rempli avec [ %d] octets du réseau."
+msgstr "Doplnená vyrovnávacia pamäť s [ %d] bajtov zo siete."
 
 #: src/netcam_http.c
 #, c-format
 msgid "Read [%d/%d] header bytes."
-msgstr "Lire les octets d'en-tête [ %d / %d]."
+msgstr "Čítajte [ %d / %d] bajtov záhlavia."
 
 #: src/netcam_http.c
 msgid "Invalid header received, reconnecting"
-msgstr "En-tête non valide reçu, reconnectant"
+msgstr "Bola prijatá neplatná hlavička, obnovuje sa pripojenie"
 
 #: src/netcam_http.c
 #, c-format
 msgid "Read [%d/%d] chunk bytes, [%d/%d] total"
-msgstr "Lire [ %d / %d] octets de morceaux, [ %d / %d] total"
+msgstr "Odčítané [ %d / %d] chunk bajtov, celkom [ %d / %d]"
 
 #: src/netcam_http.c
 #, c-format
 msgid "Chunk complete, buffer used [%d] bytes."
-msgstr "Chunk complete, tampon utilisé [ %d] octets."
+msgstr "Chunk kompletný, použitý pufer [ %d] bajtov."
 
 #: src/netcam_http.c
 #, c-format
 msgid "Image complete, buffer used [%d] bytes."
-msgstr "Image complète, tampon utilisé [ %d] octets."
+msgstr "Obrázok je kompletný, použitý buffer [ %d] bajtov."
 
 #: src/netcam_http.c
 msgid "now calling netcam_setup_mjpg()"
-msgstr "appelle maintenant netcam setup mjpg ()"
+msgstr "teraz volá netcam setup mjpg ()"
 
 #: src/netcam_http.c
 msgid "connected, going on to read and decode MJPG chunks."
-msgstr ""
-"connecté, passe ensuite à la lecture et au décodage des fragments MJPG."
+msgstr "pripojený, pokračuje v čítaní a dekódovaní blokov MJPG."
 
 #: src/netcam_http.c
 msgid "Begin"
-msgstr "Commencer"
+msgstr "Začať"
 
 #: src/netcam_http.c
 #, c-format
 msgid "stat(%s) error"
-msgstr "erreur stat ( %s)"
+msgstr "chyba stat ( %s)"
 
 #: src/netcam_http.c
 #, c-format
 msgid "statbuf.st_mtime[%d] != last_st_mtime[%d]"
-msgstr "statbuf.st mtime [ %d]! = dernier st mtime [ %d]"
+msgstr "statbuf.st mtime [ %d]! = posledný st mtime [ %d]"
 
 #: src/netcam_http.c
 msgid "waiting new file image timeout"
-msgstr "attente du nouveau délai d'expiration d'image"
+msgstr "čaká sa na vypršanie časového limitu obrázka nového súboru"
 
 #: src/netcam_http.c
 msgid "delay waiting new file image "
-msgstr "retarder l'attente d'une nouvelle image"
+msgstr "oneskorenie čakania na nový obrázok"
 
 #: src/netcam_http.c
 #, c-format
 msgid "processing new file image - st_mtime %d"
-msgstr "traitement d'une nouvelle image de fichier - st mtime %d"
+msgstr "spracovanie nového súboru - st mtime %d"
 
 #: src/netcam_http.c
 #, c-format
 msgid "open(%s) error: %d"
-msgstr "erreur ouverte ( %s): %d"
+msgstr "chyba otvorenia ( %s): %d"
 
 #: src/netcam_http.c
 #, c-format
 msgid "read(%s) error: %d"
-msgstr "erreur de lecture ( %s): %d"
+msgstr "chyba čítania ( %s): %d"
 
 #: src/netcam_http.c
 msgid "End"
-msgstr "Fin"
+msgstr "Koniec"
 
 #: src/netcam_http.c
 #, c-format
 msgid "netcam->file->path %s"
-msgstr "netcam-> fichier-> chemin %s"
+msgstr "netcam-> súbor-> cesta %s"
 
 #: src/netcam_jpeg.c
 msgid "Not enough data from netcam."
-msgstr "Pas assez de données de netcam."
+msgstr "Nedostatok údajov z netcam."
 
 #: src/netcam_jpeg.c
 #, c-format
 msgid "netcam->jpeg_error %d"
-msgstr "netcam-> erreur jpeg %d"
+msgstr "netcam-> jpeg chyba %d"
 
 #: src/netcam_jpeg.c
 msgid "no new pic, no signal rcvd"
-msgstr "pas de nouvelle image, pas de signal rcvd"
+msgstr "žiadny nový obrázok, žiadny signál rcvd"
 
 #: src/netcam_jpeg.c
 msgid "***new pic delay successful***"
-msgstr "*** nouvelle image retardée avec succès ***"
+msgstr "*** nové pic oneskorenie úspešné ***"
 
 #: src/netcam_jpeg.c
 #, c-format
 msgid "jpeg_error %d"
-msgstr "erreur jpeg %d"
+msgstr "Chyba jpeg %d"
 
 #: src/netcam_jpeg.c
 #, c-format
 msgid "processing jpeg image - content length %d"
-msgstr "traitement de l'image jpeg - longueur du contenu %d"
+msgstr "spracovanie obrázka JPEG - dĺžka obsahu %d"
 
 #: src/netcam_jpeg.c
 #, c-format
 msgid "return code %d"
-msgstr "code retour %d"
+msgstr "návratový kód %d"
 
 #: src/netcam_jpeg.c
 #, c-format
@@ -2695,8 +2660,8 @@ msgid ""
 "Camera width/height mismatch with JPEG image -  expected %dx%d, JPEG %dx%d "
 "retval %d"
 msgstr ""
-"Incompatibilité largeur / hauteur de la caméra avec l'image JPEG - %dx %d "
-"attendu, %dx %d JPEGretval %d"
+"Nesúlad šírky a výšky kamery s obrázkom JPEG - očakávané %dx %d, JPEG %dx "
+"%dretval %d"
 
 #: src/netcam_jpeg.c
 #, c-format
@@ -2706,441 +2671,438 @@ msgstr "ret %d retval %d"
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Resized packet array to %d"
-msgstr "%s: tableau de paquets redimensionné en %d"
+msgstr "%s: Zmenené pole paketov na %d"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: av_copy_packet: %s ,Interrupt: %s"
-msgstr "%s: paquet de copie av: %s, interruption: %s"
+msgstr "%s: av kópia paketu: %s, prerušenie: %s"
 
 #: src/netcam_rtsp.c
 msgid "True"
-msgstr "Vrai"
+msgstr "pravdivý"
 
 #: src/netcam_rtsp.c
 msgid "False"
-msgstr "Faux"
+msgstr "nepravdivý"
 
 #: src/netcam_rtsp.c
 msgid "Ignoring packet with invalid data"
-msgstr "Ignorer un paquet avec des données non valides"
+msgstr "Ignorovanie paketu s neplatnými údajmi"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "Error sending packet to codec: %s"
-msgstr "Erreur d'envoi du paquet au codec: %s"
+msgstr "Chyba pri odosielaní paketu do kodeku: %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "Error receiving frame from codec: %s"
-msgstr "Erreur de réception de la trame du codec: %s"
+msgstr "Chyba pri prijímaní rámca z kodeku: %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "Error decoding packet: %s"
-msgstr "Erreur de décodage du paquet: %s"
+msgstr "Chyba pri dekódovaní paketu: %s"
 
 #: src/netcam_rtsp.c
 msgid "Error decoding video packet: Copying to buffer"
-msgstr "Erreur de décodage du paquet vidéo: copie dans la mémoire tampon"
+msgstr "Chyba pri dekódovaní video paketu: Kopírovanie do vyrovnávacej pamäte"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: %s: %s,Interrupt %s"
-msgstr "%s: %s: %s, interruption %s"
+msgstr "%s: %s: %s, prerušenie %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: %s: Failed,Interrupt %s"
-msgstr "%s: %s: échec, interruption %s"
+msgstr "%s: %s: Neúspešné, prerušenie %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Ignoring user requested decoder %s"
-msgstr "%s: Ignorer le décodeur demandé par l'utilisateur %s"
+msgstr "%s: Ignoruje sa užívateľ, ktorý požaduje dekodér %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Using decoder %s"
-msgstr "%s: utilisation du décodeur %s"
+msgstr "%s: Použitie dekodéra %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Camera reading (%s) timed out"
-msgstr "%s: le délai de lecture de la caméra ( %s) a expiré"
+msgstr "%s: Časový limit čítania kamery ( %s) vypršal"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Camera (%s) timed out"
-msgstr "%s: la caméra ( %s) a expiré"
+msgstr "%s: Časový limit fotoaparátu ( %s) vypršal"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "Error allocating picture in: %s"
-msgstr "Erreur lors de l'allocation de l'image dans: %s"
+msgstr "Chyba pri alokácii obrázka za: %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "Error allocating picture out: %s"
-msgstr "Erreur lors de l'allocation de la photo: %s"
+msgstr "Chyba pri alokácii obrázka: %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "Error resizing/reformatting: %s"
-msgstr "Erreur de redimensionnement / reformatage: %s"
+msgstr "Chyba pri zmene veľkosti / preformátovaní: %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "Error putting frame into output buffer: %s"
-msgstr "Erreur lors de la mise en cadre dans le tampon de sortie: %s"
+msgstr "Chyba pri vkladaní rámca do výstupnej vyrovnávacej pamäte: %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: av_read_frame: %s ,Interrupt: %s"
-msgstr "%s: av lecture cadre: %s, interruption: %s"
+msgstr "%s: av čítací rámec: %s, prerušenie: %s"
 
 #: src/netcam_rtsp.c
 msgid "The network camera is sending pictures in a different"
-msgstr "La caméra réseau envoie des images dans un autre"
+msgstr "Sieťová kamera odosiela obrázky v inom"
 
 #: src/netcam_rtsp.c
 msgid "size than specified in the config and also a "
-msgstr "taille que celle spécifiée dans la config et aussi un"
+msgstr "veľkosť uvedená v konfigurácii a tiež a"
 
 #: src/netcam_rtsp.c
 msgid "different picture format.  The picture is being"
-msgstr "format d'image différent. La photo est en cours"
+msgstr "iný formát obrazu. Obrázok je"
 
 #: src/netcam_rtsp.c
 msgid "transcoded to YUV420P and into the size requested"
-msgstr "transcodé au format YUV420P et dans la taille demandée"
+msgstr "transkódované do YUV420P a do požadovanej veľkosti"
 
 #: src/netcam_rtsp.c
 msgid "in the config file.  If possible change netcam to"
-msgstr "dans le fichier de configuration. Si possible, changez netcam en"
+msgstr "v konfiguračnom súbore. Ak je to možné, zmeňte netcam na"
 
 #: src/netcam_rtsp.c
 msgid "be in YUV420P format and the size requested in the"
-msgstr "être au format YUV420P et la taille demandée dans le"
+msgstr "byť vo formáte YUV420P a požadovaná veľkosť vo formáte"
 
 #: src/netcam_rtsp.c
 msgid "config to possibly lower CPU usage."
-msgstr "config pour éventuellement réduire l'utilisation du processeur."
+msgstr "konfigurovať možné nižšie využitie CPU."
 
 #: src/netcam_rtsp.c
 msgid "size than specified in the configuration file."
-msgstr "taille que celle spécifiée dans le fichier de configuration."
+msgstr "veľkosť, ako je uvedené v konfiguračnom súbore."
 
 #: src/netcam_rtsp.c
 msgid "The picture is being transcoded into the size "
-msgstr "L'image est transcodée dans la taille"
+msgstr "Obrázok sa prepisuje do veľkosti"
 
 #: src/netcam_rtsp.c
 msgid "requested in the configuration.  If possible change"
-msgstr "demandé dans la configuration. Si possible changer"
+msgstr "požadované v konfigurácii. Ak je to možné, zmena"
 
 #: src/netcam_rtsp.c
 msgid "netcam or configuration to indicate the same size"
-msgstr "netcam ou configuration pour indiquer la même taille"
+msgstr "netcam alebo konfigurácia označujúca rovnakú veľkosť"
 
 #: src/netcam_rtsp.c
 msgid "to possibly lower CPU usage."
-msgstr "pour éventuellement réduire l'utilisation du processeur."
+msgstr "aby sa znížilo využitie procesora."
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "Netcam: %d x %d => Config: %d x %d"
-msgstr "Netcam: %dx %d => configuration: %dx %d"
+msgstr "Netcam: %dx %d => Konfigurácia: %dx %d"
 
 #: src/netcam_rtsp.c
 msgid "The image sent is being "
-msgstr "L'image envoyée est en cours"
+msgstr "Posiela sa obrázok"
 
 #: src/netcam_rtsp.c
 msgid "trancoded to YUV420P.  If possible change netcam "
-msgstr "converti en YUV420P. Si possible, changez netcam"
+msgstr "transkódované na YUV420P. Ak je to možné, zmeňte netcam"
 
 #: src/netcam_rtsp.c
 msgid "picture format to YUV420P to possibly lower CPU usage."
-msgstr ""
-"format d'image au format YUV420P afin de réduire éventuellement "
-"l'utilisation du processeur."
+msgstr "obrazový formát podľa YUV420P pre prípadné nižšie využitie procesora."
 
 #: src/netcam_rtsp.c
 msgid "Unable to allocate swsframe_in."
-msgstr "Impossible d’attribuer swsframe au format."
+msgstr "Nemožno prideliť swsframe v systéme Windows."
 
 #: src/netcam_rtsp.c
 msgid "Unable to allocate swsframe_out."
-msgstr "Impossible d'allouer swsframe out."
+msgstr "Nemožno prideliť swsframe von."
 
 #: src/netcam_rtsp.c
 msgid "Unable to allocate scaling context."
-msgstr "Impossible d'allouer le contexte de mise à l'échelle."
+msgstr "Nie je možné priradiť kontext mierky."
 
 #: src/netcam_rtsp.c
 msgid "Error determining size of frame out"
-msgstr "Erreur lors de la détermination de la taille de la trame"
+msgstr "Chyba pri určovaní veľkosti rámca"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Setting http input_format mjpeg"
-msgstr "%s: Définition du format d'entrée http mjpeg"
+msgstr "%s: Nastavenie vstupného formátu http mjpeg"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Setting rtsp transport to tcp"
-msgstr "%s: Définition du transport RTSP sur TCP"
+msgstr "%s: Nastavenie prenosu rtsp na tcp"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Setting rtsp transport to udp"
-msgstr "%s: Définition du transport rtsp sur udp"
+msgstr "%s: Nastavenie prenosu rtsp na udp"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Setting attributes to read file"
-msgstr "%s: définition des attributs pour lire le fichier"
+msgstr "%s: Nastavenie atribútov na čítanie súboru"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Requested v4l2_palette option: %d"
-msgstr "%s: Option de palette v4l2 demandée: %d"
+msgstr "%s: Požadovaná možnosť palety v4l2: %d"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Requested FOURCC code: %s"
-msgstr "%s: Code FOURCC demandé: %s"
+msgstr "%s: Požadovaný kód FOURCC: %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Setting v4l2 input_format: %s"
-msgstr "%s: définition du format d'entrée v4l2: %s"
+msgstr "%s: Nastavenie vstupného formátu v4l2: %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Setting v4l2 framerate: %s"
-msgstr "%s: réglage du framerate de v4l2: %s"
+msgstr "%s: Nastavenie snímkovej rýchlosti v4l2: %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Setting v4l2 video_size: %s"
-msgstr "%s: Définition de la taille de la vidéo v4l2: %s"
+msgstr "%s: Nastavenie veľkosti videa v4l2: %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "Proxies not supported using for %s"
-msgstr "Proxys non pris en charge avec %s"
+msgstr "Proxy nie sú podporované pre %s"
 
 #: src/netcam_rtsp.c
 msgid "Setting up v4l2 via ffmpeg netcam"
-msgstr "Configuration de v4l2 via ffmpeg netcam"
+msgstr "Nastavenie v4l2 cez ffmpeg netcam"
 
 #: src/netcam_rtsp.c
 msgid "Setting up file via ffmpeg netcam"
-msgstr "Configuration du fichier via ffmpeg netcam"
+msgstr "Nastavenie súboru pomocou ffmpeg netcam"
 
 #: src/netcam_rtsp.c
 msgid "Setting up http via ffmpeg netcam"
-msgstr "Configurer http via ffmpeg netcam"
+msgstr "Nastavenie http pomocou ffmpeg netcam"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "Setting up %s via ffmpeg netcam"
-msgstr "Configuration de %s via ffmpeg netcam"
+msgstr "Nastavenie %s pomocou ffmpeg netcam"
 
 #: src/netcam_rtsp.c
 msgid "High resolution"
-msgstr "Haute résolution"
+msgstr "S vysokým rozlíšením"
 
 #: src/netcam_rtsp.c
 msgid "Normal resolution"
-msgstr "Résolution normale"
+msgstr "Normálne rozlíšenie"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "Setting up %s stream."
-msgstr "Configuration du flux %s."
+msgstr "Nastavenie streamu %s."
 
 #: src/netcam_rtsp.c
 msgid "Unknown"
-msgstr "Inconnu"
+msgstr "nevedno"
 
 #: src/netcam_rtsp.c
 msgid "Stream copied for pass-through"
-msgstr "Flux copié pour passage"
+msgstr "Stream bol skopírovaný na odovzdanie"
 
 #: src/netcam_rtsp.c
 msgid "ffmpeg too old"
-msgstr "ffmpeg trop vieux"
+msgstr "ffmpeg je príliš starý"
 
 #: src/netcam_rtsp.c
 msgid "Null path passed to connect"
-msgstr "Chemin nul passé pour se connecter"
+msgstr "Na pripojenie prešla nulová cesta"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Invalid camera service"
-msgstr "%s: service de caméra non valide"
+msgstr "%s: Neplatná služba fotoaparátu"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Unable to open camera(%s)"
-msgstr "%s: impossible d'ouvrir la caméra ( %s)"
+msgstr "%s: Nie je možné otvoriť fotoaparát ( %s)"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Unable to open camera(%s): %s"
-msgstr "%s: Impossible d'ouvrir la caméra ( %s): %s"
+msgstr "%s: Nie je možné otvoriť fotoaparát ( %s): %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Opened camera(%s)"
-msgstr "%s: Caméra ouverte ( %s)"
+msgstr "%s: Otvorená kamera ( %s)"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Unable to find stream info: %s"
-msgstr "%s: impossible de trouver les informations sur le flux: %s"
+msgstr "%s: Nepodarilo sa nájsť informácie o streame: %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Unable to open codec context: %s"
-msgstr "%s: impossible d'ouvrir le contexte de codec: %s"
+msgstr "%s: Nie je možné otvoriť kontext kodeku: %s"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Camera image size is invalid"
-msgstr "%s: la taille de l'image de la caméra n'est pas valide"
+msgstr "%s: Veľkosť obrázka z kamery je neplatná"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Unable to allocate frame."
-msgstr "%s: Impossible d'allouer le cadre."
+msgstr "%s: Nie je možné priradiť rámec."
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Failed to copy stream for pass-through."
-msgstr "%s: Échec de la copie du flux pour la transmission."
+msgstr "%s: Nepodarilo sa skopírovať tok na odovzdanie."
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Failed to read first image"
-msgstr "%s: Impossible de lire la première image"
+msgstr "%s: Nepodarilo sa prečítať prvý obrázok"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Camera (%s) connected"
-msgstr "%s: Caméra ( %s) connectée"
+msgstr "%s: Kamera ( %s) je pripojená"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Reconnecting with camera...."
-msgstr "%s: Reconnexion avec l'appareil photo ...."
+msgstr "%s: Pripája sa k fotoaparátu ...."
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Camera did not reconnect."
-msgstr "%s: l'appareil photo ne s'est pas reconnecté."
+msgstr "%s: Fotoaparát sa znova nepripojil."
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Checking for camera every 10 seconds."
-msgstr "%s: Vérification de la caméra toutes les 10 secondes."
+msgstr "%s: Kontrola kamery každých 10 sekúnd."
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Camera handler thread [%d] started"
-msgstr "%s: le thread du gestionnaire de caméra [ %d] a commencé"
+msgstr "%s: Začalo sa vlákno obsluhy fotoaparátu [ %d]"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Handler loop finished."
-msgstr "%s: La boucle du gestionnaire est terminée."
+msgstr "%s: Slučka obsluhy dokončená."
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Error starting handler thread"
-msgstr "%s: erreur lors du démarrage du thread du gestionnaire"
+msgstr "%s: Chyba pri spúšťaní vlákna obsluhy"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Waiting for first image from the handler."
-msgstr "%s: en attente de la première image du gestionnaire."
+msgstr "%s: Čaká sa na prvý obrázok od obsluhy."
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "Requested frame rate %d FPS is less than camera frame rate %d FPS"
 msgstr ""
-"La cadence d'images demandée %d FPS est inférieure à la cadence d'images de "
-"l'appareil photo %d FPS"
+"Požadovaná snímková frekvencia %d FPS je nižšia ako snímková frekvencia "
+"kamery %d FPS"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "Increasing capture rate to %d FPS to match camera."
-msgstr ""
-"Augmentation du taux de capture à %d FPS pour correspondre à la caméra."
+msgstr "Zvyšuje sa miera snímania na %d FPS, aby zodpovedala fotoaparátu."
 
 #: src/netcam_rtsp.c
 msgid ""
 "To lower CPU, change camera FPS to lower rate and decrease I frame interval."
 msgstr ""
-"Pour réduire le processeur, modifiez le FPS de la caméra pour réduire le "
-"taux et réduire l'intervalle de trame I."
+"Ak chcete znížiť CPU, zmeňte FPS kamery na nižšiu rýchlosť a znížte interval "
+"snímok I."
 
 #: src/netcam_rtsp.c
 msgid "unable to create rtsp context"
-msgstr "impossible de créer un contexte rtsp"
+msgstr "nie je možné vytvoriť kontext rtsp"
 
 #: src/netcam_rtsp.c
 msgid "unable to create rtsp high context"
-msgstr "incapable de créer un contexte élevé rtsp"
+msgstr "nie je možné vytvoriť vysoký kontext rtsp"
 
 #: src/netcam_rtsp.c
 msgid "FFmpeg/Libav not found on computer.  No RTSP support"
-msgstr "FFmpeg / Libav introuvable sur l'ordinateur. Pas de support RTSP"
+msgstr "FFmpeg / Libav sa nenašiel v počítači. Žiadna podpora RTSP"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Shutting down network camera."
-msgstr "%s: arrêt de la caméra réseau."
+msgstr "%s: Vypína sa sieťová kamera."
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: No response from handler thread."
-msgstr "%s: aucune réponse du thread du gestionnaire."
+msgstr "%s: Žiadna odozva od vlákna obsluhy."
 
 #: src/netcam_rtsp.c
 msgid "Normal resolution: Shut down complete."
-msgstr "Résolution normale: arrêt complet."
+msgstr "Normálne rozlíšenie: Vypnutie je dokončené."
 
 #: src/netcam_rtsp.c
 msgid "High resolution: Shut down complete."
-msgstr "Haute résolution: arrêt complet."
+msgstr "Vysoké rozlíšenie: vypnutie dokončené."
 
 #: src/picture.c
 msgid "Unable to set set EXIF to webp chunk"
-msgstr "Impossible de définir EXIF ​​sur WebP Chunk"
+msgstr "Nie je možné nastaviť množinu EXIF ​​na webovú časť"
 
 #: src/picture.c
 msgid "libwebp version error"
-msgstr "erreur de version libwebp"
+msgstr "Chyba verzie libwebp"
 
 #: src/picture.c
 msgid "libwebp image buffer allocation error"
-msgstr "Erreur d'allocation du tampon d'image libwebp"
+msgstr "Chyba priradenia vyrovnávacej pamäte obrazového súboru libwebp"
 
 #: src/picture.c
 msgid "libwebp image compression error"
-msgstr "Erreur de compression d'image libwebp"
+msgstr "Chyba kompresie obrázka libwebp"
 
 #: src/picture.c
 msgid "unable to assemble webp image"
-msgstr "impossible d'assembler l'image webp"
+msgstr "nie je možné zostaviť obrázok webovej stránky"
 
 #: src/picture.c
 msgid "unable to save webp image to file"
-msgstr "impossible d'enregistrer l'image Webp dans un fichier"
+msgstr "obrázok webovej stránky sa nedá uložiť do súboru"
 
 #: src/picture.c
 #, c-format
@@ -3148,62 +3110,60 @@ msgid ""
 "Can't write picture to file %s - check access rights to target directory\n"
 "Thread is going to finish due to this fatal error"
 msgstr ""
-"Impossible d’écrire l’image dans le fichier %s - Vérification des droits "
-"d’accès au répertoire cible \n"
-"Le fil va finir à cause de cette erreur fatale"
+"Obrázok sa nedá zapísať do súboru %s - skontrolujte prístupové práva do "
+"cieľového adresára \n"
+" Vlákno bude dokončené kvôli tejto fatálnej chybe"
 
 #: src/picture.c
 #, c-format
 msgid "Can't write picture to file %s"
-msgstr "Impossible d'écrire l'image dans le fichier %s"
+msgstr "Obrázok sa nedá zapísať do súboru %s"
 
 #: src/picture.c
 msgid "Could not read from pgm file"
-msgstr "Impossible de lire le fichier pgm"
+msgstr "Nepodarilo sa prečítať zo súboru pgm"
 
 #: src/picture.c
 #, c-format
 msgid "This is not a pgm file, starts with '%s'"
-msgstr "Ce n'est pas un fichier pgm, commence par ' %s'"
+msgstr "Toto nie je pgm súbor začínajúci ' %s'"
 
 #: src/picture.c
 msgid "Failed reading size in pgm file"
-msgstr "Échec de la lecture de la taille dans le fichier pgm"
+msgstr "Nepodarilo sa prečítať veľkosť súboru pgm"
 
 #: src/picture.c
 msgid "Failed reading maximum value in pgm file"
-msgstr "Échec de lecture de la valeur maximale dans le fichier pgm"
+msgstr "Nepodarilo sa načítať maximálnu hodnotu v pgm súbore"
 
 #: src/picture.c
 msgid "Failed reading image data from pgm file"
-msgstr "Échec de lecture des données d'image du fichier pgm"
+msgstr "Nepodarilo sa načítať obrazové údaje zo súboru pgm"
 
 #: src/picture.c
 msgid "The mask file specified is not the same size as image from camera."
-msgstr ""
-"Le fichier de masque spécifié n'a pas la même taille que l'image de la "
-"caméra."
+msgstr "Zadaný súbor masky nemá rovnakú veľkosť ako obrázok z fotoaparátu."
 
 #: src/picture.c
 #, c-format
 msgid "Attempting to resize mask image from %dx%d to %dx%d"
-msgstr "Tentative de redimensionnement de l’image de masque de %dx %d à %dx %d"
+msgstr "Pokus o zmenu veľkosti masky z %dx %d na %dx %d"
 
 #: src/picture.c
 #, c-format
 msgid "can't write mask file %s - check access rights to target directory"
 msgstr ""
-"ne peut pas écrire le fichier de masque %s - vérifie les droits d'accès au "
-"répertoire cible"
+"nedá sa zapísať súbor masky %s - skontrolujte prístupové práva do cieľového "
+"adresára"
 
 #: src/picture.c
 #, c-format
 msgid "can't write mask file %s"
-msgstr "ne peut pas écrire le fichier de masque %s"
+msgstr "súbor masky %s nie je možné zapísať"
 
 #: src/picture.c
 msgid "Failed writing default mask as pgm file"
-msgstr "Échec de l'écriture du masque par défaut sous forme de fichier pgm"
+msgstr "Nepodarilo sa zapísať predvolenú masku ako súbor pgm"
 
 #: src/picture.c
 #, c-format
@@ -3211,102 +3171,101 @@ msgid ""
 "Creating empty mask %s\n"
 "Please edit this file and re-run motion to enable mask feature"
 msgstr ""
-"Créer un masque vide %s \n"
-"Veuillez éditer ce fichier et relancer le mouvement pour activer la fonction "
-"de masque"
+"Vytvára sa prázdna maska %s \n"
+" Upravte tento súbor a znova spustite pohyb, aby ste povolili funkciu masky"
 
 #: src/rotate.c
 #, c-format
 msgid "Config option \"rotate\" not a multiple of 90: %d"
-msgstr "Option de configuration \"rotation \" pas un multiple de 90: %d"
+msgstr "Konfiguračná možnosť \"otočiť \" nie je násobkom 90: %d"
 
 #: src/track.c
 msgid "internal error"
-msgstr "erreur interne"
+msgstr "vnútorná chyba"
 
 #: src/track.c
 #, c-format
 msgid "internal error, %hu is not a known track-type"
-msgstr "erreur interne, %hu n'est pas un type de piste connu"
+msgstr "vnútorná chyba, %hu nie je známy typ stopy"
 
 #: src/track.c
 #, c-format
 msgid "port %s dev fd %i, motor %hu command %hu data %hu"
-msgstr "port %s dev fd %i, commande %hu du moteur %hu données %hu"
+msgstr "port %s dev fd %i, motor %hu príkaz %hu dáta %hu"
 
 #: src/track.c
 msgid "Status byte timeout!"
-msgstr "Status byte timeout!"
+msgstr "Časový limit bajtu stavu!"
 
 #: src/track.c
 #, c-format
 msgid "Try to open serial device %s"
-msgstr "Essayez d'ouvrir le périphérique série %s"
+msgstr "Pokúste sa otvoriť sériové zariadenie %s"
 
 #: src/track.c
 #, c-format
 msgid "Unable to open serial device %s"
-msgstr "Impossible d'ouvrir le périphérique série %s"
+msgstr "Nemožno otvoriť sériové zariadenie %s"
 
 #: src/track.c
 #, c-format
 msgid "Unable to initialize serial device %s"
-msgstr "Impossible d'initialiser le périphérique série %s"
+msgstr "Nemožno inicializovať sériové zariadenie %s"
 
 #: src/track.c
 #, c-format
 msgid "Opened serial device %s and initialize, fd %i"
-msgstr "Périphérique série ouvert %s et initialiser, fd %i"
+msgstr "Otvorené sériové zariadenie %sa inicializuje, fd %i"
 
 #: src/track.c
 #, c-format
 msgid "No device %s started yet , trying stepper_center()"
 msgstr ""
-"Aucun périphérique %s n'a encore été démarré, en essayant stepper center ()"
+"Zatiaľ nebolo spustené žiadne zariadenie %s, vyskúšajte krokové centrum ()"
 
 #: src/track.c
 #, c-format
 msgid "failed to initialize stepper device on %s , fd [%i]."
-msgstr "Échec d'initialisation du périphérique pas à pas sur %s, fd [ %i]."
+msgstr "Nepodarilo sa inicializovať krokové zariadenie na %s, fd [ %i]."
 
 #: src/track.c
 #, c-format
 msgid "succeed , device started %s , fd [%i]"
-msgstr "Réussite, le périphérique a démarré %s, fd [ %i]"
+msgstr "uspieť, zariadenie spustené %s, fd [ %i]"
 
 #: src/track.c
 #, c-format
 msgid "SENDS port %s dev fd %i, motor %hu command %hu data %hu"
-msgstr "Port SENDS %s dev fd %i, commande moteur %hu %hu données %hu"
+msgstr "ODOSIELÁ port %s dev fd %i, motor %hu príkaz %hu dáta %hu"
 
 #: src/track.c
 #, c-format
 msgid "Command return %d"
-msgstr "Retour de commande %d"
+msgstr "Návrat príkazu %d"
 
 #: src/track.c
 msgid "Problem opening servo!"
-msgstr "Problème d'ouverture du servo!"
+msgstr "Problém s otváraním servo!"
 
 #: src/track.c
 #, c-format
 msgid "cent->x %d, cent->y %d, reversex %d, reversey %d manual %d"
-msgstr "cent-> x %d, cent-> y %d, reversex %d, reversey %d manuel %d"
+msgstr "cent-> x %d, cent-> y %d, reverseex %d, reversey %d manuálne %d"
 
 #: src/track.c
 #, c-format
 msgid "x %d value out of range! (%d - %d)"
-msgstr "x %d valeur hors limites! ( %d - %d)"
+msgstr "x %d hodnota je mimo rozsahu! ( %d - %d)"
 
 #: src/track.c
 #, c-format
 msgid "y %d value out of range! (%d - %d)"
-msgstr "y %d valeur hors limites! ( %d - %d)"
+msgstr "hodnota y %d je mimo rozsahu! ( %d - %d)"
 
 #: src/track.c
 #, c-format
 msgid "X offset %d"
-msgstr "X offset %d"
+msgstr "X posun %d"
 
 #: src/track.c
 #, c-format
@@ -3314,13 +3273,13 @@ msgid ""
 "X cent->x %d, cent->y %d, reversex %d,reversey %d motorx %d data %d command "
 "%d"
 msgstr ""
-"X cent-> x %d, cent-> y %d, inversionex %d, inversion %d moteurx %d données "
-"%d commande %d ré"
+"X cent-> x %d, cent-> y %d, reverseex %d, reversey %d motorx %d dáta %d "
+"príkaz%d"
 
 #: src/track.c
 #, c-format
 msgid "Y offset %d"
-msgstr "Y offset %d"
+msgstr "Y posun %d"
 
 #: src/track.c
 #, c-format
@@ -3328,8 +3287,8 @@ msgid ""
 "Y cent->x %d, cent->y %d, reversex %d,reversey %d motory %d data %d command "
 "%d"
 msgstr ""
-"Y cent-> x %d, cent-> y %d, reversex %d, reversey %d motory %d données %d "
-"commande %d"
+"Y cent-> x %d, cent-> y %d, reverseex %d, reversey %d motory %d dáta %d "
+"príkaz%d"
 
 #: src/track.c
 #, c-format
@@ -3337,29 +3296,28 @@ msgid ""
 "X-offset %d, Y-offset %d, x-position %d. y-position %d,reversex %d, reversey "
 "%d , stepsize %d"
 msgstr ""
-"Décalage X %d, décalage Y %d, position x %d. position y %d, inversionx %d, "
-"inversion%d, taille par étape %d"
+"X-posun %d, Y-posun %d, x-poloha %d. poloha y %d, reverzný index %d, "
+"reversey %d, zmena veľkosti %d"
 
 #: src/track.c
 msgid "Return byte timeout!"
-msgstr "Retour octet timeout!"
+msgstr "Časový limit vrátenia bajtov!"
 
 #: src/track.c
 msgid "Unable to set camera speed"
-msgstr "Impossible de régler la vitesse de la caméra"
+msgstr "Nie je možné nastaviť rýchlosť fotoaparátu"
 
 #: src/track.c
 msgid "succeed"
-msgstr "réussir"
+msgstr "mať úspech"
 
 #: src/track.c
 msgid "Failed to reset pwc camera to starting position! Reason"
-msgstr ""
-"Impossible de réinitialiser la caméra pwc en position de départ! Raison"
+msgstr "Nepodarilo sa resetovať kameru pwc do východiskovej polohy! Dôvod"
 
 #: src/track.c
 msgid "failed VIDIOCPWCMPTGRANGE"
-msgstr "échec de VIDIOCPWCMPTGRANGE"
+msgstr "zlyhalo VIDIOCPWCMPTGRANGE"
 
 #: src/track.c
 msgid "ioctl VIDIOCPWCMPTGANGLE"
@@ -3367,15 +3325,15 @@ msgstr "ioctl VIDIOCPWCMPTGANGLE"
 
 #: src/track.c
 msgid "Failed to pan/tilt pwc camera! Reason"
-msgstr "Échec du panoramique / inclinaison de la caméra pwc! Raison"
+msgstr "Nepodarilo sa posunúť / nakloniť kameru pwc! Dôvod"
 
 #: src/track.c
 msgid "Failed to reset UVC camera to starting position! Reason"
-msgstr "Impossible de remettre la caméra UVC en position de départ! Raison"
+msgstr "Nepodarilo sa resetovať UVC kameru do východiskovej polohy! Dôvod"
 
 #: src/track.c
 msgid "Reseting UVC camera to starting position"
-msgstr "Réinitialisation de la caméra UVC à la position de départ"
+msgstr "Obnovenie UVC kamery do východiskovej polohy"
 
 #: src/track.c
 msgid "ioctl querycontrol"
@@ -3383,438 +3341,430 @@ msgstr "ioctl querycontrol"
 
 #: src/track.c
 msgid "Getting camera range"
-msgstr "Obtenir la portée de la caméra"
+msgstr "Dosah dosahu kamery"
 
 #: src/track.c
 #, c-format
 msgid "INPUT_PARAM_ABS pan_min %d,pan_max %d,tilt_min %d,tilt_max %d "
 msgstr ""
-"ENTRÉE PARAM ABS plateau min %d, plateau max %d, inclinaison min %d, "
-"inclinaison max %d"
+"VSTUP PARAM ABS panvica min %d, panvica max %d, sklon min %d, sklon max %d"
 
 #: src/track.c
 #, c-format
 msgid "INPUT_PARAM_ABS X_Angel %d, Y_Angel %d "
-msgstr "ENTRÉE PARAM ABS X Ange %d, Y Ange %d"
+msgstr "INPUT PARAM ABS X Angel %d, Y Angel %d"
 
 #: src/track.c
 #, c-format
 msgid "For_SET_ABS move_X %d,move_Y %d"
-msgstr "Pour SET ABS déplacer X %d, déplacer Y %d"
+msgstr "Pre SET ABS presunúť X %d, presunúť Y %d"
 
 #: src/track.c
 msgid "Failed to move UVC camera!"
-msgstr "Impossible de déplacer la caméra UVC!"
+msgstr "Nepohol sa UVC kamera!"
 
 #: src/track.c
 #, c-format
 msgid "Found MINMAX = %d"
-msgstr "Trouvé MINMAX = %d"
+msgstr "Nájdené MINMAX = %d"
 
 #: src/track.c
 #, c-format
 msgid "Before_ABS_Y_Angel : x= %d , Y= %d, "
-msgstr "Avant ABS Y Ange: x = %d, Y = %d,"
+msgstr "Pred ABS Y Angel: x = %d, Y = %d,"
 
 #: src/track.c
 #, c-format
 msgid "After_ABS_Y_Angel : x= %d , Y= %d"
-msgstr "Après ABS Y Ange: x = %d, Y = %d"
+msgstr "Po ABS Y Angel: x = %d, Y = %d"
 
 #: src/track.c
 #, c-format
 msgid "For_SET_REL pan_min %d,pan_max %d,tilt_min %d,tilt_max %d"
 msgstr ""
-"Pour SET REL panoramique min %d, panoramique max %d, inclinaison min %d, "
-"inclinaison max %d"
+"Pre SET REL posúvanie min %d, posúvanie max %d, naklopenie min %d, "
+"naklopenie max %d"
 
 #: src/track.c
 #, c-format
 msgid "For_SET_REL track_pan_Angel %d, track_tilt_Angel %d"
-msgstr ""
-"Pour le pan de piste SET REL Angel %d, inclinaison de la piste Angel %d"
+msgstr "Pre pákový ovládač SET REL Angel %d, sklon Angel %d"
 
 #: src/track.c
 #, c-format
 msgid "For_SET_REL move_X %d,move_Y %d"
-msgstr "Pour SET REL déplacer X %d, déplacer Y %d"
+msgstr "Pri pohybe SET REL X %d presuňte Y %d"
 
 #: src/track.c
 #, c-format
 msgid " dev %d, addr= %d, control_S= %d, Wert= %d"
-msgstr "dev %d, addr = %d, contrôle S = %d, Wert = %d"
+msgstr "dev %d, addr = %d, kontrola S = %d, Wert = %d"
 
 #: src/track.c
 #, c-format
 msgid " dev %d,addr= %d, control_S= %d, Wert= %d"
-msgstr "dev %d, addr = %d, contrôle S = %d, Wert = %d"
+msgstr "dev %d, addr = %d, kontrola S = %d, Wert = %d"
 
 #: src/track.c
 #, c-format
 msgid "Before_REL_Y_Angel : x= %d , Y= %d"
-msgstr "Avant REL Y Angel: x = %d, Y = %d"
+msgstr "Pred REL Y Angel: x = %d, Y = %d"
 
 #: src/track.c
 #, c-format
 msgid "After_REL_Y_Angel : x= %d , Y= %d"
-msgstr "Après REL Y Angel: x = %d, Y = %d"
+msgstr "Po REL Y Angel: x = %d, Y = %d"
 
 #: src/translate.c
 msgid "Language: English"
-msgstr "Langue: Anglais"
+msgstr "Jazyk angličtina"
 
 #: src/video_bktr.c
 #, c-format
 msgid "METEORSHUE Error setting hue [%d]"
-msgstr "METEORSHUE Erreur lors de la définition de la teinte [ %d]"
+msgstr "METEORSHUE Chyba nastavenia odtieňa [ %d]"
 
 #: src/video_bktr.c
 #, c-format
 msgid "to [%d]"
-msgstr "à [ %d]"
+msgstr "do [ %d]"
 
 #: src/video_bktr.c
 msgid "METEORGHUE Error getting hue"
-msgstr "METEORGHUE Erreur lors de l'obtention de la teinte"
+msgstr "METEORGHUE Chyba pri získaní odtieňa"
 
 #: src/video_bktr.c
 #, c-format
 msgid "METEORSCSAT Error setting saturation [%d]"
-msgstr "METEORSCSAT Erreur lors du réglage de la saturation [ %d]"
+msgstr "METEORSCSAT Chyba nastavenia saturácie [ %d]"
 
 #: src/video_bktr.c
 msgid "METEORGCSAT Error getting saturation"
-msgstr "METEORGCSAT Erreur lors de l'obtention de la saturation"
+msgstr "METEORGCSAT Chyba pri saturácii"
 
 #: src/video_bktr.c
 #, c-format
 msgid "METEORSCONT Error setting contrast [%d]"
-msgstr "METEORSCONT Erreur lors du réglage du contraste [ %d]"
+msgstr "METEORSCONT Chyba pri nastavovaní kontrastu [ %d]"
 
 #: src/video_bktr.c
 msgid "METEORGCONT Error getting contrast"
-msgstr "METEORGCONT Erreur lors du contraste"
+msgstr "METEORGCONT Chyba pri získavaní kontrastu"
 
 #: src/video_bktr.c
 #, c-format
 msgid "METEORSBRIG  brightness [%d]"
-msgstr "Luminosité METEORSBRIG [ %d]"
+msgstr "Jas METEORSBRIG [ %d]"
 
 #: src/video_bktr.c
 msgid "METEORGBRIG  getting brightness"
-msgstr "METEORGBRIG obtenir de la luminosité"
+msgstr "METEORGBRIG získava jas"
 
 #: src/video_bktr.c
 msgid "Not implemented"
-msgstr "Pas mis en œuvre"
+msgstr "Nie je implementovaný"
 
 #: src/video_bktr.c
 #, c-format
 msgid "Device Input %d out of range (0-4)"
-msgstr "Entrée de périphérique %d hors limites (0-4)"
+msgstr "Vstup zariadenia %d mimo rozsah (0-4)"
 
 #: src/video_bktr.c
 #, c-format
 msgid "METEORSINPUT %d invalid -Trying composite %d"
-msgstr "METEORSINPUT %d non valide - Essai de composition %d"
+msgstr "METEORSINPUT %d neplatné - skúste zložiť %d"
 
 #: src/video_bktr.c
 msgid "BT848SFMT, Couldn't set the input format, try again with default"
 msgstr ""
-"BT848SFMT, Impossible de définir le format d'entrée, réessayez avec le "
-"paramètre par défaut"
+"BT848SFMT, Nie je možné nastaviť vstupný formát, skúste to znova s ​​"
+"predvoleným nastavením"
 
 #: src/video_bktr.c
 msgid "BT848SFMT, Couldn't set the input format either default"
-msgstr "BT848SFMT, impossible de définir le format d'entrée par défaut"
+msgstr "BT848SFMT, Vstupný formát nie je možné nastaviť ako predvolený"
 
 #: src/video_bktr.c
 msgid "Couldn't set the geometry"
-msgstr "Impossible de définir la géométrie"
+msgstr "Nepodarilo sa nastaviť geometriu"
 
 #: src/video_bktr.c
 #, c-format
 msgid "to [%d/%d] Norm %d"
-msgstr "à [ %d / %d] Norm %d"
+msgstr "do [ %d / %d] Norm. %d"
 
 #: src/video_bktr.c
 #, c-format
 msgid "Not valid Frequency [%lu] for Source input [%i]"
-msgstr "Fréquence non valide [ %lu] pour l'entrée source [ %i]"
+msgstr "Neplatná frekvencia [ %lu] pre vstup zdroja [ %i]"
 
 #: src/video_bktr.c
 #, c-format
 msgid "Frequency [%lu] Source input [%i]"
-msgstr "Fréquence [ %lu] Source entrée [ %i]"
+msgstr "Frekvencia [ %lu] Vstup zdroja [ %i]"
 
 #: src/video_bktr.c
 #, c-format
 msgid "set input [%d]"
-msgstr "définir l'entrée [ %d]"
+msgstr "nastaviť vstup [ %d]"
 
 #: src/video_bktr.c
 #, c-format
 msgid "set input format [%d]"
-msgstr "définir le format d'entrée [ %d]"
+msgstr "nastaviť vstupný formát [ %d]"
 
 #: src/video_bktr.c
 #, c-format
 msgid "set geometry [%d]x[%d]"
-msgstr "définir la géométrie [ %d] x [ %d]"
+msgstr "nastaviť geometriu [ %d] x [ %d]"
 
 #: src/video_bktr.c
 msgid "Frequency set (no implemented yet"
-msgstr "Ensemble de fréquences (pas encore implémenté"
+msgstr "Frekvencia je nastavená (zatiaľ nie je implementovaná"
 
 #: src/video_bktr.c
 msgid "Sizing buffer to 3x"
-msgstr "Dimensionnement du tampon à 3x"
+msgstr "Tlmivý roztok na 3x"
 
 #: src/video_bktr.c
 msgid "Sizing buffer to 3/2x"
-msgstr "Tampon de dimensionnement à 3 / 2x"
+msgstr "Kalibračný tlmivý roztok na 3 / 2x"
 
 #: src/video_bktr.c
 msgid "mmap failed"
-msgstr "mmap échoué"
+msgstr "mmap zlyhal"
 
 #: src/video_bktr.c
 msgid "METEORCAPTUR using single method Error capturing"
-msgstr "METEORCAPTUR en utilisant une seule méthode Capture d'erreur"
+msgstr "METEORCAPTUR pomocou jedinej metódy Zachytávanie chýb"
 
 #: src/video_bktr.c
 msgid "Error capturing using single method"
-msgstr "Erreur de capture en utilisant une seule méthode"
+msgstr "Chyba pri snímaní pomocou jedinej metódy"
 
 #: src/video_bktr.c
 msgid "BKTR is not enabled."
-msgstr "BKTR n'est pas activé."
+msgstr "BKTR nie je povolený."
 
 #: src/video_bktr.c src/video_v4l2.c
 msgid "Unable to find video device"
-msgstr "Impossible de trouver le périphérique vidéo"
+msgstr "Video zariadenie sa nepodarilo nájsť"
 
 #: src/video_bktr.c src/video_v4l2.c
 #, c-format
 msgid "Closing video device %s"
-msgstr "Fermeture du périphérique vidéo %s"
+msgstr "Zatvára sa video zariadenie %s"
 
 #: src/video_bktr.c src/video_v4l2.c
 #, c-format
 msgid "Still %d users of video device %s, so we don't close it now"
-msgstr ""
-"Toujours %d utilisateurs du périphérique vidéo %s, nous ne le fermons pas "
-"maintenant"
+msgstr "Stále %d používateľov video zariadenia %s, takže ho teraz nezatvoríme"
 
 #: src/video_bktr.c src/video_v4l2.c
 #, c-format
 msgid "config image width (%d) is not modulo 8"
-msgstr "La largeur de l'image de configuration ( %d) n'est pas modulo 8"
+msgstr "konfiguračná šírka obrázka ( %d) nie je modulo 8"
 
 #: src/video_bktr.c src/video_v4l2.c
 #, c-format
 msgid "config image height (%d) is not modulo 8"
-msgstr "La hauteur de l'image de configuration ( %d) n'est pas modulo 8"
+msgstr "konfiguračná výška obrázka ( %d) nie je modulo 8"
 
 #: src/video_bktr.c
 msgid "Stopping capture"
-msgstr "Arrêt de la capture"
+msgstr "Zastavuje sa snímanie"
 
 #: src/video_bktr.c
 #, c-format
 msgid "Reusing [%s] inputs [%d,%d] Change capture method METEOR_CAP_SINGLE"
 msgstr ""
-"Réutilisation des [ %s] entrées [ %d, %d] Modifier la méthode de capture de "
-"changement METEOR CAP SINGLE"
+"Opakované použitie vstupov [ %s] [ %d, %d] Zmena metódy snímania METEOR CAP "
+"SINGLE"
 
 #: src/video_bktr.c
 msgid "VIDEO_PALETTE_YUV420P setting imgs.size_norm and imgs.motionsize"
-msgstr "VIDEO PALETTE YUV420P setting imgs.size norm et imgs.motionsize"
+msgstr "VIDEO PALETTE YUV420P nastavenie normy imgs.size a imgs.motionsize"
 
 #: src/video_bktr.c
 #, c-format
 msgid "open video device %s"
-msgstr "périphérique vidéo ouvert %s"
+msgstr "otvoriť video zariadenie %s"
 
 #: src/video_bktr.c
 #, c-format
 msgid "open tuner device %s"
-msgstr "syntoniseur ouvert %s"
+msgstr "otvoriť tuner zariadenie %s"
 
 #: src/video_common.c
 msgid "Corrupt image ... continue"
-msgstr "Image corrompue ... continue"
+msgstr "Poškodený obraz ... pokračovať"
 
 #: src/video_common.c
 #, c-format
 msgid "SOI position adjusted by %d bytes."
-msgstr "Position SOI ajustée par %d octets."
+msgstr "Poloha SOI upravená o %d bajtov."
 
 #: src/video_common.c
 #, c-format
 msgid "Parsing controls: %s"
-msgstr "Contrôles d'analyse: %s"
+msgstr "Ovládacie prvky analýzy: %s"
 
 #: src/video_common.c
 msgid "calling mmalcam_cleanup"
-msgstr "appel de nettoyage mmalcam"
+msgstr "volanie mmalcam čistenie"
 
 #: src/video_common.c
 msgid "calling netcam_cleanup"
-msgstr "appeler netcam nettoyage"
+msgstr "volanie vyčistenia netcam"
 
 #: src/video_common.c
 msgid "calling netcam_rtsp_cleanup"
-msgstr "appeler netcam rtsp cleanup"
+msgstr "volá netcam rtsp vyčistenie"
 
 #: src/video_common.c
 msgid "Cleaning up V4L2 device"
-msgstr "Nettoyage du périphérique V4L2"
+msgstr "Čistenie zariadenia V4L2"
 
 #: src/video_common.c
 msgid "Cleaning up BKTR device"
-msgstr "Nettoyage du périphérique BKTR"
+msgstr "Čistenie zariadenia BKTR"
 
 #: src/video_common.c
 msgid "No Camera device cleanup (MMAL, Netcam, V4L2, BKTR)"
-msgstr "Pas de nettoyage de l'appareil photo (MMAL, Netcam, V4L2, BKTR)"
+msgstr "Žiadne čistenie zariadenia fotoaparátu (MMAL, Netcam, V4L2, BKTR)"
 
 #: src/video_common.c
 msgid "Opening MMAL cam"
-msgstr "Ouverture de la caméra MMAL"
+msgstr "Otvorenie vačky MMAL"
 
 #: src/video_common.c
 msgid "MMAL cam failed to open"
-msgstr "Échec de l'ouverture de la caméra MMAL"
+msgstr "Nepodarilo sa otvoriť kameru MMAL"
 
 #: src/video_common.c
 msgid "Opening Netcam"
-msgstr "Ouverture de Netcam"
+msgstr "Otvára sa Netcam"
 
 #: src/video_common.c
 msgid "Netcam failed to open"
-msgstr "Impossible d'ouvrir Netcam"
+msgstr "Netcam sa nepodarilo otvoriť"
 
 #: src/video_common.c
 msgid "Opening Netcam RTSP"
-msgstr "Ouverture de Netcam RTSP"
+msgstr "Otvorenie Netcam RTSP"
 
 #: src/video_common.c
 msgid "Netcam RTSP failed to open"
-msgstr "Netcam RTSP n'a pas réussi à ouvrir"
+msgstr "Netcam RTSP sa nepodarilo otvoriť"
 
 #: src/video_common.c
 msgid "Opening V4L2 device"
-msgstr "Ouverture du périphérique V4L2"
+msgstr "Otvorenie zariadenia V4L2"
 
 #: src/video_common.c
 msgid "V4L2 device failed to open"
-msgstr "Impossible d'ouvrir le périphérique V4L2"
+msgstr "Zariadenie V4L2 sa nepodarilo otvoriť"
 
 #: src/video_common.c
 msgid "Opening BKTR device"
-msgstr "Ouverture du périphérique BKTR"
+msgstr "Otváranie zariadenia BKTR"
 
 #: src/video_common.c
 msgid "BKTR device failed to open"
-msgstr "Impossible d'ouvrir le périphérique BKTR"
+msgstr "Zariadenie BKTR sa nepodarilo otvoriť"
 
 #: src/video_common.c
 msgid "No Camera device specified (MMAL, Netcam, V4L2, BKTR)"
-msgstr "Aucun appareil photo spécifié (MMAL, Netcam, V4L2, BKTR)"
+msgstr ""
+"Nie je zadané žiadne zariadenie s fotoaparátom (MMAL, Netcam, V4L2, BKTR)"
 
 #: src/video_loopback.c
 #, c-format
 msgid "Failed to open '%s'"
-msgstr "Échec d'ouverture de ' %s'"
+msgstr "Nepodarilo sa otvoriť ' %s'"
 
 #: src/video_loopback.c
 #, c-format
 msgid "Error specifying buffer: %s"
-msgstr "Erreur lors de la spécification du tampon: %s"
+msgstr "Chyba pri určovaní vyrovnávacej pamäte: %s"
 
 #: src/video_loopback.c
 #, c-format
 msgid "Opening buffer: %s"
-msgstr "Tampon d'ouverture: %s"
+msgstr "Počiatočný tlmivý roztok: %s"
 
 #: src/video_loopback.c
 #, c-format
 msgid "Read buffer: %s"
-msgstr "Tampon de lecture: %s"
+msgstr "Čítacia vyrovnávacia pamäť: %s"
 
 #: src/video_loopback.c
 #, c-format
 msgid "found video device '%s' %d"
-msgstr "périphérique vidéo trouvé ' %s' %d"
+msgstr "nájdené video zariadenie ' %s' %d"
 
 #: src/video_loopback.c
 #, c-format
 msgid "Opened %s as pipe output"
-msgstr "%s ouverts en tant que sortie de canal"
+msgstr "%s otvorený ako výstup potrubia"
 
 #: src/video_loopback.c
 #, c-format
 msgid "Opening %s as pipe output failed"
-msgstr "L'ouverture de %s en tant que sortie de canal a échoué"
+msgstr "Otvorenie %s, pretože výstup potrubia zlyhal"
 
 #: src/video_loopback.c
 msgid "Original pipe specifications"
-msgstr "Spécifications du tuyau d'origine"
+msgstr "Pôvodná špecifikácia potrubia"
 
 #: src/video_loopback.c
 msgid "Proposed pipe specifications"
-msgstr "Spécifications de tuyauterie proposées"
+msgstr "Navrhované technické parametre potrubia"
 
 #: src/video_loopback.c
 msgid "Final pipe specifications"
-msgstr "Spécifications du tuyau final"
+msgstr "Konečné technické parametre potrubia"
 
 #: src/video_v4l2.c
 msgid "No Controls found for device"
-msgstr "Aucun contrôle trouvé pour le périphérique"
+msgstr "Pre zariadenie sa nenašli žiadne ovládacie prvky"
 
 #: src/video_v4l2.c
 msgid "---------Controls---------"
-msgstr "---------Les contrôles---------"
+msgstr "--------- --------- Controls"
 
 #: src/video_v4l2.c
 msgid "  V4L2 ID   Name and Range"
-msgstr "Nom et plage de l'identifiant V4L2"
+msgstr "Názov a rozsah ID V4L2"
 
 #: src/video_v4l2.c
 msgid "Device not ready"
-msgstr "Appareil pas prêt"
+msgstr "Zariadenie nie je pripravené"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "setting control %s \"%s\" to %d failed with return code %d"
 msgstr ""
-"La définition du contrôle %s \" %s \" sur %d a échoué avec le code de retour "
-"%d"
+"nastavenie ovládacieho prvku %s \" %s \" na %d zlyhalo pri návratovom kóde %d"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Set control \"%s\" to value %d"
-msgstr "Définissez le contrôle \" %s \" sur la valeur %d"
+msgstr "Nastavte ovládací prvok \" %s \" na hodnotu %d"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "%s control option value %d is below minimum.  Using minimum"
-msgstr ""
-"La valeur de l'option de contrôle %s %d est inférieure au minimum. Utiliser "
-"le minimum"
+msgstr "Hodnota možnosti kontroly %s %d je pod minimom. Použitie minima"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "%s control option value %d is above maximum.  Using maximum"
-msgstr ""
-"La valeur de l'option de contrôle %s %d est supérieure au maximum. "
-"Utilisation maximale"
+msgstr "Hodnota ovládacej možnosti %s '%d' je nad maximom. Použitie maxima"
 
 #: src/video_v4l2.c
 msgid "control type not supported yet"
-msgstr "type de contrôle pas encore supporté"
+msgstr "typ ovládania zatiaľ nie je podporovaný"
 
 #: src/video_v4l2.c
 #, c-format
@@ -3822,180 +3772,175 @@ msgid ""
 "Unable to query input %d. VIDIOC_ENUMINPUT, if you use a WEBCAM change input "
 "value in conf by -1"
 msgstr ""
-"Impossible d'interroger l'entrée %d. VIDIOC ENUMINPUT, si vous utilisez une "
-"entrée de modification WEBCAMvaleur dans conf par -1"
+"Nie je možné zadať dopyt %d. VIDIOC ENUMINPUT, ak používate vstup WEBCAM pre "
+"zmenuhodnota v conf o -1"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Name = \"%s\", type 0x%08X, status %08x"
-msgstr "Nom = \" %s \", tapez 0x %08X, statut %08x"
+msgstr "Meno = \" %s \", zadajte 0x %08X, stav %08x"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Name = \"%s\",- TUNER"
-msgstr "Name = \" %s \", - TUNER"
+msgstr "Meno = \" %s \", - TUNER"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Name = \"%s\"- CAMERA"
-msgstr "Nom = \" %s \" - APPAREIL PHOTO"
+msgstr "Meno = \" %s \" - FOTOAPARÁT"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Error selecting input %d VIDIOC_S_INPUT"
-msgstr "Erreur lors de la sélection de l’entrée %d VIDIOC S INPUT"
+msgstr "Chyba pri výbere vstupu %d VIDIOC S INPUT"
 
 #: src/video_v4l2.c
 msgid "Device does not support specifying PAL/NTSC norm"
-msgstr ""
-"L'appareil ne prend pas en charge la spécification de la norme PAL / NTSC"
+msgstr "Zariadenie nepodporuje špecifikáciu normy PAL / NTSC"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "- video standard %s"
-msgstr "- norme vidéo %s"
+msgstr "- video štandard %s"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Error selecting standard method %d VIDIOC_S_STD"
-msgstr "Erreur lors de la sélection de la méthode standard %d VIDIOC S STD"
+msgstr "Chyba pri výbere štandardnej metódy %d VIDIOC S STD"
 
 #: src/video_v4l2.c
 msgid "Video standard set to NTSC"
-msgstr "Norme vidéo définie sur NTSC"
+msgstr "Video štandard je nastavený na NTSC"
 
 #: src/video_v4l2.c
 msgid "Video standard set to SECAM"
-msgstr "Norme vidéo réglée sur SECAM"
+msgstr "Video štandard je nastavený na SECAM"
 
 #: src/video_v4l2.c
 msgid "Video standard set to PAL"
-msgstr "Norme vidéo définie sur PAL"
+msgstr "Video štandard je nastavený na PAL"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "tuner %d VIDIOC_G_TUNER"
-msgstr "syntoniseur %d VIDIOC G TUNER"
+msgstr "tuner %d VIDIOC G TUNER"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Set tuner %d"
-msgstr "Régler le tuner %d"
+msgstr "Nastavte tuner %d"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "freq %ul VIDIOC_S_FREQUENCY"
-msgstr "Freq %ul VIDIOC S FREQUENCY"
+msgstr "freq %ul VIDIOC S FREQUENCY"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Set Frequency to %ul"
-msgstr "Définir la fréquence sur %ul"
+msgstr "Nastavte frekvenciu na %ul"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Testing palette %c%c%c%c (%dx%d)"
-msgstr "Test de la palette %c %c %c %c ( %dx %d)"
+msgstr "Testovacia paleta %c %c %c %c ( %dx %d)"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Adjusting resolution from %ix%i to %ix%i."
-msgstr "Réglage de la résolution de %ix %i à %ix %i."
+msgstr "Úprava rozlíšenia od %ix %i do %ix %i."
 
 #: src/video_v4l2.c
 msgid "Adjusted resolution not modulo 8."
-msgstr "Résolution ajustée non modulo 8."
+msgstr "Upravené rozlíšenie nie je modulo 8."
 
 #: src/video_v4l2.c
 msgid "Specify different palette or width/height in config file."
-msgstr ""
-"Spécifiez une palette ou une largeur / hauteur différente dans le fichier de "
-"configuration."
+msgstr "V konfiguračnom súbore zadajte inú paletu alebo šírku / výšku."
 
 #: src/video_v4l2.c
 msgid ""
 "Error setting pixel format.\n"
 "VIDIOC_S_FMT: "
 msgstr ""
-"Erreur lors de la définition du format de pixel. \n"
+"Chyba pri nastavovaní formátu pixlov. \n"
 " VIDIOC S FMT:"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Using palette %c%c%c%c (%dx%d)"
-msgstr "Utilisation de la palette %c %c %c %c ( %dx %d)"
+msgstr "Použitie palety %c %c %c %c ( %dx %d)"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Bytesperlines %d sizeimage %d colorspace %08x"
-msgstr "Bytesperlines %d sizeimage %d colorpace %08x"
+msgstr "Bytesperlines %d sizeimage %d colorspace %08x"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Adjusting to width (%d)"
-msgstr "Réglage en largeur ( %d)"
+msgstr "Prispôsobenie šírky ( %d)"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Adjusting to height (%d)"
-msgstr "Réglage en hauteur ( %d)"
+msgstr "Nastavenie výšky ( %d)"
 
 #: src/video_v4l2.c
 msgid ""
 "H264(21) format not supported via videodevice.  Changing to default palette"
 msgstr ""
-"Le format H264 (21) n'est pas pris en charge via un périphérique vidéo. "
-"Passage à la palette par défaut"
+"Formát H264 (21) nie je podporovaný prostredníctvom videozariadenia. Zmena "
+"na predvolenú paletu"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Configuration palette index %d (%s) for %dx%d doesn't work."
-msgstr ""
-"L'index de la palette de configuration %d ( %s) pour %dx %d ne fonctionne "
-"pas."
+msgstr "Index konfiguračnej palety %d ( %s) pre %dx %d nefunguje."
 
 #: src/video_v4l2.c
 msgid "Supported palettes:"
-msgstr "Palettes prises en charge:"
+msgstr "Podporované palety:"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "%d - %s (compressed : %d) (%#x)"
-msgstr "%d - %s (compressé: %d) ( %# x)"
+msgstr "%d - %s (komprimované: %d) ( %# x)"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Selected palette %s"
-msgstr "Palette sélectionnée %s"
+msgstr "Vybratá paleta %s"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Palette selection failed for format %s"
-msgstr "La sélection de la palette a échoué pour le format %s"
+msgstr "Výber palety pre formát %s zlyhal"
 
 #: src/video_v4l2.c
 msgid "Unable to find a compatible palette format."
-msgstr "Impossible de trouver un format de palette compatible."
+msgstr "Nie je možné nájsť kompatibilný formát palety."
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Error requesting buffers %d for memory map. VIDIOC_REQBUFS"
 msgstr ""
-"Erreur lors de la demande de tampons %d pour la carte mémoire. VIDIOC REQBUFS"
+"Chyba pri požadovaní vyrovnávacích pamätí %d pre mapu pamäte. VIDIOC REQBUFS"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "mmap information: frames=%d"
-msgstr "informations mmap: frames = %d"
+msgstr "mmap informácie: rámce = %d"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Insufficient buffer memory %d < MIN_MMAP_BUFFERS."
-msgstr "Mémoire tampon insuffisante %d <MIN MMAP BUFFERS."
+msgstr "Nedostatočná vyrovnávacia pamäť %d <MIN MMAP BUFFERS."
 
 #: src/video_v4l2.c
 msgid "Out of memory."
-msgstr "Mémoire insuffisante."
+msgstr "Nedostatok pamäte."
 
 #: src/video_v4l2.c
 #, c-format
@@ -4003,46 +3948,46 @@ msgid ""
 "Error querying buffer %i\n"
 "VIDIOC_QUERYBUF: "
 msgstr ""
-"Erreur d'interrogation du tampon %i \n"
+"Chyba pri vyhľadávaní vyrovnávacej pamäte %i \n"
 " VIDIOC QUERYBUF:"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Error mapping buffer %i mmap"
-msgstr "Erreur de mappage du tampon %i mmap"
+msgstr "Chyba mapovania vyrovnávacej pamäte %i mmap"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "%i length=%d Address (%x)"
-msgstr "%i longueur = %d Adresse ( %x)"
+msgstr "%i length = %d adresa ( %x)"
 
 #: src/video_v4l2.c
 msgid "Error starting stream. VIDIOC_STREAMON"
-msgstr "Erreur de démarrage du flux. VIDIOC STREAMON"
+msgstr "Chyba pri spustení streamu. VIDIOC STREAMON"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "1) vid_source->pframe %i"
-msgstr "1) vid source-> pframe %i"
+msgstr "1) vid zdroj-> pframe %i"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "the_buffer index %d Address (%x)"
-msgstr "l'index de mémoire tampon %d Adresse ( %x)"
+msgstr "index vyrovnávacej pamäte %d adresa ( %x)"
 
 #: src/video_v4l2.c
 msgid "Errors occurred during device select"
-msgstr "Des erreurs se sont produites lors de la sélection de l'appareil"
+msgstr "Počas výberu zariadenia nastala chyba"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Using videodevice %s and input %d"
-msgstr "Utilise l'appareil vidéo %s et l'entrée %d"
+msgstr "Používa videozariadenie %s a vstup %d"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Failed to open video device %s"
-msgstr "Impossible d'ouvrir l'appareil vidéo %s"
+msgstr "Chyba otvorenia video zariadenia %s"
 
 #: src/video_v4l2.c
 msgid "Not a V4L2 device?"
@@ -4050,226 +3995,227 @@ msgstr "Pas un appareil V4L2 ?"
 
 #: src/video_v4l2.c
 msgid "Device does not support capturing."
-msgstr "L'appareil ne gère pas la capture."
+msgstr "Zariadenie nepodporuje získavanie (capturing)."
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Trying to set fps to %d"
-msgstr "Essayer de définir fps sur %d"
+msgstr "Pokúšam sa nastaviť fps na %d"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Error setting fps. Return code %d"
-msgstr "Erreur lors de la définition de fps Code de retour %d"
+msgstr "Chyba pri nastavovaní fps. Návratový kód %d"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Device set fps to %d"
-msgstr "Périphérique réglé en fps sur %d"
+msgstr "Zariadenie nastavilo fps na %d"
 
 #: src/video_v4l2.c
 msgid "V4L2 is not enabled"
-msgstr "V4L2 n'est pas activé"
+msgstr "V4L2 nie je aktivovaný"
 
 #: src/video_v4l2.c
 msgid "V4L2 is not enabled."
-msgstr "V4L2 n'est pas activé."
+msgstr "V4L2 nie je aktivovaný."
 
 #: src/video_v4l2.c
 #, c-format
 msgid "Testing palette %s (%c%c%c%c)"
-msgstr "Test de la palette %s (%c%c%c%c)"
+msgstr "Testovacia paleta %s (%c%c%c%c)"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "  Width: %d, Height %d"
-msgstr "  Largeur: %d, Hauteur %d"
+msgstr "  Šírka: %d, Výška %d"
 
 #: src/video_v4l2.c
 #, c-format
 msgid "    Framerate %d/%d"
-msgstr "    Fréquence d'images %d/%d"
+msgstr "    Kmitočet obrázkov %d/%d"
 
 #: src/webu.c
 #, c-format
 msgid "Invalid url: %s"
-msgstr "URL invalide: %s"
+msgstr "Neplatná webová adresa: %s"
 
 #: src/webu.c
 msgid "Error decoding url"
-msgstr "Erreur de décodage de l'URL"
+msgstr "Chyba pri dekódovaní adresy URL"
 
 #: src/webu.c
 #, c-format
 msgid "Sent url: %s"
-msgstr "URL envoyée: %s"
+msgstr "Odoslaná adresa URL: %s"
 
 #: src/webu.c
 #, c-format
 msgid "Decoded url: %s"
-msgstr "URL décodée: %s"
+msgstr "Dekódovaná webová adresa: %s"
 
 #: src/webu.c
 msgid "Restarting all threads"
-msgstr "Redémarrer tous les threads"
+msgstr "Reštartovanie všetkých vlákien"
 
 #: src/webu.c
 #, c-format
 msgid "Restarting thread %d"
-msgstr "Redémarrage du fil %d"
+msgstr "Reštartovanie vlákna %d"
 
 #: src/webu.c
 #, c-format
 msgid "Quitting thread %d"
-msgstr "Arrêt du fil %d"
+msgstr "Ukončenie vlákna %d"
 
 #: src/webu.c src/webu_html.c src/webu_text.c
 #, c-format
 msgid "Invalid action requested: >%s< >%s< >%s<"
-msgstr "Action non valide demandée:> %s <> %s <> %s <"
+msgstr "Požadovaná neplatná akcia:> %s <> %s <> %s <"
 
 #: src/webu.c
 msgid "Native Language : on"
-msgstr "Langage natif : Oui"
+msgstr "Národný jazyk : zapnutý"
 
 #: src/webu.c
 msgid "Native Language : off"
-msgstr "Langage natif : Non"
+msgstr "Národný jazyk : Vypnutý"
 
 #: src/webu.c
 msgid "Set the value to null/zero"
-msgstr "Définissez la valeur sur null / zero"
+msgstr "Nastavte hodnotu na null / nula"
 
 #: src/webu.c
 #, c-format
 msgid "Connection from: %s"
-msgstr "Connexion à partir de: %s"
+msgstr "Pripojenie od: %s"
 
 #: src/webu.c
 #, c-format
 msgid "Failed authentication from %s"
-msgstr "Échec de l'authentification à partir de %s"
+msgstr "Overenie zlyhalo z %s"
 
 #: src/webu.c
 msgid "No webcontrol user:pass provided"
-msgstr "Pas d'utilisateur Webcontrol: pass fourni"
+msgstr "Žiadny používateľ webcontrol: poskytnutý preukaz"
 
 #: src/webu.c
 msgid "No stream user:pass provided"
-msgstr "Pas d'utilisateur de flux: pass fourni"
+msgstr "Žiadny používateľ prúdu: poskytnutý prístup"
 
 #: src/webu.c src/webu_stream.c
 msgid "Invalid response"
-msgstr "Réponse invalide"
+msgstr "Neplatná odpoveď"
 
 #: src/webu.c
 #, c-format
 msgid "Invalid Method requested: %s"
-msgstr "Méthode non valide demandée: %s"
+msgstr "Požadovaná neplatná metóda: %s"
 
 #: src/webu.c
 #, c-format
 msgid "send page failed %d"
-msgstr "La page d'envoi a échoué %d"
+msgstr "odoslanie stránky zlyhalo %d"
 
 #: src/webu.c
 msgid "Basic authentication: available"
-msgstr "Authentification de base: disponible"
+msgstr "Základné overenie: dostupné"
 
 #: src/webu.c
 msgid "Basic authentication: disabled"
-msgstr "Authentification de base: désactivé"
+msgstr "Základné overenie totožnosti: vypnuté"
 
 #: src/webu.c
 msgid "Digest authentication: available"
-msgstr "Authentification Digest: disponible"
+msgstr "Overenie totožnosti: dostupné"
 
 #: src/webu.c
 msgid "Digest authentication: disabled"
-msgstr "Authentification Digest: désactivée"
+msgstr "Overenie totožnosti: zakázané"
 
 #: src/webu.c
 msgid "libmicrohttpd libary too old ipv6 disabled"
-msgstr "libmicrohttpd libary too old ipv6 désactivé"
+msgstr "libmicrohttpd libary príliš starý ipv6 je deaktivovaný"
 
 #: src/webu.c
 msgid "IPV6: available"
-msgstr "IPV6: disponible"
+msgstr "IPV6: k dispozícii"
 
 #: src/webu.c
 msgid "IPV6: disabled"
-msgstr "IPV6: désactivé"
+msgstr "IPV6: deaktivované"
 
 #: src/webu.c
 msgid "libmicrohttpd libary too old SSL/TLS disabled"
-msgstr "libmicrohttpd libary trop vieux SSL / TLS désactivé"
+msgstr "libmicrohttpd libary príliš starý SSL / TLS vypnutý"
 
 #: src/webu.c
 msgid "SSL/TLS: available"
-msgstr "SSL / TLS: disponible"
+msgstr "SSL / TLS: k dispozícii"
 
 #: src/webu.c
 msgid "SSL/TLS: disabled"
-msgstr "SSL / TLS: désactivé"
+msgstr "SSL / TLS: vypnuté"
 
 #: src/webu.c
 msgid "Error reading file for SSL/TLS support."
-msgstr "Erreur de lecture du fichier pour la prise en charge de SSL / TLS."
+msgstr "Pri čítaní súboru kvôli podpore SSL / TLS sa vyskytla chyba."
 
 #: src/webu.c
 msgid "SSL/TLS requested but no cert file provided.  SSL/TLS disabled"
 msgstr ""
-"SSL / TLS demandé mais aucun fichier de certificat fourni. SSL / TLS "
-"désactivé"
+"Vyžaduje sa SSL / TLS, ale nebol poskytnutý žiadny certifikačný súbor. SSL / "
+"TLS je zakázané"
 
 #: src/webu.c
 msgid "SSL/TLS requested but no key file provided.  SSL/TLS disabled"
 msgstr ""
-"SSL / TLS demandé mais aucun fichier de clé fourni. SSL / TLS désactivé"
+"Vyžaduje sa SSL / TLS, ale nebol poskytnutý žiadny súbor kľúčov. SSL / TLS "
+"je zakázané"
 
 #: src/webu.c
 #, c-format
 msgid "Starting webcontrol on port %d"
-msgstr "Démarrage de webcontrol sur le port %d"
+msgstr "Spustenie webovej kontroly na porte %d"
 
 #: src/webu.c
 msgid "Unable to start MHD"
-msgstr "Impossible de démarrer MHD"
+msgstr "Nemožno spustiť MHD"
 
 #: src/webu.c
 #, c-format
 msgid "Started webcontrol on port %d"
-msgstr "Démarrage de webcontrol sur le port %d"
+msgstr "Spustená webová kontrola na porte %d"
 
 #: src/webu.c
 #, c-format
 msgid "Started camera %d stream on port/camera_id %d/%d"
-msgstr "Caméra démarrée %d flux sur le port / identifiant de la caméra %d / %d"
+msgstr "Spustený stream kamery %d na porte / ID kamery %d / %d"
 
 #: src/webu.c
 #, c-format
 msgid "Started camera %d stream on port %d"
-msgstr "Caméra démarrée %d flux sur le port %d"
+msgstr "Spustil sa fotoaparát %d stream na porte %d"
 
 #: src/webu.c
 #, c-format
 msgid "Starting all camera streams on port %d"
-msgstr "Démarrage de tous les flux de caméra sur le port %d"
+msgstr "Spustenie všetkých tokov kamier na porte %d"
 
 #: src/webu.c
 #, c-format
 msgid "Starting camera %d stream on port %d"
-msgstr "Démarrage de la caméra %d sur le port %d"
+msgstr "Spustenie prúdu kamery %d na porte %d"
 
 #: src/webu.c
 #, c-format
 msgid "Unable to start stream for camera %d"
-msgstr "Impossible de démarrer le flux pour la caméra %d"
+msgstr "Nemožno spustiť stream pre kameru %d"
 
 #: src/webu.c
 #, c-format
 msgid "Duplicate port requested %d"
-msgstr "Port dupliqué demandé %d"
+msgstr "Vyžaduje sa duplikát portu %d"
 
 #: src/webu_html.c
 msgid "Cameras"
@@ -4289,139 +4235,139 @@ msgstr "Action"
 
 #: src/webu_html.c
 msgid "Start Event"
-msgstr "Commencer un événement"
+msgstr "Štart udalostí"
 
 #: src/webu_html.c
 msgid "End Event"
-msgstr "Terminer l'événement"
+msgstr "Koniec udalostí"
 
 #: src/webu_html.c
 msgid "Snapshot"
-msgstr "Instantané"
+msgstr "Momentka"
 
 #: src/webu_html.c
 msgid "Change Configuration"
-msgstr "Changer la configuration"
+msgstr "Zmena konfigurácie"
 
 #: src/webu_html.c
 msgid "Write Configuration"
-msgstr "Écrire la configuration"
+msgstr "Zápis konfigurácie"
 
 #: src/webu_html.c
 msgid "Tracking"
-msgstr "Suivi"
+msgstr "sledovanie"
 
 #: src/webu_html.c
 msgid "Pause"
-msgstr "Pause"
+msgstr "Pauza"
 
 #: src/webu_html.c
 msgid "Start"
-msgstr "Démarrer"
+msgstr "Štart"
 
 #: src/webu_html.c
 msgid "Restart"
-msgstr "Redémarrer"
+msgstr "Reštart"
 
 #: src/webu_html.c
 msgid "Quit"
-msgstr "Quitter"
+msgstr "prestať"
 
 #: src/webu_html.c
 msgid "Help"
-msgstr "Aide"
+msgstr "Pomoc"
 
 #: src/webu_html.c
 msgid "No Configuration Options"
-msgstr "Aucune option de configuration"
+msgstr "Nie sú konfiguračné možnosti"
 
 #: src/webu_html.c
 msgid "Limited Configuration Options"
-msgstr "Options de configuration limitées"
+msgstr "Obmedzené konfiguračné možnosti"
 
 #: src/webu_html.c
 msgid "Advanced Configuration Options"
-msgstr "Options de configuration avancées"
+msgstr "Rozšírené konfiguračné možnosti"
 
 #: src/webu_html.c
 msgid "Restricted Configuration Options"
-msgstr "Options de configuration restreintes"
+msgstr "Reštrikčné konfiguračné možnosti"
 
 #: src/webu_html.c
 msgid "All Cameras"
-msgstr "Toutes les caméras"
+msgstr "Všetky kamery"
 
 #: src/webu_html.c
 msgid "Not running"
-msgstr "Hors ligne"
+msgstr "Nebežiace"
 
 #: src/webu_html.c
 msgid "Lost connection"
-msgstr "Connexion perdue"
+msgstr "Strata pripojenia"
 
 #: src/webu_html.c
 msgid "Paused"
-msgstr "En pause"
+msgstr "Pauza"
 
 #: src/webu_html.c
 msgid "Active"
-msgstr "Active"
+msgstr "Aktívne"
 
 #: src/webu_html.c
 msgid "Select option"
-msgstr "Sélectionnez une option"
+msgstr "nastaviť možnosti"
 
 #: src/webu_html.c
 msgid "Save"
-msgstr "Enregistrer"
+msgstr "Záapis"
 
 #: src/webu_html.c
 msgid "Pan/Tilt"
-msgstr "Rotation / inclinaison"
+msgstr "Rotácia / sklon"
 
 #: src/webu_html.c
 msgid "Absolute Change"
-msgstr "Changement absolu"
+msgstr "Absolútna zmena"
 
 #: src/webu_html.c
 msgid "Center"
-msgstr "Centrer"
+msgstr "Stred"
 
 #: src/webu_html.c
 msgid "Pan"
-msgstr "Rotation"
+msgstr "Rotácia"
 
 #: src/webu_html.c
 msgid "Tilt"
-msgstr "Inclinaison"
+msgstr "Sklon"
 
 #: src/webu_stream.c
 #, c-format
 msgid "Invalid thread specified: %s"
-msgstr "Thread non valide spécifié: %s"
+msgstr "Zadané neplatné vlákno: %s"
 
 #: src/webu_stream.c
 #, c-format
 msgid "Invalid URL for a camera specific port: %s"
-msgstr "URL non valide pour un port spécifique à la caméra: %s"
+msgstr "Neplatná adresa URL pre port špecifický pre kameru: %s"
 
 #: src/webu_stream.c
 #, c-format
 msgid "URL for thread 0 is not valid when using camera specific files.: %s"
 msgstr ""
-"L'URL du fil 0 n'est pas valide lors de l'utilisation de fichiers "
-"spécifiques à l'appareil photo .: %s"
+"URL pre vlákno 0 nie je platné pri použití súborov špecifických pre "
+"kameru .: %s"
 
 #: src/webu_stream.c
 #, c-format
 msgid "Bad URL for a camera specific port: %s"
-msgstr "URL incorrecte pour un port spécifique à la caméra: %s"
+msgstr "Chybná adresa URL pre port špecifický pre kameru: %s"
 
 #: src/webu_stream.c
 msgid "Could not get image to stream."
-msgstr "Impossible de récupérer le codec."
+msgstr "Nemožné dostať obrázok do stream-u."
 
 #: src/webu_text.c
 #, c-format
 msgid "'%s' option is depreciated.  New option name is '%s'"
-msgstr "L'option ' %s' est dépréciée. Le nouveau nom de l'option est '%s'"
+msgstr "Možnosť ' %s' je odpisovaná. Nový názov voľby je '%s' "
